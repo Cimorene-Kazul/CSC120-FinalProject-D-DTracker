@@ -1,0 +1,26 @@
+This portion impliments keeping track of stat blocks as strings, rolling initiative, and tracking AC and HP.
+
+Here is the most basic Psudocode for our project:
+**Input**: A list of 'monsters' each of which has a stat block, AC, inititive, and HP, and a list of 'players' each of which just has a name.
+1. Roll initiative for each monster (1d20+initiative) and save.
+2. Prompt for initiative rolls from each player, and save.
+3. Sort all (players and monsters together) by initative
+4. Create an 'initive count' tracker. Start at 20 OR the largest initative rolled.
+5. If there is a creature at the current initative:
+    a. If the creature is a player: Prompt the player to take their turn
+    b. If the creature is a monster: Print the stat block
+    c. Prompt for input
+        i.   If input is 'end', go to 6.
+        ii.  If input is 'attack' print a numbered list of creatures with their ACs and ask which got attacked. Then ask if they got hit. If they did, prompt for damage and remove that damage from the target's HP. Otherwise, return to c.
+        iii. If the input is anything else, print 'unclear' and tell the user the availiable options
+6. Decrease initiative by 1.
+7. If initiative is less than the smallest initiative rolled: Return to 4.
+
+This set up has the following objects: InitativeTracker, Entity, Player, Monster.
+
+InitativeTracker has the following attributes:
+ArrayList of Entity : this is a list of the current creatures in the situation
+Hashtable of Arraylist of Entity with int Keys : this takes in an initative and returns a list of the entities at the iniative count
+integer :  current initative count
+
+InitativeTracker has the following methods:
