@@ -5,30 +5,20 @@ D&D combat is a lot to keep track of. DMing a large encounter can be a major cha
 Here is a simple stat block, holding the information needed to run combat against a basic enemy, a bandit.
 
 ***Bandit***
-
+'''
 Small or Medium Humanoid, Neutral
-
-*AC* 12         *Initiative* +1 (11)
-
-*HP* 11 (2d8 + 2)       *Speed* 30 ft.
-
-        *Str     Dex     Con     Int     Wis     Cha*
-
+AC 12         Initiative +1 (11)
+HP 11 (2d8 + 2)       Speed 30 ft.
+        Str     Dex     Con     Int     Wis     Cha
         11       12      12      10      10      10
-
 Bonus:  +0       +1      +1      +0      +0      +0
-
 Save:   +0       +1      +1      +0      +0      +0
-
-*Gear* Leather Armor, Light Crossbow, Scimitar      *Senses* Passive Perception 10
-
-*Languages* Common, Thieves' cant                   *CR* 1/8 (XP 25; PB +2)
-
+Gear: Leather Armor, Light Crossbow, Scimitar      Senses: Passive Perception 10
+Languages: Common, Thieves' cant                   CR 1/8 (XP 25; PB +2)
 ***Actions***
-
 Scimitar. Melee Attack Roll: +3, reach 5 ft. Hit: 4 (1d6 + 1) Slashing damage.
-
 Light Crossbow. Ranged Attack Roll: +3, range 80/320 ft. Hit: 5 (1d8 + 1) Piercing damage.
+'''
 
 D&D uses turn-based combat. The most important pieces of information here are the AC, initiative, and HP of the monster. The rest we will consider modeling in time, but we'll start with these three. The initiative determines order in combat. Each creature fighting rolls a 20-sided die (1d20) and adds a modifier, their initiative modifier. You then go in initiative order, where the 'initiative' is the modified roll. The AC is the difficulty of hitting the target with an attack. To strike a target, a character rolls a 20-sided die (1d20) and adds a modifier. If that value equals or exceeds the target's AC, they got hit. After hitting a target, remove HP equal to the damage dealt, which might be modified by defensive ablities. If HP falls to 0, the target is dead or dying. 
 
