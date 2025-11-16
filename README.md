@@ -23,7 +23,7 @@ Light Crossbow. Ranged Attack Roll: +3, range 80/320 ft. Hit: 5 (1d8 + 1) Pierci
 D&D uses turn-based combat. The most important pieces of information here are the AC, initiative, and HP of the monster. The rest we will consider modeling in time, but we'll start with these three. The initiative determines order in combat. Each creature fighting rolls a 20-sided die (1d20) and adds a modifier, their initiative modifier. You then go in initiative order, where the 'initiative' is the modified roll. The AC is the difficulty of hitting the target with an attack. To strike a target, a character rolls a 20-sided die (1d20) and adds a modifier. If that value equals or exceeds the target's AC, they got hit. After hitting a target, remove HP equal to the damage dealt, which might be modified by defensive ablities. If HP falls to 0, the target is dead or dying. 
 
 # Part 1: The Basics
-Here is the most basic Psudocode for our project:
+Here is the most basic Pseudocode for our project:
 **Input**: A list of 'monsters' each of which has a stat block, AC, inititive, and HP, and a list of 'players' each of which just has a name.
 1. Roll initiative for each monster (1d20+initiative) and save.
 2. Prompt for initiative rolls from each player, and save.
