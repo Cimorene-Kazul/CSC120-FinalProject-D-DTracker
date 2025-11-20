@@ -1,6 +1,5 @@
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Random;
+import java.util.Hashtable;
 
 public class Monster extends Creature{
     private String name;
@@ -12,7 +11,7 @@ public class Monster extends Creature{
     private boolean preRolled = false;
     private int preRolledInitative;
     private boolean hasLair = false;
-    private ArrayList<Ability> abilities;
+    private Hashtable<String, Integer> abilities;
 
     public Monster(String name, int health, int AC, int initativeBonus, String statBlock, int preRolledInitative){
         this(name, health, AC, initativeBonus, statBlock);
