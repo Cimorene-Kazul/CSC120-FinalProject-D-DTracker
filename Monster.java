@@ -15,17 +15,22 @@ public class Monster extends Creature{
     private ArrayList<Ability> abilities;
 
     public Monster(String name, int health, int AC, int initativeBonus, String statBlock, int preRolledInitative){
-        this.subclass = CreatureType.MONSTER;
-        this.name = name;
-        this.HP = health;
-        this.HPmax = health;
-        this.AC = AC;
-        this.initativeBonus = initativeBonus;
-        this.statBlock = statBlock;
+        this(name, health, AC, initativeBonus, statBlock);
         this.preRolledInitative = preRolledInitative;
         this.preRolled = true;
     }
     
+    public Monster(String name, int health, int AC, int initativeBonus, String statBlock, boolean hasLair, int preRolledInitative){
+        this(name, health, AC, initativeBonus, statBlock, hasLair);
+        this.preRolledInitative = preRolledInitative;
+        this.preRolled = true;
+    }
+
+    public Monster(String name, int health, int AC, int initativeBonus, String statBlock, boolean hasLair){
+        this(name, health, AC, initativeBonus, statBlock);
+        this.hasLair = hasLair;
+    }
+
     public Monster(String name, int health, int AC, int initativeBonus, String statBlock){
         this.subclass = CreatureType.MONSTER;
         this.name = name;
