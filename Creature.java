@@ -1,13 +1,7 @@
 abstract class Creature {
-    String name;
-    CreatureType subclass;
-    private boolean hasLair;
-
-    public Creature(String name, CreatureType subclass, boolean hasLair){
-        this.name = name;
-        this.subclass = subclass;
-        this.hasLair = hasLair;
-    }
+    protected String name;
+    protected CreatureType subclass;
+    protected boolean hasLair;
 
     public boolean getLair(){
         return this.hasLair;

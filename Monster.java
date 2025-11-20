@@ -12,7 +12,7 @@ public class Monster extends Creature{
     private boolean hasLair = false;
 
     public Monster(String name, int health, int AC, int initativeBonus, String statBlock, int preRolledInitative){
-        super(name, CreatureType.MONSTER, false);
+        this.subclass = CreatureType.MONSTER;
         this.name = name;
         this.HP = health;
         this.HPmax = health;
@@ -24,7 +24,7 @@ public class Monster extends Creature{
     }
     
     public Monster(String name, int health, int AC, int initativeBonus, String statBlock){
-        super(name, CreatureType.MONSTER, false);
+        this.subclass = CreatureType.MONSTER;
         this.name = name;
         this.HP = health;
         this.HPmax = health;

@@ -5,9 +5,9 @@ public class Player extends Creature{
     boolean hasLair = false;
     
     public Player(String PCName, String PCPlayer){
-        super(PCName, CreatureType.PLAYER, false);
         this.name = PCName;
         this.player = PCPlayer;
+        this.subclass = CreatureType.PLAYER;
     }
 
     public String TurnPrompt(){
