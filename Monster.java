@@ -1,3 +1,5 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Monster extends Creature{
@@ -10,6 +12,7 @@ public class Monster extends Creature{
     private boolean preRolled = false;
     private int preRolledInitative;
     private boolean hasLair = false;
+    private ArrayList<Ability> abilities;
 
     public Monster(String name, int health, int AC, int initativeBonus, String statBlock, int preRolledInitative){
         this.subclass = CreatureType.MONSTER;
