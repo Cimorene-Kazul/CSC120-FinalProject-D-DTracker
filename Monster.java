@@ -9,6 +9,7 @@ public class Monster extends Creature{
     private String statBlock;
     private boolean preRolled = false;
     private int preRolledInitative;
+    private boolean hasLair = false;
 
     public Monster(String name, int health, int AC, int initativeBonus, String statBlock, int preRolledInitative){
         super(name, CreatureType.MONSTER, false);

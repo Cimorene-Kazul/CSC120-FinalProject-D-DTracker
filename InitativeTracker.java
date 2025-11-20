@@ -2,8 +2,6 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Scanner;
 
-import javax.management.monitor.StringMonitor;
-
 public class InitativeTracker {
     ArrayList<Creature> creatures;
     Hashtable<Integer, ArrayList<Creature>> initativeTable;
@@ -18,6 +16,21 @@ public class InitativeTracker {
 
     public InitativeTracker(ArrayList<Creature> creatures){
         this.creatures = creatures;
+
+        for (Creature c: creatures){
+            if (c.getLair()){
+                Placeholder lair = new Placeholder(20, c.getName()+"'s lair actions"); 
+                creatures.add(lair);
+            }
+        }
+    }
+
+    public void addCreature(Creature c){
+        this.creatures.add(c);
+        if (c.getLair()){
+            Placeholder lair = new Placeholder(20, c.getName()+"'s lair actions"); 
+            creatures.add(lair);
+        }
     }
 
     private void rollInitatives(){
