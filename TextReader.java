@@ -41,19 +41,23 @@ public class TextReader {
                 }
                 else if (StartingActions[j].equals("bonus action")){
                     String bonusActionName = input.substring(13).trim();
-                    // call bonus action method on the name, or call this method again on the name
+                    // call bonus action method on the name, or call this method again with the name (depending on implementation)
                 }
                 else if (StartingActions[j].equals("reaction")){
-                    // call reaction method
+                    String reactionName = input.substring(8).trim();
+                    // call reaction method on the name, or call this method again with the name
                 }
                 else if (StartingActions[j].equals("legendary action")){
-                    // call legendary action method
+                    String legendaryActionName = input.substring(16).trim();
+                    // call legendary action method on the name, or call this method again with the name
                 }
                 else if (StartingActions[j].equals("legendary resistance")){
-                    // call legendary resistance method
+                    String legendaryResistanceName = input.substring(20).trim();
+                    // call legendary resistance method on the same, or call this method again with the name
                 }
                 else if (StartingActions[j].equals("action")){
-                    // call action method
+                    String actionName = input.substring(6).trim();
+                    // call action method on the name, or call this method again with the name
                 }
             }
         }
