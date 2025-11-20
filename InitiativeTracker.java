@@ -21,7 +21,6 @@ public class InitiativeTracker {
             Integer index = Integer.parseInt(commandPieces[1]);
             Integer amt = Integer.parseInt(commandPieces[2]);
             initiativeOrder.get(index).heal(amt);
-
         } else if (input.startsWith("roll")){
             String die = input.substring(5);
             this.roll(die);
@@ -63,7 +62,7 @@ public class InitiativeTracker {
         }
     }
 
-    public static void roll(String input){
+    public void roll(String input){
         if (!input.contains("d")){
             int result = 0;
             if (input.contains("/")){
