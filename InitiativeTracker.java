@@ -24,7 +24,6 @@ public class InitiativeTracker {
 
         } else if (input.startsWith("roll")){
             String die = input.substring(5);
-            
             this.roll(die);
         } else if (input.startsWith("bonus action")){
             String bonusAction = input.substring(13);
@@ -64,8 +63,37 @@ public class InitiativeTracker {
         }
     }
 
-    public roll(String die){
-        index = indexOf()
+    public static void roll(String input){
+        if (!input.contains("d")){
+            int result = 0;
+            if (input.contains("/")){
+                int x = Integer.parseInt(input.substring(0, input.indexOf("/")));
+                int y = Integer.parseInt(input.substring(input.indexOf("/")+1));
+                result = x/y;
+            } else if (input.contains("*")){
+                int x = Integer.parseInt(input.substring(0, input.indexOf("*")));
+                int y = Integer.parseInt(input.substring(input.indexOf("*")+1));
+                result = x*y;
+            } else if (input.contains("+")){
+                int x = Integer.parseInt(input.substring(0, input.indexOf("+")));
+                int y = Integer.parseInt(input.substring(input.indexOf("+")+1));
+                result = x+y;
+            } else if (input.contains("-")){
+                int x = Integer.parseInt(input.substring(0, input.indexOf("-")));
+                int y = Integer.parseInt(input.substring(input.indexOf("-")+1));
+                result = x-y;
+            }
+            System.out.println(input + " = " + result);
+            return;
+        }
+        String[] dice = input.split(" ");
+        int rollresult = 0;
+        for (String die : dice){
+            int numberOfDice = Integer.parseInt(die.substring(0,die.indexOf("d")));
+            int sizeOfDie = Integer.parseInt(die.substring(die.indexOf("d")+1));
+            rollresult += numberOfDice*(int)(Math.random()*sizeOfDie + 1);
+        }
+        System.out.println(rollresult);
     }
     
     public InitiativeTracker(){
