@@ -8,6 +8,14 @@ public class InitiativeTracker {
     ArrayList<Creature> initiativeOrder;
     boolean inCombat = false;
     Integer currentInitative;
+    String commandOptions = """
+        summary - prints a concise summary of characters in combat, with their indicies, in initative order
+        end turn - goes on to the next turn
+        close - closes the whole program
+        roll <dice formula> - rolls and prints the result of <dice formula> (ie, 3d6 rolls 3 6-sided dice and adds the results)
+        damage <index> <amt> - damages the creature at index <index> for amount <amount>
+        heal <index> <amt> - heals the creature at index <index> for amount <amount>
+        """;
 
     public void doAction(String input){
         if (input.startsWith("heal")){
@@ -23,6 +31,8 @@ public class InitiativeTracker {
         } else if (input.startsWith("roll")){
             String die = input.substring(5);
             this.roll(die);
+        } else if (input.startsWith("options")){
+            System.out.println(commandOptions);
         } else if (input.startsWith("bonus action")){
             String bonusAction = input.substring(13);
             // do the bonus action method
