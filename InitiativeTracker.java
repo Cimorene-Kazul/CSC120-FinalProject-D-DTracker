@@ -16,7 +16,7 @@ public class InitiativeTracker {
             Integer amt = Integer.parseInt(commandPieces[2]);
             initiativeOrder.get(index).damage(amt);
         } else if (input.startsWith("damage")){
-            String[] commandPieces = " ".split(input.trim());
+            String[] commandPieces = input.trim().split(" ");
             Integer index = Integer.parseInt(commandPieces[1]);
             Integer amt = Integer.parseInt(commandPieces[2]);
             initiativeOrder.get(index).heal(amt);
@@ -135,8 +135,11 @@ public class InitiativeTracker {
                 initiativeTable.put(initiative, startingArray);
             }
         }
-        for (Integer i=top; i<bottom; i--){
-            if (initiativeTable.get(i) != null) {
+
+        initiativeOrder = new ArrayList<>();
+
+        for (Integer i=top; i>=bottom; i-=1){
+            if (initiativeTable.containsKey(i)) {
                 for (Creature c:initiativeTable.get(i)){
                     this.initiativeOrder.add(c);
                 }
@@ -154,6 +157,7 @@ public class InitiativeTracker {
         this.rollInitiatives(encounterScanner);
         this.inCombat = true;
         this.currentInitative = 0;
+        System.out.println(this.initiativeOrder.get(this.currentInitative).turnPrompt());
         while (inCombat) {
             this.takeTurn(encounterScanner);
         }
