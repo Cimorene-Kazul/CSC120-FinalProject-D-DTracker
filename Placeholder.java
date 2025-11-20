@@ -13,4 +13,8 @@ public class Placeholder extends Creature {
     public String TurnPrompt(){
         return "Since it is initative count "+this.initative+" it is time to do "+this.name;
     }
+
+    public String toString(){
+        return "Placeholder in initative order for "+this.name;
+    }
 }

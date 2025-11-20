@@ -21,4 +21,8 @@ public class Player extends Creature{
         initScanner.close();
         return initative;
     }
+
+    public String toString(){
+        return this.player+"'s player character, "+this.name;
+    }
 }
