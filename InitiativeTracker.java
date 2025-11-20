@@ -4,11 +4,9 @@ import java.util.Scanner;
 
 public class InitiativeTracker {
     ArrayList<Creature> creatures;
-    Hashtable<Integer, ArrayList<Creature>> initiativeTable;
     ArrayList<Creature> initiativeOrder;
-    Integer top = 20; // the 'top of the initiative order'
-    Integer bottom = 0; // the 'bottom of the initiative order'
     boolean inCombat = false;
+    Integer currentInitative;
 
     public void doAction(String input){
         if (input.startsWith("heal")){
@@ -37,13 +35,25 @@ public class InitiativeTracker {
             String action = input.substring(7);
             // do the action method
         } else if (input.startsWith("end turn")){
-            this.inCombat = false;
+            this.currentInitative += 1;
+            if (this.currentInitative >= this.initiativeOrder.size()){
+                this.currentInitative = 0;
+            }
+            System.out.println(this.initiativeOrder.get(this.currentInitative).turnPrompt());
         } else if (input.startsWith("summary")){
-            // do the summary method
+            this.printSummary();
+        } else if (input.startsWith("close")){
+            this.inCombat = false;
         } else if (input.indexOf("save") != -1){
             String thingToBeSaved = input.substring(input.indexOf("save")+5);
             String saveType = thingToBeSaved.split(" ")[0];
             // do the saving throw method
+        }
+    }
+
+    private void printSummary(){
+        for (int i=0; i<this.initiativeOrder.size(); i++){
+            System.out.println(i+"\t"+initiativeOrder.get(i));
         }
     }
 
@@ -75,29 +85,32 @@ public class InitiativeTracker {
     }
 
     private void rollInitiatives(){
+        Hashtable<Integer, ArrayList<Creature>> initiativeTable = new Hashtable<>();
+        Integer top = 20; // the 'top of the initiative order'
+        Integer bottom = 0; // the 'bottom of the initiative order'
         for (Creature creature: this.creatures){
             int initiative = creature.rollInitiative();
 
-            if (initiative > this.top){
-                this.top = initiative;
+            if (initiative > top){
+                top = initiative;
             }
-            if (initiative < this.bottom){
-                this.bottom = initiative;
+            if (initiative < bottom){
+                bottom = initiative;
             }
 
 
-            if (this.initiativeTable.containsKey(initiative)){
-                this.initiativeTable.get(initiative).add(creature);
+            if (initiativeTable.containsKey(initiative)){
+                initiativeTable.get(initiative).add(creature);
             } else{
                 ArrayList<Creature> startingArray = new ArrayList<>();
                 startingArray.add(creature);
-                this.initiativeTable.put(initiative, startingArray);
+                initiativeTable.put(initiative, startingArray);
             }
         }
 
-        for (Integer i=this.top; i<this.bottom; i--){
-            if (this.initiativeTable.get(i) != null) {
-                for (Creature c:this.initiativeTable.get(i)){
+        for (Integer i=top; i<bottom; i--){
+            if (initiativeTable.get(i) != null) {
+                for (Creature c:initiativeTable.get(i)){
                     this.initiativeOrder.add(c);
                 }
             }
@@ -114,6 +127,7 @@ public class InitiativeTracker {
     public void rollInitiative(){
         this.rollInitiatives();
         this.inCombat = true;
+        this.currentInitative = 0;
         while (inCombat) {
             this.takeTurn();
         }
