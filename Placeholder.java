@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Placeholder extends Creature {
     private int initative;
     
@@ -6,7 +8,7 @@ public class Placeholder extends Creature {
         this.name=name;
     }
     
-    public int rollInitiative(){
+    public int rollInitiative(Scanner initScanner){
         return initative;
     }
 

@@ -119,12 +119,12 @@ public class InitiativeTracker {
         }
     }
 
-    private void rollInitiatives(){
+    private void rollInitiatives(Scanner initativeScanner){
         Hashtable<Integer, ArrayList<Creature>> initiativeTable = new Hashtable<>();
         Integer top = 20; // the 'top of the initiative order'
         Integer bottom = 0; // the 'bottom of the initiative order'
         for (Creature creature: this.creatures){
-            int initiative = creature.rollInitiative();
+            int initiative = creature.rollInitiative(initativeScanner);
 
             if (initiative > top){
                 top = initiative;
@@ -152,19 +152,18 @@ public class InitiativeTracker {
         }
     }
 
-    private void takeTurn(){
-        Scanner turnScanner = new Scanner(System.in);
+    private void takeTurn(Scanner turnScanner){
         String command = turnScanner.nextLine();
-        turnScanner.close();
         this.doAction(command);
     }
 
     public void rollInitiative(){
-        this.rollInitiatives();
+        Scanner encounterScanner = new Scanner(System.in);
+        this.rollInitiatives(encounterScanner);
         this.inCombat = true;
         this.currentInitative = 0;
         while (inCombat) {
-            this.takeTurn();
+            this.takeTurn(encounterScanner);
         }
     }
 
@@ -173,6 +172,11 @@ public class InitiativeTracker {
     public static void main(String[] args) {
         Player moth = new Player("Moth", "Elizabeth");
         Player emia = new Player("Emia", "Celina");
-        Monster luna = new Monster("Ilumetrix Luna", 300, 21, +5, "<substitute for Luna's stats>");
+        Monster luna = new Monster("Ilumetrix Luna", 300, 21, +5, "<substitute for Luna's stats>", true);
+        InitiativeTracker myEncounter = new InitiativeTracker();
+        myEncounter.addCreature(luna);
+        myEncounter.addCreature(emia);
+        myEncounter.addCreature(moth);
+        myEncounter.rollInitiative();
     }
 }

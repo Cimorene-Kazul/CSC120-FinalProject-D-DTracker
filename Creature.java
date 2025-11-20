@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 abstract class Creature {
     protected String name;
     protected CreatureType subclass;
@@ -23,6 +25,6 @@ abstract class Creature {
         return this.name+" is not a monster and thus cannot be healed.";
     }
 
-    abstract int rollInitiative();
+    abstract int rollInitiative(Scanner initScanner);
     abstract String turnPrompt();
 }

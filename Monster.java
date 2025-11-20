@@ -1,5 +1,7 @@
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Hashtable;
+import java.util.Scanner;
 
 public class Monster extends Creature{
     private String name;
@@ -75,7 +77,7 @@ public class Monster extends Creature{
         return "It is "+this.name+"'s turn. \n Here is a stat block for "+this.name+".\n" + this.statBlock+"\n"+this.name+" is at "+this.HP+" out of "+this.HPmax+" health.";
     }
 
-    public int rollInitiative(){
+    public int rollInitiative(Scanner initScanner){
         if (!this.preRolled){
             Random d20 = new Random();
             return d20.nextInt(20)+1+this.initativeBonus;

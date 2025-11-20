@@ -14,11 +14,10 @@ public class Player extends Creature{
         return "It is "+this.name+"'s turn. "+this.player+" please take your turn as "+this.name+".";
     }
 
-    public int rollInitiative(){
-        Scanner initScanner = new Scanner(System.in);
-        System.out.println(this.player+" what is "+this.name+"'s initative? \n");
+    public int rollInitiative(Scanner initScanner){
+        System.out.println(this.player+" what is "+this.name+"'s initative?");
         int initative = initScanner.nextInt();
-        initScanner.close();
+        initScanner.nextLine();
         return initative;
     }
 
