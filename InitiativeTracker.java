@@ -108,6 +108,7 @@ public class InitiativeTracker {
         Scanner turnScanner = new Scanner(System.in);
         String command = turnScanner.nextLine();
         turnScanner.close();
+        this.doAction(command);
     }
 
     public void rollInitiative(){
