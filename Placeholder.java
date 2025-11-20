@@ -6,7 +6,7 @@ public class Placeholder extends Creature {
         this.name=name;
     }
     
-    public int rollInitative(){
+    public int rollInitiative(){
         return initative;
     }
 

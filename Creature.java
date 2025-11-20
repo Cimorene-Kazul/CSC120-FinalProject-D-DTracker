@@ -15,6 +15,6 @@ abstract class Creature {
         return this.subclass;
     }
 
-    abstract int rollInitative();
+    abstract int rollInitiative();
     abstract String TurnPrompt();
 }

@@ -14,7 +14,7 @@ public class Player extends Creature{
         return "It is "+this.name+"'s turn. "+this.player+" please take your turn as "+this.name+".";
     }
 
-    public int rollInitative(){
+    public int rollInitiative(){
         Scanner initScanner = new Scanner(System.in);
         System.out.println(this.player+" what is "+this.name+"'s initative? \n");
         int initative = initScanner.nextInt();

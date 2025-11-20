@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Scanner;
 
-public class InitativeTracker {
+public class InitiativeTracker {
     ArrayList<Creature> creatures;
-    Hashtable<Integer, ArrayList<Creature>> initativeTable;
-    ArrayList<Creature> initativeOrder;
-    Integer top = 20; // the 'top of the initative order'
-    Integer bottom = 0; // the 'bottom of the initative order'
+    Hashtable<Integer, ArrayList<Creature>> initiativeTable;
+    ArrayList<Creature> initiativeOrder;
+    Integer top = 20; // the 'top of the initiative order'
+    Integer bottom = 0; // the 'bottom of the initiative order'
     boolean inCombat = false;
     public String[] StartingActions = {"heal", "damage", "roll", "bonus action", "reaction", "legendary action", "legendary resistance", "action"};
     private String[] actions = {"end turn", "summary"};
@@ -60,11 +60,11 @@ public class InitativeTracker {
         }
     }
     
-    public InitativeTracker(){
+    public InitiativeTracker(){
         this(new ArrayList<Creature>());
     }
 
-    public InitativeTracker(ArrayList<Creature> creatures){
+    public InitiativeTracker(ArrayList<Creature> creatures){
         this.creatures = creatures;
 
         for (Creature c: creatures){
@@ -83,31 +83,31 @@ public class InitativeTracker {
         }
     }
 
-    private void rollInitatives(){
+    private void rollInitiatives(){
         for (Creature creature: this.creatures){
-            int initative = creature.rollInitative();
+            int initiative = creature.rollInitiative();
 
-            if (initative > this.top){
-                this.top = initative;
+            if (initiative > this.top){
+                this.top = initiative;
             }
-            if (initative < this.bottom){
-                this.bottom = initative;
+            if (initiative < this.bottom){
+                this.bottom = initiative;
             }
 
 
-            if (this.initativeTable.containsKey(initative)){
-                this.initativeTable.get(initative).add(creature);
+            if (this.initiativeTable.containsKey(initiative)){
+                this.initiativeTable.get(initiative).add(creature);
             } else{
                 ArrayList<Creature> startingArray = new ArrayList<>();
                 startingArray.add(creature);
-                this.initativeTable.put(initative, startingArray);
+                this.initiativeTable.put(initiative, startingArray);
             }
         }
 
         for (Integer i=this.top; i<this.bottom; i--){
-            if (this.initativeTable.get(i) != null) {
-                for (Creature c:this.initativeTable.get(i)){
-                    this.initativeOrder.add(c);
+            if (this.initiativeTable.get(i) != null) {
+                for (Creature c:this.initiativeTable.get(i)){
+                    this.initiativeOrder.add(c);
                 }
             }
         }
@@ -119,8 +119,8 @@ public class InitativeTracker {
         turnScanner.close();
     }
 
-    public void rollInitative(){
-        this.rollInitatives();
+    public void rollInitiative(){
+        this.rollInitiatives();
         this.inCombat = true;
         while (inCombat) {
             this.takeTurn();
