@@ -19,7 +19,7 @@ public class InitiativeTracker {
             // damage the thingToBeDamaged
         } else if (input.startsWith("roll")){
             String die = input.substring(5);
-            int 
+            
             this.roll(die);
         } else if (input.startsWith("bonus action")){
             String bonusAction = input.substring(13);
