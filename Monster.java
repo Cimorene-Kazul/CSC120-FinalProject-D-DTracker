@@ -9,6 +9,7 @@ public class Monster extends Creature{
     private String statBlock;
     private boolean preRolled = false;
     private int preRolledInitative;
+    private boolean hasLair;
 
     public Monster(String name, int health, int AC, int initativeBonus, String statBlock, int preRolledInitative){
         this(name, health, AC, initativeBonus, statBlock);
@@ -25,8 +26,31 @@ public class Monster extends Creature{
         this.statBlock = statBlock;
     }
 
+    // gettors
     public String getStats(){
         return this.statBlock;
+    }
+
+    public int getHP(){
+        return this.HP;
+    }
+
+    public int getHPmax(){
+        return this.HPmax;
+    }
+
+    public int getAC(){
+        return this.AC;
+    }
+
+    public int damage(int amt){
+        this.HP = Math.min(this.HP-amt, 0);
+        return this.HP;
+    }
+
+    public int heal(int amt){
+        this.HP = Math.max(this.HP+amt, this.HPmax);
+        return this.HP;
     }
 
     public String toString(){

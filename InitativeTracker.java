@@ -42,15 +42,10 @@ public class InitativeTracker {
         }
     }
 
-    private float rollDice(String value){
-        return 0;
-    }
-
     private void takeTurn(){
         Scanner turnScanner = new Scanner(System.in);
         String command = turnScanner.nextLine();
         turnScanner.close();
-        
     }
 
     public void rollInitative(){

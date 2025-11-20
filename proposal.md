@@ -7,7 +7,7 @@ This project will create a tool for running combat in D&D. It will track order, 
 ## Q2 Teammates
 *If you're working with a team but having trouble getting Gradescope to let you add them to this submission, list all members of your team below:*
 
-Eliana Lippa and Rachel Davidson will work together on this project.
+Eliana Lippa and Rachel Davison will work together on this project.
 
 ## Q3 Thinking Ahead
 *What are the (major) building blocks your project will need to be successful? Indicate which components you know how to build already, and which ones you still need to figure out.*
