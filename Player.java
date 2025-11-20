@@ -10,7 +10,7 @@ public class Player extends Creature{
         this.subclass = CreatureType.PLAYER;
     }
 
-    public String TurnPrompt(){
+    public String turnPrompt(){
         return "It is "+this.name+"'s turn. "+this.player+" please take your turn as "+this.name+".";
     }
 

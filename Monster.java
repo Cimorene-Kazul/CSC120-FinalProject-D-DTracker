@@ -67,7 +67,7 @@ public class Monster extends Creature{
         return name+" at "+HP+"/"+HPmax+" HP, AC "+AC;
     }
 
-    public String TurnPrompt(){
+    public String turnPrompt(){
         return "It is "+this.name+"'s turn. \n Here is a stat block for "+this.name+".\n" + this.statBlock+"\n"+this.name+" is at "+this.HP+" out of "+this.HPmax+" health.";
     }
 

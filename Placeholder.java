@@ -10,7 +10,7 @@ public class Placeholder extends Creature {
         return initative;
     }
 
-    public String TurnPrompt(){
+    public String turnPrompt(){
         return "Since it is initative count "+this.initative+" it is time to do "+this.name;
     }
 

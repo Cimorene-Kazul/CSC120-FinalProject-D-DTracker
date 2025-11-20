@@ -13,6 +13,6 @@ public class Test {
             System.out.println(i);
         }
         System.out.println(testTable.get(20));
-
+        System.out.println("1 \t 2 \t 3");
     }
 }

@@ -16,5 +16,5 @@ abstract class Creature {
     }
 
     abstract int rollInitiative();
-    abstract String TurnPrompt();
+    abstract String turnPrompt();
 }
