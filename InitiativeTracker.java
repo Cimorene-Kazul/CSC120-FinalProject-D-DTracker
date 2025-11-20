@@ -165,6 +165,7 @@ public class InitiativeTracker {
         while (inCombat) {
             this.takeTurn(encounterScanner);
         }
+        encounterScanner.close();
     }
 
 
