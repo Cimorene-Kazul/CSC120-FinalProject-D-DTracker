@@ -15,7 +15,6 @@ public class InitiativeTracker {
             Integer index = Integer.parseInt(commandPieces[1]);
             Integer amt = Integer.parseInt(commandPieces[2]);
             initiativeOrder.get(index).damage(amt);
-
         } else if (input.startsWith("damage")){
             String[] commandPieces = " ".split(input.trim());
             Integer index = Integer.parseInt(commandPieces[1]);
@@ -101,7 +100,6 @@ public class InitiativeTracker {
 
     public InitiativeTracker(ArrayList<Creature> creatures){
         this.creatures = creatures;
-
         for (Creature c: creatures){
             if (c.getLair()){
                 Placeholder lair = new Placeholder(20, c.getName()+"'s lair actions"); 
@@ -124,24 +122,19 @@ public class InitiativeTracker {
         Integer bottom = 0; // the 'bottom of the initiative order'
         for (Creature creature: this.creatures){
             int initiative = creature.rollInitiative(initativeScanner);
-
             if (initiative > top){
                 top = initiative;
-            }
-            if (initiative < bottom){
+            } else if (initiative < bottom){
                 bottom = initiative;
             }
-
-
             if (initiativeTable.containsKey(initiative)){
                 initiativeTable.get(initiative).add(creature);
-            } else{
+            } else {
                 ArrayList<Creature> startingArray = new ArrayList<>();
                 startingArray.add(creature);
                 initiativeTable.put(initiative, startingArray);
             }
         }
-
         for (Integer i=top; i<bottom; i--){
             if (initiativeTable.get(i) != null) {
                 for (Creature c:initiativeTable.get(i)){
