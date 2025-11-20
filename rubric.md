@@ -41,7 +41,7 @@ _____ 2 pts: Interactions are implemented properly.  If a character has the abil
 
 ____ 0.5 pts: At initative count 20, if and only if there are monsters with lair actions availiable, a prompt with the monsters' names and stats is printed.
 
-____ 0.5 pts: The command 'summary' details availiable commands.
+____ 0.5 pts: The command 'action summary' details availiable commands.
 
 ____ 0.5 pts: Abilities with limited uses are only useable up to those use limits before they print a message saying they are unavailiable.
 
