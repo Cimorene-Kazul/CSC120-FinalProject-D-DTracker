@@ -65,20 +65,20 @@ public class InitiativeTracker {
         if (!input.contains("d")){
             int result = 0;
             if (input.contains("/")){
-                int x = Integer.parseInt(input.substring(0, input.indexOf("/")));
-                int y = Integer.parseInt(input.substring(input.indexOf("/")+1));
+                int x = Integer.parseInt(input.substring(0, input.indexOf("/")).trim());
+                int y = Integer.parseInt(input.substring(input.indexOf("/")+1).trim());
                 result = x/y;
             } else if (input.contains("*")){
-                int x = Integer.parseInt(input.substring(0, input.indexOf("*")));
-                int y = Integer.parseInt(input.substring(input.indexOf("*")+1));
+                int x = Integer.parseInt(input.substring(0, input.indexOf("*")).trim());
+                int y = Integer.parseInt(input.substring(input.indexOf("*")+1).trim());
                 result = x*y;
             } else if (input.contains("+")){
-                int x = Integer.parseInt(input.substring(0, input.indexOf("+")));
-                int y = Integer.parseInt(input.substring(input.indexOf("+")+1));
+                int x = Integer.parseInt(input.substring(0, input.indexOf("+")).trim());
+                int y = Integer.parseInt(input.substring(input.indexOf("+")+1).trim());
                 result = x+y;
             } else if (input.contains("-")){
-                int x = Integer.parseInt(input.substring(0, input.indexOf("-")));
-                int y = Integer.parseInt(input.substring(input.indexOf("-")+1));
+                int x = Integer.parseInt(input.substring(0, input.indexOf("-")).trim());
+                int y = Integer.parseInt(input.substring(input.indexOf("-")+1).trim());
                 result = x-y;
             }
             System.out.println(input + " = " + result);
