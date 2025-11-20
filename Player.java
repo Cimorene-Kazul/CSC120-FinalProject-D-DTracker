@@ -3,7 +3,8 @@ import java.util.Scanner;
 public class Player extends Creature{
     String name;
     String player;
-    
+    boolean hasLair = false;
+
     public Player(String PCName, String PCPlayer){
         this.name = PCName;
         this.player = PCPlayer;
