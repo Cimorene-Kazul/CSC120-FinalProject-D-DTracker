@@ -12,6 +12,10 @@ abstract class Creature {
     public boolean getLair(){
         return this.hasLair;
     }
+    
+    public String getName(){
+        return this.name;
+    }
 
     public CreatureType getType(){
         return this.subclass;
