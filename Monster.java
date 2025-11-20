@@ -53,14 +53,14 @@ public class Monster extends Creature{
         return this.AC;
     }
 
-    public int damage(int amt){
+    public String damage(int amt){
         this.HP = Math.min(this.HP-amt, 0);
-        return this.HP;
+        return this.name+" has been hit for "+amt+" reducing it to "+this.HP+" hit points.";
     }
 
-    public int heal(int amt){
+    public String heal(int amt){
         this.HP = Math.max(this.HP+amt, this.HPmax);
-        return this.HP;
+        return this.name+" has been healed for "+amt+" increasing it to "+this.HP+" hit points.";
     }
 
     public String toString(){
