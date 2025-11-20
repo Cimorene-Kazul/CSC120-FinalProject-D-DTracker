@@ -9,55 +9,46 @@ public class InitiativeTracker {
     Integer top = 20; // the 'top of the initiative order'
     Integer bottom = 0; // the 'bottom of the initiative order'
     boolean inCombat = false;
-    public String[] StartingActions = {"heal", "damage", "roll", "bonus action", "reaction", "legendary action", "legendary resistance", "action"};
-    private String[] actions = {"end turn", "summary"};
 
-    public void doActions(String input){
-        for (int i = 0; i < actions.length; i++){
-            if (input.startsWith(actions[i])){
-                if (actions[i].equals("end turn")){
-                    // call end turn method
-                }
-                else if (actions[i].equals("summary")){
-                    // call summary method;
-                }
-                else if (actions[i].equals("roll")){
-                    // call roll method
-                }
-            }
+    public void doAction(String input){
+        if (input.startsWith("heal")){
+            String thingToBeHealed = input.substring(5);
+            // heal the thingToBeHealed
+        } else if (input.startsWith("damage")){
+            String thingToBeDamaged = input.substring(7);
+            // damage the thingToBeDamaged
+        } else if (input.startsWith("roll")){
+            String die = input.substring(5);
+            int 
+            this.roll(die);
+        } else if (input.startsWith("bonus action")){
+            String bonusAction = input.substring(13);
+            // do the bonus action method
+        } else if (input.startsWith("reaction")){
+            String reaction = input.substring(9);
+            // do the reaction method
+        } else if (input.startsWith("legendary action")){
+            String legendaryAction = input.substring(17);
+            // do the legendary action method
+        } else if (input.startsWith("legendary resistance")){
+            String legendaryResistance = input.substring(20);
+            // do the legendary resistance method
+        } else if (input.startsWith("action")){
+            String action = input.substring(7);
+            // do the action method
+        } else if (input.startsWith("end turn")){
+            this.inCombat = false;
+        } else if (input.startsWith("summary")){
+            // do the summary method
+        } else if (input.indexOf("save") != -1){
+            String thingToBeSaved = input.substring(input.indexOf("save")+5);
+            String saveType = thingToBeSaved.split(" ")[0];
+            // do the saving throw method
         }
-        for (int j = 0; j < StartingActions.length; j++){
-            if (input.startsWith(StartingActions[j])){
-                if (StartingActions[j].equals("heal")){
-                    String thingToBeHealed = input.substring(5).trim();
-                    // call heal method on thingToBeHealed
-                }
-                else if (StartingActions[j].equals("damage")){
-                    String thingToBeDamaged = input.substring(6).trim();
-                    // call damage method on thingToBeDamaged
-                }
-                else if (StartingActions[j].equals("bonus action")){
-                    String bonusActionName = input.substring(13).trim();
-                    // call bonus action method on the name, or call this method again with the name (depending on implementation)
-                }
-                else if (StartingActions[j].equals("reaction")){
-                    String reactionName = input.substring(8).trim();
-                    // call reaction method on the name, or call this method again with the name
-                }
-                else if (StartingActions[j].equals("legendary action")){
-                    String legendaryActionName = input.substring(16).trim();
-                    // call legendary action method on the name, or call this method again with the name
-                }
-                else if (StartingActions[j].equals("legendary resistance")){
-                    String legendaryResistanceName = input.substring(20).trim();
-                    // call legendary resistance method on the same, or call this method again with the name
-                }
-                else if (StartingActions[j].equals("action")){
-                    String actionName = input.substring(6).trim();
-                    // call action method on the name, or call this method again with the name
-                }
-            }
-        }
+    }
+
+    public roll(String die){
+        index = indexOf()
     }
     
     public InitiativeTracker(){
