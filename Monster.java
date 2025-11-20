@@ -11,12 +11,19 @@ public class Monster extends Creature{
     private int preRolledInitative;
 
     public Monster(String name, int health, int AC, int initativeBonus, String statBlock, int preRolledInitative){
-        this(name, health, AC, initativeBonus, statBlock);
+        super(name, CreatureType.MONSTER, false);
+        this.name = name;
+        this.HP = health;
+        this.HPmax = health;
+        this.AC = AC;
+        this.initativeBonus = initativeBonus;
+        this.statBlock = statBlock;
         this.preRolledInitative = preRolledInitative;
         this.preRolled = true;
     }
     
     public Monster(String name, int health, int AC, int initativeBonus, String statBlock){
+        super(name, CreatureType.MONSTER, false);
         this.name = name;
         this.HP = health;
         this.HPmax = health;
