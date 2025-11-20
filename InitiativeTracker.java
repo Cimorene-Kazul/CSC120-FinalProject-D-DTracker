@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Scanner;
+import java.lang.Integer;
 
 public class InitiativeTracker {
     ArrayList<Creature> creatures;
@@ -10,11 +11,17 @@ public class InitiativeTracker {
 
     public void doAction(String input){
         if (input.startsWith("heal")){
-            String thingToBeHealed = input.substring(5);
-            // heal the thingToBeHealed
+            String[] commandPieces = input.trim().split(" ");
+            Integer index = Integer.parseInt(commandPieces[1]);
+            Integer amt = Integer.parseInt(commandPieces[2]);
+            initiativeOrder.get(index).damage(amt);
+
         } else if (input.startsWith("damage")){
-            String thingToBeDamaged = input.substring(7);
-            // damage the thingToBeDamaged
+            String[] commandPieces = " ".split(input.trim());
+            Integer index = Integer.parseInt(commandPieces[1]);
+            Integer amt = Integer.parseInt(commandPieces[2]);
+            initiativeOrder.get(index).heal(amt);
+
         } else if (input.startsWith("roll")){
             String die = input.substring(5);
             
