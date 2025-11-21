@@ -18,5 +18,8 @@ public class Test {
         String myString = "heal 1 2";
         String[] pieces = myString.split(" ");
         System.out.println(Integer.parseInt(pieces[1]));
+
+        System.out.println(Integer.parseInt("+10"));
+
     }
 }

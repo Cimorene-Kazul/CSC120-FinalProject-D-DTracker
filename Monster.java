@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Random;
 import java.util.Hashtable;
 import java.util.Scanner;
@@ -14,6 +15,30 @@ public class Monster extends Creature{
     private int preRolledInitative;
     private Hashtable<String, Integer> abilities;
 
+    public Monster(String fileName, int preRolledInitative){
+        this(fileName);
+        this.preRolled = true;
+        this.preRolledInitative = preRolledInitative;
+    }
+
+    public Monster(String fileName){
+        File monsterFile = new File("MonsterFiles/"+fileName+".txt");
+        try (Scanner monsterReader = new Scanner(monsterFile)){
+            this.statBlock = "";
+            while (monsterReader.hasNextLine()) {
+                this.statBlock += monsterReader.nextLine()+" \n ";
+            }
+        }catch(FileNotFoundException e){
+            throw new RuntimeException(fileName+" is not a valid file name in MonsterFiles.");
+        }
+
+        StatBlockProcessor processor = new StatBlockProcessor(this.statBlock);
+        this.name = processor.getName();
+        this.AC = processor.getQuanity("AC");
+        this.HPmax = processor.getQuanity("HP");
+        this.HP = this.HPmax;
+        this.initativeBonus = processor.getQuanity("Initative");
+    }
 
     public Monster(String name, int health, int AC, int initativeBonus, String statBlock, int preRolledInitative){
         this(name, health, AC, initativeBonus, statBlock);

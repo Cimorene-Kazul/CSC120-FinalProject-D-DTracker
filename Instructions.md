@@ -3,7 +3,7 @@
 ## Writing Monster Files
 A .txt file of a particular format can be used to store monster information. When you download this program, there will be a folder called *MonsterFlies*. Whatever you do ***do not change the name of this folder.*** In addition to passing the information piece-by-piece, you can create a Monster by writing
 ```
-Monster myMonster = Monster("file_name.txt");
+Monster myMonster = Monster("file_name");
 ```
 When creating these files, choose file_name to be the name of the monster, using no capitalization and underscores instead of spaces. For instance, "bandit_captain.txt" is a good file name, while "myMonster.txt" is much worse.
 
@@ -18,7 +18,7 @@ Saves: <list of saves in the format TYPE bonus, all other saves are just +normal
 Skills: <List of skills with additional bonus in the form <bonus SKILL>>
 <Speeds in the format n ft TYPE>
 Languages: <list of known languages>
-Senses: <list of unussual senses>           Passive Perception <Passive Perception>
+Senses: <list of unusual senses>           Passive Perception <Passive Perception>
 
 Traits
 <Trait Name> (N/day) - <Trait Text>
