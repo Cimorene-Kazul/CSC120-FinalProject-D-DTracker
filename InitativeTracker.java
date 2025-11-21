@@ -3,9 +3,9 @@ import java.util.Hashtable;
 import java.util.Scanner;
 import java.lang.Integer;
 
-public class InitiativeTracker {
+public class InitativeTracker {
     ArrayList<Creature> creatures;
-    ArrayList<Creature> initiativeOrder;
+    ArrayList<Creature> initativeOrder;
     boolean inCombat = false;
     Integer currentInitative;
     String commandOptions = """
@@ -17,17 +17,43 @@ public class InitiativeTracker {
         heal <index> <amt> - heals the creature at index <index> for amount <amount>
         """;
 
+    public InitativeTracker(Creature[] creatureList){
+        ArrayList<Creature> creatures = new ArrayList<>();
+        for (Creature c: creatureList){
+            creatures.add(c);
+            if (c.getLair()){
+                Placeholder lair = new Placeholder(20, c.getName()+"'s lair actions"); 
+                creatures.add(lair);
+            }
+        }
+        this.creatures = creatures;
+    }
+
+    public InitativeTracker(){
+        this.creatures=new ArrayList<Creature>();
+    }
+
+    public InitativeTracker(ArrayList<Creature> creatures){
+        this.creatures = creatures;
+        for (Creature c: creatures){
+            if (c.getLair()){
+                Placeholder lair = new Placeholder(20, c.getName()+"'s lair actions"); 
+                creatures.add(lair);
+            }
+        }
+    }
+
     public void doAction(String input){
         if (input.startsWith("heal")){
             String[] commandPieces = input.trim().split(" ");
             Integer index = Integer.parseInt(commandPieces[1]);
             Integer amt = Integer.parseInt(commandPieces[2]);
-            initiativeOrder.get(index).damage(amt);
+            this.initativeOrder.get(index).damage(amt);
         } else if (input.startsWith("damage")){
             String[] commandPieces = input.trim().split(" ");
             Integer index = Integer.parseInt(commandPieces[1]);
             Integer amt = Integer.parseInt(commandPieces[2]);
-            initiativeOrder.get(index).heal(amt);
+            this.initativeOrder.get(index).heal(amt);
         } else if (input.startsWith("roll")){
             String die = input.substring(5);
             this.roll(die);
@@ -50,10 +76,10 @@ public class InitiativeTracker {
             // do the action method
         } else if (input.startsWith("end turn")){
             this.currentInitative += 1;
-            if (this.currentInitative >= this.initiativeOrder.size()){
+            if (this.currentInitative >= this.initativeOrder.size()){
                 this.currentInitative = 0;
             }
-            System.out.println(this.initiativeOrder.get(this.currentInitative).turnPrompt());
+            System.out.println(this.initativeOrder.get(this.currentInitative).turnPrompt());
         } else if (input.startsWith("summary")){
             this.printSummary();
         } else if (input.startsWith("close")){
@@ -66,8 +92,8 @@ public class InitiativeTracker {
     }
 
     private void printSummary(){
-        for (int i=0; i<this.initiativeOrder.size(); i++){
-            System.out.println(i+"\t"+initiativeOrder.get(i));
+        for (int i=0; i<this.initativeOrder.size(); i++){
+            System.out.println(i+"\t"+initativeOrder.get(i));
         }
     }
 
@@ -103,20 +129,6 @@ public class InitiativeTracker {
         }
         System.out.println(rollresult);
     }
-    
-    public InitiativeTracker(){
-        this(new ArrayList<Creature>());
-    }
-
-    public InitiativeTracker(ArrayList<Creature> creatures){
-        this.creatures = creatures;
-        for (Creature c: creatures){
-            if (c.getLair()){
-                Placeholder lair = new Placeholder(20, c.getName()+"'s lair actions"); 
-                creatures.add(lair);
-            }
-        }
-    }
 
     public void addCreature(Creature c){
         this.creatures.add(c);
@@ -126,7 +138,7 @@ public class InitiativeTracker {
         }
     }
 
-    private void rollInitiatives(Scanner initativeScanner){
+    private void rollInitatives(Scanner initativeScanner){
         Hashtable<Integer, ArrayList<Creature>> initiativeTable = new Hashtable<>();
         Integer top = 20; // the 'top of the initiative order'
         Integer bottom = 0; // the 'bottom of the initiative order'
@@ -146,12 +158,12 @@ public class InitiativeTracker {
             }
         }
 
-        initiativeOrder = new ArrayList<>();
+        initativeOrder = new ArrayList<>();
 
         for (Integer i=top; i>=bottom; i-=1){
             if (initiativeTable.containsKey(i)) {
                 for (Creature c:initiativeTable.get(i)){
-                    this.initiativeOrder.add(c);
+                    this.initativeOrder.add(c);
                 }
             }
         }
@@ -162,12 +174,12 @@ public class InitiativeTracker {
         this.doAction(command);
     }
 
-    public void rollInitiative(){
+    public void rollInitative(){
         Scanner encounterScanner = new Scanner(System.in);
-        this.rollInitiatives(encounterScanner);
+        this.rollInitatives(encounterScanner);
         this.inCombat = true;
         this.currentInitative = 0;
-        System.out.println(this.initiativeOrder.get(this.currentInitative).turnPrompt());
+        System.out.println(this.initativeOrder.get(this.currentInitative).turnPrompt());
         while (inCombat) {
             this.takeTurn(encounterScanner);
         }
@@ -180,10 +192,8 @@ public class InitiativeTracker {
         Player moth = new Player("Moth", "Elizabeth");
         Player emia = new Player("Emia", "Celina");
         Monster luna = new Monster("Ilumetrix Luna", 300, 21, +5, "<substitute for Luna's stats>", true);
-        InitiativeTracker myEncounter = new InitiativeTracker();
-        myEncounter.addCreature(luna);
-        myEncounter.addCreature(emia);
-        myEncounter.addCreature(moth);
-        myEncounter.rollInitiative();
+        Creature[] creatures = {moth, emia, luna};
+        InitativeTracker myEncounter = new InitativeTracker(creatures);
+        myEncounter.rollInitative();
     }
 }
