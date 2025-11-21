@@ -3,7 +3,7 @@ import java.util.Scanner;
 abstract class Creature {
     protected String name;
     protected CreatureType subclass;
-    protected boolean hasLair;
+    protected boolean hasLair = false;
 
     public boolean getLair(){
         return this.hasLair;

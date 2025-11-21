@@ -12,8 +12,8 @@ public class Monster extends Creature{
     private String statBlock;
     private boolean preRolled = false;
     private int preRolledInitative;
-    private boolean hasLair = false;
     private Hashtable<String, Integer> abilities;
+
 
     public Monster(String name, int health, int AC, int initativeBonus, String statBlock, int preRolledInitative){
         this(name, health, AC, initativeBonus, statBlock);
