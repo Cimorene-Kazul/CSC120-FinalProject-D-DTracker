@@ -7,11 +7,11 @@ Monster myMonster = Monster("file_name");
 ```
 When creating these files, choose file_name to be the name of the monster, using no capitalization and underscores instead of spaces. For instance, "bandit_captain.txt" is a good file name, while "myMonster.txt" is much worse.
 
-This file must have the following format. Whitespace is whatever is convienient. Not all the features neet to be present.
+This file must have the following format. Whitespace is whatever is convienient. Not all the features neet to be present. However, the first two lines *must* have the given format. Feel free to do different things after, but those lines are required.
 ```
 <Name>
-<Type>
 AC <AC>     HP <Max HP>   Initative <Initative Bonus>
+<Type>
 STR             DEX             CON             INT             WIS             CHA	        	Prof.
 <STR bonus>     <DEX bonus>     <CON bonus>     <INT bonus>     <WIS bonus>     <CHA bonus>     <Proficiency bonus>
 Saves: <list of saves in the format TYPE bonus, all other saves are just +normal bonus>
@@ -53,8 +53,8 @@ Lair Actions
 Here is an example:
 ```
 Ancient Green Dragon
-Gargantuan Dragon (Chromatic), Lawful Evil
 AC 21       HP 402 (23d20 + 161)     Initiative +15 (25)
+Gargantuan Dragon (Chromatic), Lawful Evil
 STR  DEX  CON  INT  WIS  CHA  Prof.
 +8   +1   +7   +5   +3   +6   +7
 Saves:  DEX +8, WIS +10

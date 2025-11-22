@@ -15,29 +15,13 @@ public class Monster extends Creature{
     private int preRolledInitative;
     private Hashtable<String, Integer> abilities;
 
-    public Monster(String fileName, int preRolledInitative){
-        this(fileName);
-        this.preRolled = true;
-        this.preRolledInitative = preRolledInitative;
-    }
-
     public Monster(String fileName){
-        File monsterFile = new File("MonsterFiles/"+fileName+".txt");
-        try (Scanner monsterReader = new Scanner(monsterFile)){
-            this.statBlock = "";
-            while (monsterReader.hasNextLine()) {
-                this.statBlock += monsterReader.nextLine()+" \n ";
-            }
-        }catch(FileNotFoundException e){
-            throw new RuntimeException(fileName+" is not a valid file name in MonsterFiles.");
-        }
-
-        StatBlockProcessor processor = new StatBlockProcessor(this.statBlock);
-        this.name = processor.getName();
-        this.AC = processor.getQuanity("AC");
-        this.HPmax = processor.getQuanity("HP");
+        MonsterBuilder constructor = new MonsterBuilder(fileName);
+        this.name = constructor.getName();
+        this.AC = constructor.getAC();
+        this.HPmax = constructor.getHP();
         this.HP = this.HPmax;
-        this.initativeBonus = processor.getQuanity("Initative");
+        this.initativeBonus = constructor.getInitative();
     }
 
     public Monster(String name, int health, int AC, int initativeBonus, String statBlock, int preRolledInitative){
@@ -113,6 +97,5 @@ public class Monster extends Creature{
 
 
     public static void main(String[] args) {
-        
     }
 }
