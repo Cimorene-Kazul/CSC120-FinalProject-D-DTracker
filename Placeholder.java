@@ -1,22 +1,22 @@
 import java.util.Scanner;
 
 public class Placeholder extends Creature {
-    private int initative;
+    private int initiative;
     
-    public Placeholder(int initative, String name){
-        this.initative=initative;
+    public Placeholder(int initiative, String name){
+        this.initiative=initiative;
         this.name=name;
     }
     
     public int rollInitiative(Scanner initScanner){
-        return initative;
+        return initiative;
     }
 
     public String turnPrompt(){
-        return "Since it is initative count "+this.initative+" it is time to do "+this.name;
+        return "Since it is initiative count "+this.initiative+" it is time to do "+this.name;
     }
 
     public String toString(){
-        return "Placeholder in initative order for "+this.name;
+        return "Placeholder in initiative order for "+this.name;
     }
 }

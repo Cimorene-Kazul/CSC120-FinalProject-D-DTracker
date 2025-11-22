@@ -10,7 +10,7 @@ When creating these files, choose file_name to be the name of the monster, using
 This file must have the following format. Whitespace is whatever is convienient. Not all the features neet to be present. However, the first two lines *must* have the given format. Feel free to do different things after, but those lines are required.
 ```
 <Name>
-AC <AC>     HP <Max HP>   Initative <Initative Bonus>
+AC <AC>     HP <Max HP>   Initiative <Initiative Bonus>
 <Type>
 STR             DEX             CON             INT             WIS             CHA	        	Prof.
 <STR bonus>     <DEX bonus>     <CON bonus>     <INT bonus>     <WIS bonus>     <CHA bonus>     <Proficiency bonus>

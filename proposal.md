@@ -12,7 +12,7 @@ Eliana Lippa and Rachel Davison will work together on this project.
 ## Q3 Thinking Ahead
 *What are the (major) building blocks your project will need to be successful? Indicate which components you know how to build already, and which ones you still need to figure out.*
 
-The whole system will be based around an object called an InitativeTracker that will track order and take commands. It will also need objects for monsters and players, as well as things like actions that they can take. The monsters, players, and actions should be easy. It's gonna be getting the initative tracker to work that will be a pain, due to the difficulties of interpreting command line response. Our code will also have a file reader and writer, hopefully, to allow us to save stat blocks. If we get that far, adding in code to scrape stat blocks off the web will likely happen. If we get that far, adding a tool to build encounters using saved files would be really cool.
+The whole system will be based around an object called an InitiativeTracker that will track order and take commands. It will also need objects for monsters and players, as well as things like actions that they can take. The monsters, players, and actions should be easy. It's gonna be getting the initiative tracker to work that will be a pain, due to the difficulties of interpreting command line response. Our code will also have a file reader and writer, hopefully, to allow us to save stat blocks. If we get that far, adding in code to scrape stat blocks off the web will likely happen. If we get that far, adding a tool to build encounters using saved files would be really cool.
 
 ## Q4 Roadblocks
 *What potential roadblocks do you imagine you might encounter? What's your plan for getting around them?*

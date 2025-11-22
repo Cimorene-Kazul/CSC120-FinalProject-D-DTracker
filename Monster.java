@@ -9,10 +9,10 @@ public class Monster extends Creature{
     private int AC;
     private int HPmax;
     private int HP;
-    private int initativeBonus;
+    private int initiativeBonus;
     private String statBlock;
     private boolean preRolled = false;
-    private int preRolledInitative;
+    private int preRolledInitiative;
     private Hashtable<String, Integer> abilities;
 
     public Monster(String fileName){
@@ -21,33 +21,33 @@ public class Monster extends Creature{
         this.AC = constructor.getAC();
         this.HPmax = constructor.getHP();
         this.HP = this.HPmax;
-        this.initativeBonus = constructor.getInitative();
+        this.initiativeBonus = constructor.getInitiative();
     }
 
-    public Monster(String name, int health, int AC, int initativeBonus, String statBlock, int preRolledInitative){
-        this(name, health, AC, initativeBonus, statBlock);
-        this.preRolledInitative = preRolledInitative;
+    public Monster(String name, int health, int AC, int initiativeBonus, String statBlock, int preRolledInitiative){
+        this(name, health, AC, initiativeBonus, statBlock);
+        this.preRolledInitiative = preRolledInitiative;
         this.preRolled = true;
     }
     
-    public Monster(String name, int health, int AC, int initativeBonus, String statBlock, boolean hasLair, int preRolledInitative){
-        this(name, health, AC, initativeBonus, statBlock, hasLair);
-        this.preRolledInitative = preRolledInitative;
+    public Monster(String name, int health, int AC, int initiativeBonus, String statBlock, boolean hasLair, int preRolledInitiative){
+        this(name, health, AC, initiativeBonus, statBlock, hasLair);
+        this.preRolledInitiative = preRolledInitiative;
         this.preRolled = true;
     }
 
-    public Monster(String name, int health, int AC, int initativeBonus, String statBlock, boolean hasLair){
-        this(name, health, AC, initativeBonus, statBlock);
+    public Monster(String name, int health, int AC, int initiativeBonus, String statBlock, boolean hasLair){
+        this(name, health, AC, initiativeBonus, statBlock);
         this.hasLair = hasLair;
     }
 
-    public Monster(String name, int health, int AC, int initativeBonus, String statBlock){
+    public Monster(String name, int health, int AC, int initiativeBonus, String statBlock){
         this.subclass = CreatureType.MONSTER;
         this.name = name;
         this.HP = health;
         this.HPmax = health;
         this.AC = AC;
-        this.initativeBonus = initativeBonus;
+        this.initiativeBonus = initiativeBonus;
         this.statBlock = statBlock;
     }
 
@@ -89,9 +89,9 @@ public class Monster extends Creature{
     public int rollInitiative(Scanner initScanner){
         if (!this.preRolled){
             Random d20 = new Random();
-            return d20.nextInt(20)+1+this.initativeBonus;
+            return d20.nextInt(20)+1+this.initiativeBonus;
         }else{
-            return preRolledInitative;
+            return preRolledInitiative;
         }
     }
 

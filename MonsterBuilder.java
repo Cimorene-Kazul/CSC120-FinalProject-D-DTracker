@@ -7,7 +7,7 @@ public class MonsterBuilder {
     private String name = null;
     private Integer AC = null;
     private Integer HP = null;
-    private Integer initative = null;
+    private Integer initiative = null;
     private String keyLine = null;
 
     public MonsterBuilder(String fileName){
@@ -57,21 +57,22 @@ public class MonsterBuilder {
         return this.HP;
     }
 
-    public int getInitative(){
-        if (this.initative == null){
-            this.initative = Integer.parseInt(nextWord(this.getKeyLine(), this.getKeyLine().indexOf("Initative")+9));
+    public int getInitiative(){
+        if (this.initiative == null){
+            System.out.println(this.getKeyLine());
+            this.initiative = Integer.parseInt(nextWord(this.getKeyLine(), this.getKeyLine().indexOf("Initiative")+9));
         }
-        return this.initative;
+        return this.initiative;
     }
 
     private static String nextWord(String string, int index){
-        String trimmed = string.substring(index,string.length()).trim();
+        String trimmed = string.substring(index, string.length()).trim();
         int otherSide = trimmed.indexOf(" ");
         return trimmed.substring(0, otherSide);
     }
 
     public static void main(String[] args) {
         MonsterBuilder test = new MonsterBuilder("ancient_green_dragon");
-        System.out.println(test.getAC());
+        System.out.println(test.getKeyLine().indexOf("Initiative"));
     }
 }

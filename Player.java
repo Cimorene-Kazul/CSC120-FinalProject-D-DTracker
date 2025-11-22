@@ -14,9 +14,9 @@ public class Player extends Creature{
     }
 
     public int rollInitiative(Scanner initScanner){
-        System.out.println(this.player+" what is "+this.name+"'s initative?");
-        int initative = Integer.parseInt(initScanner.nextLine().trim());
-        return initative;
+        System.out.println(this.player+" what is "+this.name+"'s initiative?");
+        int initiative = Integer.parseInt(initScanner.nextLine().trim());
+        return initiative;
     }
 
     public String toString(){
