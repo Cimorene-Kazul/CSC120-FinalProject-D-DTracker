@@ -4,7 +4,7 @@ public class Main {
         Player emia = new Player("Emia", "Celina");
         Monster dragon = new Monster("ancient_green_dragon");
         Creature[] creatures = {moth, emia, dragon};
-        InitativeTracker myEncounter = new InitativeTracker(creatures);
-        myEncounter.rollInitative();
+        InitiativeTracker myEncounter = new InitiativeTracker(creatures);
+        myEncounter.rollInitiative();
     }
 }

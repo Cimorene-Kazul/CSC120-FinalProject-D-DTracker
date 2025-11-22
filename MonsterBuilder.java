@@ -59,8 +59,7 @@ public class MonsterBuilder {
 
     public int getInitiative(){
         if (this.initiative == null){
-            System.out.println(this.getKeyLine());
-            this.initiative = Integer.parseInt(nextWord(this.getKeyLine(), this.getKeyLine().indexOf("Initiative")+9));
+            this.initiative = Integer.parseInt(nextWord(this.getKeyLine(), this.getKeyLine().indexOf("Initiative")+10));
         }
         return this.initiative;
     }
@@ -72,7 +71,5 @@ public class MonsterBuilder {
     }
 
     public static void main(String[] args) {
-        MonsterBuilder test = new MonsterBuilder("ancient_green_dragon");
-        System.out.println(test.getKeyLine().indexOf("Initiative"));
     }
 }
