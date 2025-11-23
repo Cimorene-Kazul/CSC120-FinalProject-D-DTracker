@@ -13,6 +13,10 @@ public class Monster extends Creature{
     private String statBlock;
     private boolean preRolled = false;
     private int preRolledInitiative;
+    private int legendaryResistances;
+    private Hashtable<String, String> actions;
+    private Hashtable<String, String> legendaryActions;
+    private Hashtable<String, String> reactions;
     private Hashtable<String, Integer> abilities;
 
     public Monster(String fileName){
@@ -93,6 +97,30 @@ public class Monster extends Creature{
         }else{
             return preRolledInitiative;
         }
+    }
+
+    public void useLegendaryResistance(){
+        if (this.legendaryResistances > 0){
+            this.legendaryResistances -= 1;
+            System.out.println(this.name+" uses a legendary resistance! It has "+this.legendaryResistances+" remaining.");
+        } else {
+            System.out.println(this.name+" has no legendary resistances remaining!");
+        }
+    }
+
+    public void action(String action){
+        System.out.println(name+" uses "+action+".");
+        InitiativeTracker.roll(actions.get(action));
+    }
+
+    public void bonusAction(String bonusAction){
+        System.out.println(name+" uses "+bonusAction+".");
+        InitiativeTracker.roll(actions.get(bonusAction));
+    }
+
+    public void reaction(String reaction){
+        System.out.println(name+" uses "+reaction+".");
+        InitiativeTracker.roll(reactions.get(reaction));
     }
 
 
