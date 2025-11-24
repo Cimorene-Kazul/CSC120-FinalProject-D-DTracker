@@ -8,6 +8,7 @@ public class InitiativeTracker {
     ArrayList<Creature> initiativeOrder;
     boolean inCombat = false;
     Integer currentInitiative;
+    Scanner encounterScanner = null;
     boolean bonusActionUsed = false;
     boolean actionUsed = false;
     String commandOptions = """
@@ -56,6 +57,11 @@ public class InitiativeTracker {
         }
     }
 
+    public InitiativeTracker(Scanner encounterScanner){
+        this.encounterScanner = encounterScanner;
+        this.creatures=new ArrayList<Creature>();
+    }
+
     /** 
      * Method to parse and execute a command input by the user
      * @param input the command input by the user
@@ -65,12 +71,12 @@ public class InitiativeTracker {
             String[] commandPieces = input.trim().split(" ");
             Integer index = Integer.parseInt(commandPieces[1]);
             Integer amt = Integer.parseInt(commandPieces[2]);
-            this.initiativeOrder.get(index).damage(amt);
+            System.out.println(this.initiativeOrder.get(index).heal(amt));
         } else if (input.startsWith("damage")){
             String[] commandPieces = input.trim().split(" ");
             Integer index = Integer.parseInt(commandPieces[1]);
             Integer amt = Integer.parseInt(commandPieces[2]);
-            this.initiativeOrder.get(index).heal(amt);
+            System.out.println(this.initiativeOrder.get(index).damage(amt));
         } else if (input.startsWith("roll")){
             String die = input.substring(5);
             roll(die);
@@ -243,15 +249,17 @@ public class InitiativeTracker {
      * Starts a round of the game, taking turns for each creature in initiative order
      */
     public void rollInitiative(){
-        Scanner encounterScanner = new Scanner(System.in);
-        this.rollInitiatives(encounterScanner);
+        if (this.encounterScanner == null){
+            this.encounterScanner = new Scanner(System.in);
+        }
+        this.rollInitiatives(this.encounterScanner);
         this.inCombat = true;
         this.currentInitiative = 0;
         System.out.println(this.initiativeOrder.get(this.currentInitiative).turnPrompt());
         while (inCombat) {
-            this.takeTurn(encounterScanner);
+            this.takeTurn(this.encounterScanner);
         }
-        encounterScanner.close();
+        this.encounterScanner.close();
     }
 
 

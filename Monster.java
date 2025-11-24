@@ -5,12 +5,12 @@ import java.util.Hashtable;
 import java.util.Scanner;
 
 public class Monster extends Creature{
-    private String name;
-    private int AC;
-    private int HPmax;
-    private int HP;
-    private int initiativeBonus;
-    private String statBlock;
+    protected String name;
+    private Integer AC;
+    protected Integer HPmax;
+    protected Integer HP;
+    private Integer initiativeBonus;
+    protected String statBlock;
     private boolean preRolled = false;
     private int preRolledInitiative;
     private int legendaryResistances;
@@ -22,6 +22,7 @@ public class Monster extends Creature{
 
     public Monster(String fileName){
         MonsterBuilder constructor = new MonsterBuilder(fileName);
+        this.statBlock = constructor.getStatBlock();
         this.name = constructor.getName();
         this.AC = constructor.getAC();
         this.HPmax = constructor.getHP();
@@ -74,12 +75,12 @@ public class Monster extends Creature{
     }
 
     public String damage(int amt){
-        this.HP = Math.min(this.HP-amt, 0);
+        this.HP = Math.max(this.HP-amt, 0);
         return this.name+" has been hit for "+amt+" reducing it to "+this.HP+" hit points.";
     }
 
     public String heal(int amt){
-        this.HP = Math.max(this.HP+amt, this.HPmax);
+        this.HP = Math.min(this.HP+amt, this.HPmax);
         return this.name+" has been healed for "+amt+" increasing it to "+this.HP+" hit points.";
     }
 
