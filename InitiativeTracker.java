@@ -82,25 +82,41 @@ public class InitiativeTracker {
                 return;
             }
             String bonusAction = input.substring(13);
-            // do the bonus action method
+            ((Monster)this.initiativeOrder.get(currentInitiative)).bonusAction(bonusAction);
             bonusActionUsed = true;
         } else if (input.startsWith("reaction")){
             String reaction = input.substring(9);
-            // do the reaction method
+            Integer index = currentInitiative;
+            for (int i = 0; i < reaction.length(); i++) {
+                if (Character.isDigit(reaction.charAt(i))) {
+                    String num = reaction.substring(i);
+                    reaction = reaction.substring(0, i-1);
+                    index = Integer.parseInt(num.trim());
+                }
+            }
+            ((Monster)this.initiativeOrder.get(index)).reaction(reaction);
         } else if (input.startsWith("legendary action")){
             String legendaryAction = input.substring(17);
-            // do the legendary action method
+            Integer index = currentInitiative;
+            for (int i = 0; i < legendaryAction.length(); i++) {
+                if (Character.isDigit(legendaryAction.charAt(i))) {
+                    String num = legendaryAction.substring(i);
+                    legendaryAction = legendaryAction.substring(0, i-1);
+                    index = Integer.parseInt(num.trim());
+                }
+            }
+            ((Monster)this.initiativeOrder.get(index)).legendaryAction(legendaryAction);
         } else if (input.startsWith("legendary resistance")){
             String legendaryResistance = input.substring(20);
             Integer index = Integer.parseInt(legendaryResistance.trim());
-            ((Monster)this.initiativeOrder.get(currentInitiative)).useLegendaryResistance();
+            ((Monster)this.initiativeOrder.get(index)).useLegendaryResistance();
         } else if (input.startsWith("action")){
             if (actionUsed){
                 System.out.println("You have already used your action this turn.");
                 return;
             }
             String action = input.substring(7);
-            // do the action method
+            ((Monster)this.initiativeOrder.get(currentInitiative)).action(action);
             actionUsed = true;
         } else if (input.startsWith("end turn")){
             this.currentInitiative += 1;

@@ -14,9 +14,10 @@ public class Monster extends Creature{
     private boolean preRolled = false;
     private int preRolledInitiative;
     private int legendaryResistances;
-    private Hashtable<String, String> actions;
-    private Hashtable<String, String> legendaryActions;
-    private Hashtable<String, String> reactions;
+    private Hashtable<String, Interaction> actions;
+    private Hashtable<String, Interaction> legendaryActions;
+    private Hashtable<String, Interaction> reactions;
+    private Hashtable<String, Interaction> bonusActions;
     private Hashtable<String, Integer> abilities;
 
     public Monster(String fileName){
@@ -110,17 +111,26 @@ public class Monster extends Creature{
 
     public void action(String action){
         System.out.println(name+" uses "+action+".");
-        InitiativeTracker.roll(actions.get(action));
+        System.out.println(actions.get(action).getDescription());
+        InitiativeTracker.roll(actions.get(action).getDiceRolls());
     }
 
     public void bonusAction(String bonusAction){
         System.out.println(name+" uses "+bonusAction+".");
-        InitiativeTracker.roll(actions.get(bonusAction));
+        System.out.println(bonusActions.get(bonusAction).getDescription());
+        InitiativeTracker.roll(bonusActions.get(bonusAction).getDiceRolls());
     }
 
     public void reaction(String reaction){
         System.out.println(name+" uses "+reaction+".");
-        InitiativeTracker.roll(reactions.get(reaction));
+        System.out.println(reactions.get(reaction).getDescription());
+        InitiativeTracker.roll(reactions.get(reaction).getDiceRolls());
+    }
+
+    public void legendaryAction(String legendaryAction){
+        System.out.println(name+" uses "+legendaryAction+".");
+        System.out.println(legendaryActions.get(legendaryAction).getDescription());
+        InitiativeTracker.roll(legendaryActions.get(legendaryAction).getDiceRolls());
     }
 
 
