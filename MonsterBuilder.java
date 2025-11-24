@@ -22,10 +22,7 @@ public class MonsterBuilder {
     }
 
     public String getName(){
-        if (this.name == null){
-            int firstBreak = statBlock.indexOf(" \n ");
-            this.name = statBlock.substring(0, firstBreak);
-        }
+        this.name = statBlock.substring(0, statBlock.indexOf(" \n "));
         return this.name;
     }
 

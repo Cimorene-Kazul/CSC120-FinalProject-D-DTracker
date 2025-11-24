@@ -58,6 +58,10 @@ public class Monster extends Creature{
     }
 
     // gettors
+    public String getName(){
+        return this.name;
+    }
+
     public String getStats(){
         return this.statBlock;
     }

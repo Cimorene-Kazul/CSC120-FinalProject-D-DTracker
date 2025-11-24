@@ -7,6 +7,10 @@ public class Placeholder extends Creature {
         this.initiative=initiative;
         this.name=name;
     }
+
+    public String getName(){
+        return this.name;
+    }
     
     public int rollInitiative(Scanner initScanner){
         return initiative;

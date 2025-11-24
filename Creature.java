@@ -8,7 +8,7 @@ abstract class Creature {
     public boolean getLair(){
         return this.hasLair;
     }
-    
+
     public String getName(){
         return this.name;
     }

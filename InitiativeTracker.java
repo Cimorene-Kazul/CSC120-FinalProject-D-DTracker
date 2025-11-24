@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Scanner;
+import java.io.Serializable;
 import java.lang.Integer;
 
-public class InitiativeTracker {
+public class InitiativeTracker implements Serializable {
     ArrayList<Creature> creatures;
     ArrayList<Creature> initiativeOrder;
     boolean inCombat = false;
@@ -28,10 +29,6 @@ public class InitiativeTracker {
         ArrayList<Creature> creatures = new ArrayList<>();
         for (Creature c: creatureList){
             creatures.add(c);
-            if (c.getLair()){
-                Placeholder lair = new Placeholder(20, c.getName()+"'s lair actions"); 
-                creatures.add(lair);
-            }
         }
         this.creatures = creatures;
     }
@@ -49,17 +46,27 @@ public class InitiativeTracker {
      */
     public InitiativeTracker(ArrayList<Creature> creatures){
         this.creatures = creatures;
-        for (Creature c: creatures){
-            if (c.getLair()){
-                Placeholder lair = new Placeholder(20, c.getName()+"'s lair actions"); 
-                creatures.add(lair);
-            }
-        }
     }
 
     public InitiativeTracker(Scanner encounterScanner){
         this.encounterScanner = encounterScanner;
         this.creatures=new ArrayList<Creature>();
+    }
+
+    public String toString(){
+        if (this.inCombat){
+            String creatures = "";
+            for (Creature c:this.initiativeOrder){
+                creatures += " \n " + c ;
+            }
+            return "Initative Tracker for an Active Encounter \n Initiative Order:" + creatures;
+        } else {
+            String creatures = "";
+            for (Creature c:this.creatures){
+                creatures += " \n " + c.getName();
+            }
+            return "Initative Tracker containing: "+creatures;
+        }
     }
 
     /** 
@@ -194,11 +201,36 @@ public class InitiativeTracker {
      * @param c the Creature to be added
      */
     public void addCreature(Creature c){
-        this.creatures.add(c);
-        if (c.getLair()){
-            Placeholder lair = new Placeholder(20, c.getName()+"'s lair actions"); 
-            creatures.add(lair);
+        if (this.inCombat){
+            throw new RuntimeException("Creatures cannot be added to an encounter in progress.");
+        } else {
+            this.creatures.add(c);
         }
+    }
+
+    public ArrayList<Creature> getCreatures(){
+        return this.creatures;
+    }
+    
+    public void removeCreature(Creature c){
+        if (this.inCombat){
+            throw new RuntimeException("Creatures cannot be removed from an encounter in progress.");
+        } else {
+            if (this.creatures.contains(c)){
+                this.creatures.remove(c);
+            }else{
+                throw new RuntimeException("This creature is not in the initiative tracker and thus cannot be removed.");
+            }
+        }
+    }
+
+    public void addLairs(){
+        for (Creature c: this.creatures){
+            if (c.getLair()){
+                Placeholder lair = new Placeholder(20, c.getName()+"'s lair actions"); 
+                creatures.add(lair);
+            }
+        }   
     }
 
     /** 
@@ -207,6 +239,7 @@ public class InitiativeTracker {
      */
     private void rollInitiatives(Scanner initiativeScanner){
         Hashtable<Integer, ArrayList<Creature>> initiativeTable = new Hashtable<>();
+        this.addLairs();
         Integer top = 20; // the 'top of the initiative order'
         Integer bottom = 0; // the 'bottom of the initiative order'
         for (Creature creature: this.creatures){

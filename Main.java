@@ -3,7 +3,8 @@ public class Main {
         Player moth = new Player("Moth", "Elizabeth");
         Player emia = new Player("Emia", "Celina");
         Monster dragon1 = new Monster("ancient_green_dragon");
-        Creature[] creatures = {moth, emia, dragon1};
+        Monster dragon2 = new Monster("ancient_green_dragon");
+        Creature[] creatures = {moth, emia, dragon1, dragon2};
         InitiativeTracker myEncounter = new InitiativeTracker(creatures);
         myEncounter.rollInitiative();
     }
