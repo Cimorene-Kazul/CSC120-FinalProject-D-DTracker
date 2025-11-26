@@ -14,6 +14,8 @@ public class Monster extends Creature{
     private boolean preRolled = false;
     private int preRolledInitiative;
     private int legendaryResistances;
+    protected String locationNotes = null;
+    private String generalNotes = null;
     private Hashtable<String, Interaction> actions;
     private Hashtable<String, Interaction> legendaryActions;
     private Hashtable<String, Interaction> reactions;
@@ -28,6 +30,11 @@ public class Monster extends Creature{
         this.HPmax = constructor.getHP();
         this.HP = this.HPmax;
         this.initiativeBonus = constructor.getInitiative();
+    }
+
+    public Monster(String fileName, String locationNotes){
+        this(fileName);
+        this.locationNotes = locationNotes;
     }
 
     public Monster(String name, int health, int AC, int initiativeBonus, String statBlock, int preRolledInitiative){
@@ -88,12 +95,32 @@ public class Monster extends Creature{
         return this.name+" has been healed for "+amt+" increasing it to "+this.HP+" hit points.";
     }
 
+    public String takeNote(String note){
+        if (this.generalNotes == null){
+            this.generalNotes = note;
+        } else {
+            this.generalNotes += " \n "+ note;
+        }
+        return "Notes have been saved.";
+    }
     public String toString(){
-        return name+" at "+HP+"/"+HPmax+" HP, AC "+AC;
+        if (this.locationNotes == null){
+            return name+" at "+HP+"/"+HPmax+" HP, AC "+AC;
+        } else {
+            return name+" at "+HP+"/"+HPmax+" HP, AC "+AC + " ("+this.locationNotes+")";
+        }
     }
 
     public String turnPrompt(){
-        return "It is "+this.name+"'s turn. \n Here is a stat block for "+this.name+".\n" + this.statBlock+"\n"+this.name+" is at "+this.HP+" out of "+this.HPmax+" health.";
+        String result = "It is "+this.name+"'s turn.";
+        if (this.locationNotes != null){
+            result += " \n Specific location notes for "+this.name+" are "+ this.locationNotes +".";
+        }
+        result += "\n Here is a stat block for "+this.name+".\n" + this.statBlock+"\n"+this.name+" is at "+this.HP+" out of "+this.HPmax+" health.";
+        if (this.generalNotes != null){
+            result += " \n Additional notes for "+this.name+": \n "+this.generalNotes;
+        }
+        return result;
     }
 
     public int rollInitiative(Scanner initScanner){

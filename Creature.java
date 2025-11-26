@@ -25,6 +25,10 @@ abstract class Creature {
         return this.name+" is not a monster and thus cannot be healed.";
     }
 
+    public String takeNote(String note){
+        return this.name+" is not a monster and thus cannot take notes.";
+    }
+
     abstract int rollInitiative(Scanner initScanner);
     abstract String turnPrompt();
 }

@@ -19,6 +19,7 @@ public class InitiativeTracker implements Serializable {
         roll <dice formula> - rolls and prints the result of <dice formula> (ie, 3d6 rolls 3 6-sided dice and adds the results)
         damage <index> <amt> - damages the creature at index <index> for amount <amount>
         heal <index> <amt> - heals the creature at index <index> for amount <amount>
+        take note <index> - adds a note to the creature at index <index> (no index means the creature at the current initative)
         """;
 
     /** 
@@ -73,80 +74,92 @@ public class InitiativeTracker implements Serializable {
      * Method to parse and execute a command input by the user
      * @param input the command input by the user
      */
-    public void doAction(String input){
-        if (input.startsWith("heal")){
-            String[] commandPieces = input.trim().split(" ");
-            Integer index = Integer.parseInt(commandPieces[1]);
-            Integer amt = Integer.parseInt(commandPieces[2]);
-            System.out.println(this.initiativeOrder.get(index).heal(amt));
-        } else if (input.startsWith("damage")){
-            String[] commandPieces = input.trim().split(" ");
-            Integer index = Integer.parseInt(commandPieces[1]);
-            Integer amt = Integer.parseInt(commandPieces[2]);
-            System.out.println(this.initiativeOrder.get(index).damage(amt));
-        } else if (input.startsWith("roll")){
-            String die = input.substring(5);
-            roll(die);
-        } else if (input.startsWith("options")){
-            System.out.println(commandOptions);
-        } else if (input.startsWith("bonus action")){
-            if (bonusActionUsed){
-                System.out.println("You have already used your bonus action this turn.");
-                return;
-            }
-            String bonusAction = input.substring(13);
-            ((Monster)this.initiativeOrder.get(currentInitiative)).bonusAction(bonusAction);
-            bonusActionUsed = true;
-        } else if (input.startsWith("reaction")){
-            String reaction = input.substring(9);
-            Integer index = currentInitiative;
-            for (int i = 0; i < reaction.length(); i++) {
-                if (Character.isDigit(reaction.charAt(i))) {
-                    String num = reaction.substring(i);
-                    reaction = reaction.substring(0, i-1);
-                    index = Integer.parseInt(num.trim());
+    public void doAction(String input, Scanner inputScanner){
+        try{
+            if (input.startsWith("heal")){
+                String[] commandPieces = input.trim().split(" ");
+                Integer index = Integer.parseInt(commandPieces[1]);
+                Integer amt = Integer.parseInt(commandPieces[2]);
+                System.out.println(this.initiativeOrder.get(index).heal(amt));
+            } else if (input.startsWith("damage")){
+                String[] commandPieces = input.trim().split(" ");
+                Integer index = Integer.parseInt(commandPieces[1]);
+                Integer amt = Integer.parseInt(commandPieces[2]);
+                System.out.println(this.initiativeOrder.get(index).damage(amt));
+            } else if (input.startsWith("take note")) {
+                Integer index = this.currentInitiative;
+                if (input.substring(10).trim() != ""){
+                    index = Integer.parseInt(input.substring(10).trim());
                 }
-            }
-            ((Monster)this.initiativeOrder.get(index)).reaction(reaction);
-        } else if (input.startsWith("legendary action")){
-            String legendaryAction = input.substring(17);
-            Integer index = currentInitiative;
-            for (int i = 0; i < legendaryAction.length(); i++) {
-                if (Character.isDigit(legendaryAction.charAt(i))) {
-                    String num = legendaryAction.substring(i);
-                    legendaryAction = legendaryAction.substring(0, i-1);
-                    index = Integer.parseInt(num.trim());
+                System.out.println("What do you want to note?");
+                String note = inputScanner.nextLine();
+                initiativeOrder.get(index).takeNote(note);
+            } else if (input.startsWith("roll")){
+                String die = input.substring(5);
+                roll(die);
+            } else if (input.startsWith("options")){
+                System.out.println(commandOptions);
+            } else if (input.startsWith("bonus action")){
+                if (bonusActionUsed){
+                    System.out.println("You have already used your bonus action this turn.");
+                    return;
                 }
+                String bonusAction = input.substring(13);
+                ((Monster)this.initiativeOrder.get(currentInitiative)).bonusAction(bonusAction);
+                bonusActionUsed = true;
+            } else if (input.startsWith("reaction")){
+                String reaction = input.substring(9);
+                Integer index = currentInitiative;
+                for (int i = 0; i < reaction.length(); i++) {
+                    if (Character.isDigit(reaction.charAt(i))) {
+                        String num = reaction.substring(i);
+                        reaction = reaction.substring(0, i-1);
+                        index = Integer.parseInt(num.trim());
+                    }
+                }
+                ((Monster)this.initiativeOrder.get(index)).reaction(reaction);
+            } else if (input.startsWith("legendary action")){
+                String legendaryAction = input.substring(17);
+                Integer index = currentInitiative;
+                for (int i = 0; i < legendaryAction.length(); i++) {
+                    if (Character.isDigit(legendaryAction.charAt(i))) {
+                        String num = legendaryAction.substring(i);
+                        legendaryAction = legendaryAction.substring(0, i-1);
+                        index = Integer.parseInt(num.trim());
+                    }
+                }
+                ((Monster)this.initiativeOrder.get(index)).legendaryAction(legendaryAction);
+            } else if (input.startsWith("legendary resistance")){
+                String legendaryResistance = input.substring(20);
+                Integer index = Integer.parseInt(legendaryResistance.trim());
+                ((Monster)this.initiativeOrder.get(index)).useLegendaryResistance();
+            } else if (input.startsWith("action")){
+                if (actionUsed){
+                    System.out.println("You have already used your action this turn.");
+                    return;
+                }
+                String action = input.substring(7);
+                ((Monster)this.initiativeOrder.get(currentInitiative)).action(action);
+                actionUsed = true;
+            } else if (input.startsWith("end turn")){
+                this.currentInitiative += 1;
+                if (this.currentInitiative >= this.initiativeOrder.size()){
+                    this.currentInitiative = 0;
+                }
+                System.out.println(this.initiativeOrder.get(this.currentInitiative).turnPrompt());
+                this.bonusActionUsed = false;
+                this.actionUsed = false;
+            } else if (input.startsWith("summary")){
+                this.printSummary();
+            } else if (input.startsWith("close")){
+                this.inCombat = false;
+            } else if (input.indexOf("save") != -1){
+                String thingToBeSaved = input.substring(input.indexOf("save")+5);
+                String saveType = thingToBeSaved.split(" ")[0];
+                // do the saving throw method
             }
-            ((Monster)this.initiativeOrder.get(index)).legendaryAction(legendaryAction);
-        } else if (input.startsWith("legendary resistance")){
-            String legendaryResistance = input.substring(20);
-            Integer index = Integer.parseInt(legendaryResistance.trim());
-            ((Monster)this.initiativeOrder.get(index)).useLegendaryResistance();
-        } else if (input.startsWith("action")){
-            if (actionUsed){
-                System.out.println("You have already used your action this turn.");
-                return;
-            }
-            String action = input.substring(7);
-            ((Monster)this.initiativeOrder.get(currentInitiative)).action(action);
-            actionUsed = true;
-        } else if (input.startsWith("end turn")){
-            this.currentInitiative += 1;
-            if (this.currentInitiative >= this.initiativeOrder.size()){
-                this.currentInitiative = 0;
-            }
-            System.out.println(this.initiativeOrder.get(this.currentInitiative).turnPrompt());
-            this.bonusActionUsed = false;
-            this.actionUsed = false;
-        } else if (input.startsWith("summary")){
-            this.printSummary();
-        } else if (input.startsWith("close")){
-            this.inCombat = false;
-        } else if (input.indexOf("save") != -1){
-            String thingToBeSaved = input.substring(input.indexOf("save")+5);
-            String saveType = thingToBeSaved.split(" ")[0];
-            // do the saving throw method
+        } catch (RuntimeException e){
+            System.out.println("Something went wrong. Perhaps you formatted your command incorrectly or tried damage a creature that is not in the encounter. Please try again.");
         }
     }
 
@@ -275,7 +288,7 @@ public class InitiativeTracker implements Serializable {
      */
     private void takeTurn(Scanner turnScanner){
         String command = turnScanner.nextLine();
-        this.doAction(command);
+        this.doAction(command, turnScanner);
     }
 
     /**

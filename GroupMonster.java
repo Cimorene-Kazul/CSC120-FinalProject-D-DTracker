@@ -2,6 +2,11 @@ public class GroupMonster extends Monster{
     int size;
     Integer individualHP;
     String baseName;
+    
+    public GroupMonster(String fileName, int number, String locationNotes){
+        this(fileName, number);
+        this.locationNotes = locationNotes;
+    }
 
     public GroupMonster(String fileName, int number){
         super(fileName);
