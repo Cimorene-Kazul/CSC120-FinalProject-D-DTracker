@@ -1,0 +1,23 @@
+High Magedeath
+AC 18       HP 210		Initiative +2
+Individual, Humanoid(Human)				
+STR	DEX	CON	INT	WIS	CHA		Prof.
++3	 +2	+2	+3	 +0	 +5		 +5
+Saves: CON +7, INT +8, CHA +8
+Passive Perception 14
+Speed 30ft
+
+Traits
+Spellcasting - The magedeath may cast the following spells with spell attack modifier +10 and spell save DC 18.
+    At will: Detect Magic, Mage Hand, Light, Mending, Detect Thoughts
+    3/day each: Fireball (level 4 version), Invisibility, Silence, Dispel Magic
+    2/day each: Cone of Cold, Dimension Door, Wall of Force, Hunger of Hadar
+    1/day each: Teleport, Steel Wind Strike, Antimagic Field
+
+Actions
+Multiatttack - The Magedeath may make up to 3 attacks or use Spellcasting.
+Mage Bolt - +10 to hit, Ranged Spell Attack range 90ft, 3d10+5 force damage
+Sword Strike - +10 to hit, Melee Attack, 3d10+3 slashing damage and all spells on the target are dispelled. They also lose concentration. If this attack targets something conjured by a spell of level 5 or lower, the spell is dispelled.
+
+Reactions
+Counterspell 5/day - The Magedeath casts counterspell in response to a triggering spell.

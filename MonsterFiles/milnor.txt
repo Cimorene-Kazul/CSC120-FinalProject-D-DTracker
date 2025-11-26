@@ -1,0 +1,28 @@
+Milnor the Paladin
+Individual				Speed 30ft
+AC 21		HP 144         Initiative +0
+STR	DEX	CON	INT	WIS	CHA		Prof.
++4	 +0	+4	+2	 +2	 +5		 +5
+Saves: STR +9, DEX +5, CON +5, INT +7, WIS +12, CHA +15
+Skills: +7 Insight, +7 Perception, +10 Intimidation, +10 Performance
+Passive Perception 20, Passive Investigation 15, Passive Insight 10
+Immunities: Frightened	
+Resistances: Necrotic, Psychic, Radiant
+
+Traits
+Lay On Hands - Milnor has a pool of 60 (60/60 remaining) HP he can restore per long rest. He can touch a creature (or himself) to spend these points to restore an equal number of HP, and can expend 5 points per condition to remove the Poisoned, Blinded, Charmed, Deafened, Frightened, Paralyzed, or Stunned conditions.
+Protective Aura - Creatures of Milnor’s choice within 10 feet of him gain +5 to saves, are resistant to Necrotic, Psychic, and Radiant damage, and are immune to being frightened
+Channel Divinity(3/rest) - Choose 1 for each use:
+    1) As a bonus action, Milnor can become aware of every Celestial, Fiend, Undead, and consecrated/desecrated location within 60 feet of himself, for the next 10 minutes.
+    2) As an action, every creature of Milnor’s choice within 15 feet of himself must make a DC 18 STR save to avoid the restrained condition.
+    3) As an action, Milnor may force up to 5 creatures within 60 feet of him to make a DC 18 WIS save or be frightened of him for 1 min or until taking damage. Such a frightened creature must choose between moving, taking an action, or taking a bonus action.
+Spellcasting - Milnor is a level 14 paladin, has spell save DC 18 and spell attack +10.
+    Cantrips: Guidance, Sacred Flame
+    Level 1 (4 slots) - Divine Smite, Ensnaring Strike, Speak with Animals, Thunderous Smite, Bless, Cure Wounds
+    Level 2 (3 slots) - Prayer of Healing, Misty Step, Moonbeam, Branding Smite, Find Steed (1/LR he can cast without a spell slot)
+    Level 3 (3 slots) - Plant Growth, Protection from Energy, Blinding Smite, Spirit Shroud, Create Food and Water
+    Level 4 (1 slot) - Ice Storm, Stoneskin, Staggering Smite
+
+Actions
+Milnor may make 2 attacks per turn.
+Longsword - +11 to hit, 1d8+6 slashing + 1d8 radiant on a hit

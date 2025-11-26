@@ -1,0 +1,20 @@
+Neph’kaz Brightblades
+AC 16 		HP 48		Initiative +3
+Unit			Size 1-5 		
+STR	DEX	CON	INT	WIS	CHA		Prof.
+ -1	 +3	 +0	+4	 +1	 +0		 +3
+Speed 30ft
+Passive Perception 11
+
+Traits
+Unit - Most values are given in terms of unit Size, which for Brightblades ranges from 1 to 5. As HP decreases, Size decreases to HP/48, rounded up. They occupy an area equal to Size square meters. They have Size reactions.
+
+Actions
+Spellcasting - The Brightblades can cast Size spells at once with save DC 15 and spell attack +7.
+    Size/day - invisibility, fog cloud, Rime’s binding ice, scorching ray
+Area of Effect (Recharge 5-6) - Choose a rectangle of size 16*Size square meters (within 120 ft). Each target inside that rectangle must make a DC 15 Dex save or take 4d6 fire damage, half that on a success.
+Individual Shots - +7 to hit, Size targets. 6d6 fire damage to each target
+Daggers - This is a unit attack. It affects every enemy unit or creature touching the unit on the front side of the Brightblades. Save DC is 16 and to halve the 4*(side length touching) piercing damage.
+
+Reactions
+Counterspell (2*Size/day) - They cast counterspell in response to a trigger. 

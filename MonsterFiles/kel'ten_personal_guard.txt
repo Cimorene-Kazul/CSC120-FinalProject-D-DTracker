@@ -1,0 +1,18 @@
+Kel’ten’s Personal Guard
+AC 20			HP 125          Initiative +2
+Unit			Size 20 		
+STR	DEX	CON	INT	WIS	CHA		Prof.
++4	 +2	+3	+0	 +0	 +0		 +4
+Speed 30ft
+Passive Perception 13
+
+Traits
+Unit - Most values are given in terms of unit Size, which for Kel’ten’s guard is 20. As HP decreases, Size decreases to HP/125, rounded up. They occupy an area equal to Size squares.
+Unit Cohesion - Creatures and Units that end their turn on the unit border take 2d6 piercing damage. (note: +8 to hit opportunity attacks, 1d8+4 slashing on a hit). Other units cannot enter their space.
+
+Actions
+Crossbow Bolts - Every creature within a shape of area equal to the size of the guard unit must make a DC 16 DEX save. This rectangle must be within 100 feet of (and no less than 0 feet from) the front of the guard. On a failure, they take 3d10+6 piercing damage. On a success, they take half that
+Swords - This is a unit attack. It affects every enemy unit or creature touching the unit. Save DC is 18 to halve 30*(side length touching) slashing damage.
+
+Bonus Actions
+Kel’ten’s Favor - Once per day, heal 24*Size as a Bonus Action.

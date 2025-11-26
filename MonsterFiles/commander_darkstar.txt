@@ -1,0 +1,31 @@
+Commander Darkstar
+AC 18		HP  68		 Initiative +3
+STR	DEX	CON	INT	WIS	CHA		Prof.
+-3	 +3	+0	+5	 +2	 +5		 +5
+Saves: STR -1, DEX +5, CON +2, INT +7, WIS +9, CHA +12
+Speed 30ft.
+Proficiencies: Arcana +10, Deception +10, Insight +7, Perception +7, Religion +10					
+120 ft Darkvision (magical darkness too)        Passive Perception 17, Passive Investigation 15, Passive Insight 17
+Resistances: Psychic damage		
+Immunities: Magical Sleep
+
+Traits
+Charm Resistance - Darkstar has advantage on saves against being charmed.
+Staff of Power - Darkstar wields a Staff of Power. This item has 20 charges and regains 2d8+4 daily at dawn. He can expend charges to cast spells. (He leaves his Staff of Charming at home).
+Dark One’s Own Luck (5/day) - Five times per long rest, after seeing a save or ability check, but before seeing the outcome, add 1d10 to the result.
+Hurl through Hell (1/day) - Once per long rest, when you hit on an attack roll, the target must make a DC 18 WIS save or be transported off the battlefield until the end of your next turn. A transported target takes 8d10 Psychic damage if it is not a Fiend.
+Eldritch Strike - Darkstar can expend a spell slot to deal 6d8 extra force damage when he hits a creature with his pact weapon and knock it prone if it is Huge or smaller.
+Spellcasting - Darkstar is a level 13 warlock, has spell save DC 18 and spell attack +12. Darkstar regains used spell slots on a short rest.
+    At Will: eldritch blast, chill touch, mage hand, minor illusion, invisibility(self only, in shadow), levitate(self only), arcane eye
+    5th level (3 slots): Banishment, Burning Hands, Command, Comprehend Languages, Contact Other Plane, Counterspell, Dimension Door, Dispel Magic, Dream, Fire Shield, Fireball, Fly, Geas, Hold Monster, Insect Plague, Mirror Image, Misty Step, Scorching Ray, Scrying, Stinking Cloud, Suggestion, Wall of Fire
+    1/day each: Misty Step, Sending, Eyebite, Forcecage
+    1 Charge: Magic Missile, Ray of Enfeeblement
+    2 Charges: Flaming Sphere, Knock, Invisibility, Web
+    3 Charges: Dispel Magic
+    4 Charges: Ice Storm, Wall of Fire
+    5 Charges: Wall of Force, Cone of Cold, Fireball (5th level), Lightning Bolt (5th level)
+    6 Charges: Globe of Invulnerability
+
+Actions
+Multiattack - Darkstar may make 3 attacks or cast a spell.
+Pact Blade - +10 to hit, 1d8+5 radiant (+10 dmg and +10 hp on a crit)

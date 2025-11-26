@@ -5,11 +5,10 @@ STR  DEX  CON  INT  WIS  CHA  Prof.
 +8   +1   +7   +5   +3   +6   +7
 Saves:  DEX +8, WIS +10
 Speed 40 ft., Fly 80 ft., Swim 40 ft.
-
-Skills Deception +13, Perception +17, Persuasion +13, Stealth +8
-Immunities Poison; Poisoned
-Senses Blindsight 60 ft., Darkvision 120 ft., Passive Perception 27
-Languages Common, Draconic
+Skills: Deception +13, Perception +17, Persuasion +13, Stealth +8
+Immunities: Poison; Poisoned
+Senses: Blindsight 60 ft., Darkvision 120 ft., Passive Perception 27
+Languages: Common, Draconic
 Traits
 
 Amphibious. The dragon can breathe air and water.

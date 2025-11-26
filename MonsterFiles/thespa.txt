@@ -1,0 +1,23 @@
+Thespa
+AC 18       HP 136      Initiative +5
+STR	DEX	CON	INT	WIS	CHA		Prof.
+ +0	 +5	 +3	+2	 +2	 +5		 +6
+Saves: WIS +6, CHA +11				
+Skills:  Arcana +8, Perception +8, Religion +8, Persuasion +11, Deception +11
+Languages: Common, Celestial, Elvish, Deep Speech
+Speed 30ft
+120ft darkvision	    Passive Perception 17
+
+Traits
+Devil’s Sight - Magical darkness does not impede Thespa’s darkvision
+Seraphfrog’s Blessing - Every creature of Thespa’s choice within 30ft of them has advantage on all saves and others have disadvantage to attack them. This is granted by Thespa’s cloak. This does not include himself.
+Spellcasting - Thespa may cast the following warlock spells, save DC 19 and spell attack +11
+    At Will: darkness, silent image, levitate, mage hand, minor illusion, thaumaturgy
+    5th Level (4 slots): sickening radiance, fireball, banishment, dimension door
+    1/day: soul cage (if Ela dies, he tries to use this), plane shift, power word stun, imprisonment (as an action)
+Magebreaker - Thespa wields a bracelet focus that allows him to cast the following spells at base level, expending charges from the bracelet’s (10/10) (regain 1d8+1 at dawn): detect magic (0 charges), identify (0 charges), counterspell (1 charge), silence (1 charge), hold person (1 charge)
+
+Actions
+Multiattack - Thespa may make 3 attacks per turn, or 1 attack and cast a spell.
+Eldritch Blast - Ranged Attack +11 to hit, range 300 ft, 4d10 force damage
+Pact Blade - Melee Attack, reach 10 feet, +13 to hit, reach 5ft, 1d8+7 piercing + 3d8 radiant damage. Heals Thespa by the same amount as the radiant damage. This weapon is a polearm but has the properties of a vorpal sword. If the wielder rolls a 20 on the attack roll, they cut off one of the creature's heads. The creature dies if it can't survive without the lost head. A creature is immune to this effect if it is immune to slashing damage, doesn't have or need a head, has legendary actions, or the DM decides that the creature is too big for its head to be cut off with this weapon. Such a creature instead takes an extra 6d8 slashing damage from the hit.

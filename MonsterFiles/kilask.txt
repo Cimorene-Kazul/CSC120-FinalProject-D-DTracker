@@ -1,0 +1,21 @@
+Kilask the Druid
+AC 16		HP 113      Initiative +3	
+STR	DEX	CON	INT	WIS	CHA		Prof.
++0	 +3	+3	+1	 +5	 +0		 +4
+Saves: CHA +4, WIS +9
+Skills: Arcana +10, Insight +9, Perception +9, Nature +10
+Speed 30ft
+Passive Perception 19, Passive Investigation 11, Passive Insight 19
+
+Traits
+Wild Shape (3/Long Rest, regain 1 every Short Rest) - As a bonus action, Kilask can take on the statistics of a CR 1 or below beast. He can hold the shape for 6 hours or change back as a bonus action. He gains 12 temporary HP, uses his own mental stats, type, HP values, class features and languages, and maintains all his saves and proficiencies as well as gaining those of the animal, but otherwise uses the animal’s stat sheet. He cannot cast spells in animal form. 
+
+Actions
+Spellcasting - Kiliask is a level 12 druid, has spell save DC 17 and spell attack +9.
+    Cantrips: Elementalism, Produce Flame, Create Bonfire, Spare the Dying, Guidance
+    Level 1 (4 slots) - Burning Hands, Cure Wounds, Goodberry, Sand Structure
+    Level 2 (3 slots) - Scorching Ray, Flaming Sphere, Flame Blade, Heat Metal, Ominous Winds, Moonbeam, Pass without Trace
+    Level 3 (3 slots) - Plant Growth, Revify, Deep Roots of the Moon, Sleet Storm, Call Lightning
+    Level 4 (3 slots) - Aura of Life, Fire Shield, Storm Door, Wall of Fire
+    Level 5 (2 slots) - Flame Strike, Mass Cure Wounds, Wrath of Nature, Reincarnate
+    Level 6 (1 slot) - Move Earth, Heal, Sunbeam, Transport Via Plants

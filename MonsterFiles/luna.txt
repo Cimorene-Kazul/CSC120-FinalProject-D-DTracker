@@ -1,0 +1,52 @@
+Ilumetrix Luna
+AC 20		HP 300	    Initiative +5
+STR	DEX	CON	INT	WIS	CHA		Prof.
+ +2	 +5	 +3	+8	 +6	 +7		 +7
+Saves: DEX +12, CON +10, INT +15, WIS +13, CHA +13
+Skills: Persuasion +21, Deception +21, Insight +20, Perception +20, Arcana +22, Stealth +12, Slight of Hand +12, Intimidation +14, Performance +14, Investigation +15, History +15
+Immunities: Necrotic, Psychic, Charmed, Frightened, Blinded, Deafened		
+Resistances: Bludgeoning, Piercing, Slashing and Force	
+Speed 40ft, 50ft fly (hover)
+Truesight 240 ft        Passive Perception 30
+Languages: All, Telepathy 240 ft (+ all locations in Ilumeo + to sarongs)
+
+Traits
+Legendary Resistance (3/day) - 3 times per day, Luna succeeds on a save that she would otherwise fail 
+Shapechange - As a free action, Luna may change her appearance to that of any humanoid or CR 20 or lower monster. (DC 30 to see through disguise as a specific person).
+Archfey - Luna cannot age or die of old age.
+Limited Magic Immunity (Crown of Tales) - Unless she wishes to be affected, Luna is immune to spells cast at or below 6th level and any magic that would read her thoughts. She has advantage on saving throws against all other spells and magical effects. Spells do not consider Luna of Fey type unless she allows it.
+Sarong Creator (Crown of Tales) - Luna can cast through and perceive through all sarongs.
+Magesight (Crown of Tales) - Luna sees tangible strands of magic within range of her truesight and can tell the school of magic and caster. They also can, if they touch the strands (or get within 5 ft of them), determine the nature of the spell or enchanted item more deeply. 
+
+Actions
+Multiattack - Each action, Luna may make up to 3 attacks and cast 1 spell. Instead of casting a spell, she could instead teleport back to the school or to 5ft within any sarong.
+Shadow Blade - Melee attack, +12 to hit. 2d10 necrotic + 2d10 force + 1d8+5 piercing damage
+Shadow Bolt - Range attack (300 ft), +15 to hit. 2d10 necrotic + 3d10 force damage
+Puppetmistress Spellcasting (Mantle of the Puppetmistress) - Luna can cast the following spells at will: guards and wards, mighty fortress, charm monster, dominate person, mass suggestion, hero of fable and modify memory
+Patron Spellcasting (Bondsmistress’s Beads) - The Bondsmistress’s Beads has 20 charges (20/20 remaining), regaining 1d8+2 at dawn. Luna can cast the following spells from it.
+    5 charges: Seeming, Dominate Person
+    4 charges: Dominate Beast, Greater Invisibility
+    3 charges: Blink, Plant Growth		
+    2 charges: Misty Step
+    1 charge: Calm Emotions, Faerie Fire
+Learned Spellcasting - Luna may cast the following spells, with save DC 23 and spell attack +15
+    1/day: Wish, Invincibility, Maze, Antimagic Field, Harm, Disintegrate
+    2/day: Heal, Plane Shift, Child of Light and Darkness, 
+    Steel Wind Strike (6th lvl)
+    3/day: Fireball (5th lvl), Lightning Bolt (5th lvl)
+    At Will: Manifestation, Magic Circle, Transportation Circle, Arcane Eye, Modify Memory, Storm Door, Dimension Door, Portho’s Portal, Dispel Magic, Misty Step, Healing Word, Repair (up to 7th lvl), Conjure Item (up to 9th lvl), Spare the Dying, Mending, Light, Identify, Detect Magic, Detect Thoughts
+Bondsmistress (Bondsmistress’s Beads) - As an action, once per day each, Luna may summon the following creatures. They appear, are friendly to her, and obey her commands: 2 ‘High Fey’ or 3 ‘Eladrin’ OR 2 Erinyes or 3 Orthons OR 2 staff or 4 Magiri OR Darkstar and Lilliana or 20 Warlocks of the Archfey OR 1 ancient green dragon, 1 lich, or Igglwiv.
+
+Reactions (3/round)
+Luna has 3 Legendary Reactions per round and may use one per turn
+Shield - Luna adds 7 to someone’s AC when they are about to be hit.
+Counterspell - Luna casts level 5 counterspell in response to a spell being cast in the vicinity.
+Counterattack - Luna makes an attack on an opponent who just attacked her or one of her allies. If the triggering attack missed, she has advantage on the attack roll.
+Return to Sender - In response to failing a save, Luna casts Orros Mark of Fate
+
+Lair Actions
+Inside the school (including the Hexangular Tower), Luna can perform one Lair Action per round because of her attunement to the Crown of Tales. This happens at initiative count 20 and she must not repeat the same action twice.
+Change Layout - Luna reconfigures the floorplan of the school by conjuring or deleting walls, doors and roofs. She cannot change the total floor area.
+Sarongs - Luna causes all or some of the sarongs in the school to change configuration. Most typically, this is to muffle or incapacitate her attackers. In any case, they must make a DC 23 Dex save or be affected.
+Teleport - Luna teleports to some other location inside the school or within 30 ft of a sarong.
+Cast Through - Luna uses spellcasting, where her location is considered to be that of a sarong and that is where she can see.

@@ -1,0 +1,23 @@
+Junior Students
+AC 15			HP 45           Initiative +2
+Unit			Size 36 		
+STR	DEX	CON	INT	WIS	CHA		Prof.
+-2	 +2	+0	+5	 +1	 +1		 +3
+Saves: WIS +4, INT +8
+Darkvision 60 ft		Passive Perception 14
+Speed 25ft
+
+Traits
+Unit - Most values are given in terms of unit Size, which for the Junior Students is 36. As HP decreases, Size decreases to HP/45, rounded up. They occupy an area equal to Size 5ft by 5ft squares. The Unit can concentrate on Size spells at any given time. Buff spells with one target must be cast Size times to affect the unit.
+Spellcasting - The Junior Students are level 9 Wizards. They have spell save DC 16 and +8 to attacks.
+At Will: Fire Bolt, Mending, Minor Illusion, Mage Hand
+    4*Size 1st level - Shield, Magic Missile
+    3*Size 2nd level - Misty Step, Scorching Ray, Blur
+    3*Size 3rd level - Counterspell, Fireball
+    3*Size 4th level - Dimension Door, Greater Invisibility
+    1*Size 5th level - Wall of Force, Cone of Cold
+
+Actions
+Spellcasting - The Unit casts Size spells. Spells that target self require using all of these, it makes logical sense, etc. Ask Eliana for more details.
+Mage Daggers - This is a unit attack. It affects every enemy unit or creature touching the unit on the front or sides. Save DC is 15 to halve 4*(side length touching) piercing damage.
+Cantrips - Choose an area within 120ft of the Unit that is of size Size 5x5 squares. Each creature in that area must make a Dex save of DC 18 or take 2d10 fire damage times the number of squares they occupy in that area. They take half damage on a success.

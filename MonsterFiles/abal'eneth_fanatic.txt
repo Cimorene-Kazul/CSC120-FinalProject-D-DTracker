@@ -1,0 +1,16 @@
+Abal’eneth’s Fanatic
+AC 18			HP max  100         Initiative +0	
+Unit			Size 50 		
+STR	DEX	CON	INT	WIS	CHA		Prof.
++3	 +0	+3	+0	 +0	 +0		 +4
+Saves: CON +5
+Speed 35ft
+Passive Perception 10
+
+Traits
+Unit - Most values are given in terms of unit Size, which for Abal’eneth’s fanatics is 50. As HP decreases, Size decreases to HP/100, rounded up. They occupy an area equal to Size squares.
+Bezerker Nature - Whenever the fanatics take damage, they must make a Con save with DC equal to half the damage rounded down. If they succeed, halve the damage.
+Reckless - All attacks made by and against the fanatics have advantage
+
+Actions
+Violent Swords - This is a unit attack. It affects every unit or creature touching the unit on the front or sides. The attacks have advantage. Save DC is 17 to halve 45*(side length touching) slashing damage.

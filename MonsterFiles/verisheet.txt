@@ -1,0 +1,26 @@
+Verisheet the Cleric
+AC 18		HP 74	    Initiative +2
+STR	DEX	CON	INT	WIS	CHA		Prof.
++0	 +2	+1	+5	 +5	 +0		 +5
+Saves: INT +10, WIS +10
+Skills: Arcana +15, Insight +10, Perception +10, Religion +15, History +15, Nature +15
+Speed 30ft
+Passive Perception 20, Passive Investigation 15, Passive Insight 20
+
+Traits
+Channel Divinity(3/rest) - Choose 1 for each use:
+    1) Verisheet heals 3d8 to one target within 30ft as an action
+    2) As an action, Verisheet can gain 10 minutes of proficiency with a skill or tool.
+    3) As an action, Verisheet can make one creature within 60 feet of him make a DC 18 WIS save. If they fail, Verisheet can read its surface thoughts for one minute. He can end the effect early to cast suggestion on the target, who automatically fails the save.
+Potent Cantrips - Verisheet deals 5 extra damage with his cantrips.
+
+Actions
+Spellcasting - Verisheet is a level 13 Cleric, has spell save DC 18 and spell attack +10.
+    Cantrips: Sacred Flame, Spare the Dying, Light, Word of Radiance, Toll the Dead, Mending
+    Level 1 (4 slots) - Command, Identify, Bless, Healing Word, Cure Wounds, Inflict Wounds
+    Level 2 (3 slots) - Augry, Suggestion, Ominous Winds, Silence, Spiritual Weapon
+    Level 3 (3 slots) - Nondetection, Speak with Dead, Sending, Bestow Curse
+    Level 4 (3 slots) - Arcane Eye, Confusion, Death Ward, Divination, Storm Door
+    Level 5 (2 slots) - Legend Lore, Scrying, Commune, Geas, Raise Dead
+    Level 6 (1 slot) - Heal, Harm, Heroes’ Feast
+    Level 7 (1 slot) - Doom of Summer Years, Ebon Tide, Temple of the Gods

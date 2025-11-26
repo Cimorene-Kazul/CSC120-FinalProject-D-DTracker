@@ -1,0 +1,23 @@
+Commander Poltolsk
+AC 18		HP 64      Initiative +3
+STR	DEX	CON	INT	WIS	CHA		Prof.
+-3	 +3	+0	+5	 +5	 +0		 +5
+Saves: INT +10, WIS +10
+Skills: Arcana +10, Insight +10, Perception +10, History +10
+Passive Perception 20, Passive Investigation 15, Passive Insight 10
+Speed 30ft
+
+Traits
+Magic Resistance - Poltolsk has advantage on saves against spells and magical effects.
+
+Actions
+Rapier - +8 to hit, 1d8+3 piercing damage
+Spellcasting - Poltosk is a level 14 wizard, has spell save DC 20 and spell attack +12.
+    Cantrips: Firebolt, Mage Hand, Minor Illusion, Mending
+    Level 1 (4 slots) - Shield
+    Level 2 (3 slots) - Rime’s Binding Ice, Mirror Image
+    Level 3 (3 slots) - Counterspell, Fireball, Leomund’s Tiny Hut, Fly
+    Level 4 (3 slots) - Ice Storm, Greater Invisibility, Dimension Door
+    Level 5 (2 slots) - Bigby’s Hand, Wall of Force
+    Level 6 (1 slot) - Move Earth, Globe of Invulnerability
+    Level 7 (1 slot) - Teleport, Ebon Tide

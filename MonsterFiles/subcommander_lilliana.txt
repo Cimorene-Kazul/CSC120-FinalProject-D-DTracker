@@ -1,0 +1,28 @@
+Subcommander Lilliana
+AC 15			HP 78           Initiative +1
+STR	DEX	CON	INT	WIS	CHA		Prof.
+-3	 +1	+0	+4	 +1	 +5		 +5
+Saves: WIS +6, CHA +10
+Skills: Arcana +9, History +9, Insight +6, Persuasion +10
+Resistances: Fire damage
+Speed 30ft.
+120ft Darkvision (nonmagical and magical darkness) 30ft Truesight       Passive Perception 11, Passive Investigation 14, Passive Insight 16
+
+Traits
+Magic Resistance - Lilliana has advantage on saves against spells.
+Staff of the Magi - Lilliana wields a Staff of the Magi. This item has 50 charges and regains 4d6+2 daily at dawn. She can expend charges to cast spells.
+Dark One’s Own Luck (5/day) - Five times per long rest, after seeing a save or ability check, but before seeing the outcome, add 1d10 to the result.
+Hurl through Hell (1/day) - Once per long rest, when you hit on an attack roll, the target must make a DC 18 WIS save or be transported off the battlefield until the end of your next turn. A transported target takes 8d10 Psychic damage if it is not a Fiend.
+
+Actions
+Spellcasting - Lilliana is a level 15 warlock, has spell save DC 18 and spell attack +10. Lilliana  regains used spell slots on a short rest.
+    At Will: eldritch blast, elementalism, fire bolt, frostbite, guidance, light, mage hand, minor illusion, sacred flame, sorcerous burst, thaumaturgy, detect magic, disguise self, protection from evil and good, alter self, arcane lock, enlarge/reduce, invisibility(self only, in shadow), levitate(self only), arcane eye
+    5th level (3/3 slots available): Banishment, Burning Hands, Command, Comprehend Languages, Contact Other Plane, Counterspell, Darkness, Dimension Door, Dispel Magic, Fire Shield, Fireball, Geas, Hellish Rebuke, Hold Monster, Hold Person, Insect Plague, Magic Circle, Misty Step, Planar Binding, Remove Curse, Scorching Ray, Stinking Cloud, Suggestion, Wall of Fire
+    1/day each: Eyebite, Forcecage, Dominate Monster
+    2 Charges: Flaming Sphere, Knock, Invisibility, Web
+    3 Charges: Dispel Magic
+    4 Charges: Ice Storm, Wall of Fire
+    5 Charges: Passwall, Telekinesis
+    7 Charges: Conjure Elemental, Fireball (7th level), Lightning Bolt (7th level), Plane Shift
+Staff of the Magi - +4 to hit, 1d6-1 bludgeoning on a hit
+Summon Devils (1/day) - Lilliana conjures up a group of devils, some mixture of Spined Devils (up to 50), Bone Devils (up to 10), and Erinyes (up to 5). This army acts on her initiative and is commanded by her (bonus action). The army is able to persist for 10 minutes+a number of rounds equal to the number of people they kill.

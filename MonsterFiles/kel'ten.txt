@@ -1,0 +1,20 @@
+Kel’ten
+AC 22 		HP 255		  Initiative +0
+Individual Humanoid (human artificer)	 		
+STR	DEX	CON	INT	WIS	CHA		Prof.
++2	 +0	+2	+5	 +2	 +0		 +6
+Speed 35ft
+Passive Perception 18
+
+Traits
+Antimagic Focus - All magic within 50 feet of Kel’ten, and spells that intersect that area, fail, unless they are cast by her (as if antimagic field spell). This can be nullified by hitting her arcane focus, which has AC 30, with a melee attack, shattering it.
+
+Spellcasting - Kel’ten may cast the following spells with attack modifier +11 and spell save DC 19.
+    Cantrips (at will): mage hand, dancing lights, message
+    3/day each: Healing Word (4th level), Shield
+    2/day each: Ray of Sickness, Flaming Sphere, Mass Healing Word
+    1/day each: Stoneskin, Fly, Haste, Gaseous Form
+
+Actions
+Mage Bolt - +11 to hit, Ranged Spell Attack range 90ft, 4d8+5 force damage
+Blade of the Queen - +8 to hit, Melee Attack, 4d10+5 slashing damage

@@ -1,0 +1,21 @@
+Cloaked One Mages	
+AC 16		HP 120	    Initiative +3
+Unit			Size 5-20 	
+STR	DEX	CON	INT	WIS	CHA		Prof.
++0	 +3	+0	+0	 +1	 +4		 +5			
+Passive Perception 15         120ft Darkvision
+Speed 30ft.
+
+Traits
+Unit - Most values are given in terms of unit Size, which for the casting division is 5 to 20. As HP decreases, Size decreases to HP/120, rounded up. They occupy an area equal to Size square meters. They can concentrate on Size spells at any given time and have Size reactions.
+Seraphfrog’s Eyes - The mages’ darkvision works in magical darkness
+Seraphfrog’s Blessing - If you hit the mages with a melee attack, take 2d4 radiant damage.
+
+Actions
+Spellcasting - The mages may cast Size spells at any given time. They have save DC 17 and spell attack +9.
+    Size/day - Darkness, Dimension Door, Halluciatory Terrain, Hunger of Hadar
+Seraphfrog Spear Strikes - This is a unit attack. It affects every unit or creature touching the unit in a targetable area. Save DC 17 to halve 8*(side length touching) slashing damage + 8*(side length touching) radiant damage.
+In Seraphfrog’s Name! - Choose an area within 60ft of the mages of size 16*Size square meters. Each creature in that area must make a Wis save of DC 18 or take 8d6 radiant damage. They take half damage on a success.
+
+Reactions
+Counterspell (2*Size/day) - They cast counterspell in response to a triggering spell of level 3 or lower. 

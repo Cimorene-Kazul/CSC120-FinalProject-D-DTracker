@@ -1,0 +1,24 @@
+James Magedeath
+AC 19		HP 360		Initiative +1
+Individual, Humanoid(Human)				
+STR	DEX	CON	INT	WIS	CHA		Prof.
++4	 +1	+3	+3	 +0	 +4		 +6
+Saves: CON +9, INT +9, CHA +10
+Passive Perception 14
+Speed 30ft
+
+Traits
+Spellcasting - James may cast the following spells with spell attack modifier +10 and spell save DC 18.
+    At will: Detect Magic, Mage Hand, Light, Mending, Detect Thoughts
+    3/day each: Fireball (level 5 version), Invisibility, Silence, Dispel Magic
+    2/day each: Wall of Force, Dimension Door, Steel Wind Strike, Disintegrate
+    1/day each: Teleport, Antimagic Field, Invulnerability
+
+Actions
+Multiatttack - James Magedeath may make up to 3 attacks or use Spellcasting.
+Mage Bolt - +10 to hit, Ranged Spell Attack range 90ft, 4d8+4 force damage
+Sword Strike - +10 to hit, Melee Attack, 4d10+4 slashing damage and all spells on the target are dispelled. They also lose concentration. If this attack targets something conjured by a spell of level 7 or lower, the spell is dispelled.
+
+Reactions
+Counterspell 5/day - James casts counterspell in response to a triggering spell.
+Shield - In response to being about to be hit with an attack, James casts shield.

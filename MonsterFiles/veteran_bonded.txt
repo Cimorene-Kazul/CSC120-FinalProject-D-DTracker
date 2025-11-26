@@ -1,0 +1,20 @@
+Veteran Bonded	
+AC 14			HP 56       Initiative +1
+Unit			Size 36 	
+STR	DEX	CON	INT	WIS	CHA		Prof.
+-2	 +1	+0	+3	 +2	 +5		 +4
+Saves: WIS +6, CHA +9
+Darkvision 120 ft (works in magical darkness)		Passive Perception 16
+Speed 25ft
+
+Traits
+Unit - Most values are given in terms of unit Size, which for the Veteran Bonded is 36. As HP decreases, Size decreases to HP/56, rounded up. They occupy an area equal to Size 5ft by 5ft squares. The Unit can concentrate on Size spells at any given time. Buff spells with one target must be cast Size times to affect the unit.
+Spellcasting - The Bonded are level 12 Warlocks. They have spell save DC 17 and +9 to attacks. The Bonded regain all expended spell slots on a short rest.
+    At Will: Mending, Eldritch Blast, Minor Illusion, Levitate(self), Invisibility(self, in shadow)
+    3*Size 5th level slots: Fireball, Hunger of Hadar, Dimension Door, Darkness, Flame Strike, Scorching Ray, Stinking Cloud, Wall of Fire
+    Size/day: Mass Suggestion
+
+Actions
+Spellcasting - The Unit casts Size spells. Spells that target self require using all of these, it makes logical sense, etc. Ask Eliana for more details.
+Mage Daggers - This is a unit attack. It affects every enemy unit or creature touching the unit on the front or sides. Save DC is 15 to halve 5*(side length touching) piercing damage.
+Cantrips - Choose an area within 120ft of the Unit that is of size Size 5x5 squares. Each creature in that area must make a Dex save of DC 19 or take 3d10 force damage times the number of squares they occupy in that area. They take half damage on a success.

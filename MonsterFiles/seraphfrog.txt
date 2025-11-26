@@ -1,0 +1,32 @@
+Seraphfrog		
+AC 20		HP 555		Initiative +0
+STR	DEX	CON	INT	WIS	CHA		Prof.
+ +9	 +0	 +8	+6	 +5	 +5		 +8
+Saves: STR +17, CON +16, INT +14, WIS +13
+Skills: Investigation +14, Arcana +14, History +14, Religion +14
+Immunities: Radiant, Charmed and Frightened		
+Resistances: Nonmagical Bludgeoning, Piercing and Slashing
+Speed 20ft., 60ft fly (hover)		
+Languages: Common, Celestial, Elvish, Deep Speech, Telepathy 200 ft (+ to its Clerics and Warlocks)
+Truesight 120 ft         Passive Perception 16
+
+Traits
+Mythic Nature (1/day) - When seraphfrog is reduced to 0 hit points, there is a flash of light and it returns to 500 health. 
+Legendary Resistance (4/day) - 4 times per day, Seraphfrog succeeds on a save it would otherwise fail 
+Divine Aura - When a creature ends their turn within 10 feet of the Seraphfrog, they take 4d6 radiant damage and must make a DC 22 Wisdom save to avoid being Frightened, if they are Hostile to Seraphfrog.
+Divine Spellcasting - Seraphfrog may cast the following spells, save DC 22 and spell attack +14
+    2/day: Flame Strike (9th lvl), Resurrection
+    4/day: Heal, Geas (action), Silence		
+    At Will: Detect Magic, Detect Thoughts, Detect Evil and Good, Fear, Borrowed Knowledge, Tounges
+
+Actions
+Multiattack - The Seraphfrog may make up to 5 attacks or make 3 attacks and cast a spell.
+Tongue of Radiance - Melee attack, reach 20 ft, +17 to hit. 3d10 radiant + 2d10+9 bludgeoning 
+Sheer Force - Melee Attack, reach 10 ft, +17 to hit, 6d12+9 bludgeoning damage on a hit
+Bolt of Light - Range attack (300 ft), +14 to hit. 6d10 radiant damage
+
+Reactions (3/round)
+Seraphfrog has 3 Legendary Reactions per round and may use one per turn
+Frog You! - In response to being targeted by a melee attack, the attacker must make a DC 22 Wisdom save or become a Frog as if by the spell Polymorph
+Counterattack - Seraphfrog makes an attack on an opponent who just hit it
+Spellcasting - In response to a spell being cast, Seraphfrog casts one of its own spells. This costs two reactions.

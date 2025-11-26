@@ -1,0 +1,26 @@
+Subcommander Res’seth
+AC 14			HP 78			Initiative +1
+STR	DEX	CON	INT	WIS	CHA		Prof.
+-3	 +1	+0	+4	 +1	 +5		 +5
+Saves: WIS +6, CHA +10			
+Skills: Arcana +9, Perception +6, Insight +6, Persuasion +10
+60ft Darkvision			Passive Perception 16, Passive Investigation 14, Passive Insight 16
+Speed 30ft
+
+Traits
+Sorcery Points - Ras’seth has 13 sorcery points. She can expend them while casting to gain one of the following options:
+	1) 1 sp to double the range or give a touch spell range 30 ft
+	2) 1 sp to give up to 5 creatures automatic success on saving against one of her spells
+	3) 1 sp to reroll a missed attack
+	4) 1 sp to double the duration of a spell, up to 24 hours
+
+Actions
+Spellcasting - Res’seth is a level 13 sorcerer. They have spell save DC 18 and spell attack +10.
+	Cantrips: Firebolt, Sacred Flame, Task, Mage Hand, Minor Illusion
+	Level 1 (4 slots) - Chaos Bolt, Shield, Healing Word
+	Level 2 (3 slots) - Mirror Image, Scorching Ray, Silence, Spiritual Weapon
+	Level 3 (3 slots) - Counterspell, Fireball
+	Level 4 (3 slots) - Stoneskin, Dimension Door, Searing Sun
+	Level 5 (2 slots) - Flame Strike, Raise Dead
+	Level 6 (1 slot) - Sunbeam
+	Level 7 (1 slot) - Fire Storm, Temple of the Gods

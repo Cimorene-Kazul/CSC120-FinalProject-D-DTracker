@@ -1,0 +1,27 @@
+Levadra the Sorcerer
+AC 14			HP 68			Initiative +1
+STR	DEX	CON	INT	WIS	CHA		Prof.
+-3	 +1	+0	+3	 +1	 +5		 +4
+Saves: WIS +5, CHA +9			
+Skills: Arcana +7, Perception +5, Insight +5, Persuasion +9
+Speed 30ft
+60ft Darkvision			Passive Perception 15, Passive Investigation 13, Passive Insight 15
+
+Traits
+Fire Soul - Levadra’s spells that deal fire damage ignore resistance.
+Manifestation (1/long rest) - Once per long rest, Levadra may take a bonus action to manifest her fiery nature. Her appearance becomes flame, she gains immunity to fire damage and her fire spells deal max damage instead of rolling. This lasts for one minute (concentration). She can expend 6 sorcery points to regain an expended use of this trait.
+Sorcery Points - Levadra has 12 sorcery points. She can expend them while casting to gain one of the following options:
+	1) 1 sp to double the range or give a touch spell range 30 ft
+	2) 1 sp to give up to 5 creatures automatic success on saving against one of her spells
+	3) 1 sp to reroll a missed attack
+	4) 1 sp to reroll up to 5 damage dice
+
+Actions
+Spellcasting - Levadra is a level 12 sorcerer. She has spell save DC 17 and spell attack +9.
+	Cantrips: Firebolt, Sorcerous Burst, Task, Mage Hand, Minor Illusion
+	Level 1 (4 slots) - Chaos Bolt, Shield, Burning Hands
+	Level 2 (3 slots) - Mirror Image, Scorching Ray, Misty Step, Ominous Winds
+	Level 3 (3 slots) - Counterspell, Fireball, Ashardalon’s Stride
+	Level 4 (3 slots) - Fire Dance, Fire Shield, Searing Sun
+	Level 5 (2 slots) - Far Step, Radiant Beacon, Dominate Person, Bigby’s Hand
+	Level 6 (1 slot) - Sunbeam, Move Earth

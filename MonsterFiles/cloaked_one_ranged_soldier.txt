@@ -1,0 +1,14 @@
+Cloaked One Ranged Troops
+AC 18 		HP 18      Initiative +2
+Unit		Size 50-150	
+STR	DEX	CON	INT	WIS	CHA		Prof.
+ +1	 +2	 +1	-1	 +1	 +2		 +3			
+ Speed 20ft.
+ 60ft Darkvision		Passive Perception 13
+
+Traits
+Unit - Most values are given in terms of unit Size, which for foot troops ranges from 150 to 250. As HP decreases, Size decreases to HP/18, rounded up. They occupy an area equal to Size square meters.
+
+Actions
+Seraphfrog Spear Strikes - This is a unit attack. It affects every enemy unit or creature touching the unit in a targetable area. Save DC 13 to halve 3*(side length touching) slashing damage
+Bolts of Power - Choose an area within 60ft of the casting division of size Size squares. Each creature in that area must make a DC 15 DEX save to halve 2d6 radiant damage.

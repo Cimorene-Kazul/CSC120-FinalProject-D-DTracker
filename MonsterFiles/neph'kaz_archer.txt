@@ -1,0 +1,15 @@
+Neph’kaz Archers
+AC 13 		HP 8        Initiative +1		
+Unit		Size 25-75
+STR	DEX	CON	INT	WIS	CHA		Prof.
+ +0	 +1	 +0	-1	 +0	 -1		 +2
+Passive Perception 10
+Speed 25ft
+
+Traits
+Unit - Most values are given in terms of unit Size, which for archers ranges from 25 to 75. As HP decreases, Size decreases to HP/8, rounded up. They occupy an area equal to Size square meters.
+
+Actions
+Arrow Rain - Every creature within a rectangle of area equal to half the size of the archer unit must make a DC 13 DEX save. This rectangle must be within 100 feet of (and no less than 0 feet from) the front of the archers. On a failure, they take 2d8+2 piercing damage, halving that on a success.
+Targeted Shots - A number of creatures within 100 feet of (and no less than 0 feet from) the front of the archers equal to ceiling(size/10) must make a DC 15 DEX save. On a failure, they take 4d8+4 piercing damage for every 10 archers in the unit. On a success, they take half that.
+Daggers - This is a unit attack. It affects every unit or creature touching the unit touching the front side of the archers. Save DC is 13 to halve the 2*(side length touching) piercing damage.

@@ -1,0 +1,21 @@
+Supreme Brightblade
+AC 16 		HP 195     Initiative +3
+STR	DEX	CON	INT	WIS	CHA		Prof.
+-1	 +3	+0	+5	 +2	 +0		 +6
+Speed 35ft
+Passive Perception 18
+
+Spellcasting - The Brightblade may cast the following wizard spells with spell attack modifier +11 and spell save DC 19.
+    Rituals: Tiny Hut, Alarm, Floating Disk
+    At will: Detect Magic, Light, Mage Armor (included in AC), Mage Hand, Prestidigitation, Shield, Invisibility
+    3/day each: Fireball (level 4 version), Cloudkill, Fog Cloud, Rime’s Binding Ice, Hunger of Hadar
+    2/day each: Move Earth, Teleport, Dimension Door
+    1/day each: Mighty Fortress
+
+Actions
+Multiattack
+    The Brightblade may make up to 4 attacks or use Spellcasting.
+    Mage Bolt - +11 to hit, Ranged Spell Attack range 90ft, 1d8+5 force damage
+
+Reactions
+Counterspell (5/day) - the Brightblade casts counterspell in response to that spell’s trigger.

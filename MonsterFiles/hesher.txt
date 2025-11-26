@@ -1,0 +1,27 @@
+Hesher the Cleric
+AC 20		HP 121      Initiative +0
+STR	DEX	CON	INT	WIS	CHA		Prof.
++3	 +0	+3	+1	 +5	 +0		 +5
+Saves: CHA +5, WIS +10
+Skills: Arcana +6, Insight +10, Perception +10, Religion +6
+Passive Perception 20, Passive Investigation 11, Passive Insight 20
+Speed 30ft
+
+Traits
+Channel Divinity(3/rest) - Choose 1 for each use:
+    1) Hesher heals 3d8 to one target within 30ft as an action
+    2) As a reaction or when Hesher misses an attack, Hesher adds +10 to an attack roll that would otherwise miss.
+    3) Instead of expending a spell slot, Hesher casts Shield of Faith or Spiritual Weapon, no concentration required (spell cannot be recast without ending the duration)
+Spellcasting - Hesher is a level 13 cleric, has spell save DC 18 and spell attack +10.
+    Cantrips: Sacred Flame, Spare the Dying, Light, Word of Radiance, Toll the Dead
+    Level 1 (4 slots) - Guiding Bolt, Shield of Faith, Bless, Healing Word
+    Level 2 (3 slots) - Magic Weapon, Spiritual Weapon, Silence, Zone of Truth, Shared Vision, Hold Person
+    Level 3 (3 slots) - Crusader’s Mantel, Spirit Guardians, Aura of Vitality, Create Food and Water, Sending, Light Snare 
+    Level 4 (3 slots) - Fire Shield, Freedom of Movement, Storm Door, Pacify Monster
+    Level 5 (2 slots) - Hold Monster, Steel Wind Strike, Raise Dead
+    Level 6 (1 slot) - Heal, Harm, Heroes’ Feast
+    Level 7 (1 slot) - Ebon Tide, Fire Storm, Temple of the Gods
+
+Actions
+Multiatttack - Hesher may make 2 attacks or cast a spell.
+Mace - +10 to hit, 1d8+5 bludgeoning + 1d8 radiant

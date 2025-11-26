@@ -1,0 +1,21 @@
+Greater Brightblade
+AC 16 		HP 95       Initiative +3		
+Individual Humanoid (human wizard)	 		
+STR	DEX	CON	INT	WIS	CHA		Prof.
+-1	 +3	+0	+5	 +1	 +0		 +5
+Speed 35ft
+Passive Perception 16
+
+Traits
+Spellcasting - The Brightblade may cast the following wizard spells with spell attack modifier +10 and spell save DC 18.
+    At will: Detect Magic, Light, Mage Armor (included in AC), Mage Hand, Prestidigitation
+    4/day each: Shield
+    2/day each: Fireball, Ice Storm, Fog Cloud, Rime’s Binding Ice, Hunger of Hadar
+    1/day each: Cone of Cold, Move Earth, Arcane Eye
+
+Actions
+Multiatttack - The Brightblade may make up to 3 attacks or use Spellcasting.
+Mage Bolt - +10 to hit, Ranged Spell Attack range 90ft, 3d8+5 force damage
+
+Reactions
+Counterspell (4/day) - the Brightblade casts counterspell in response to that spell’s trigger.

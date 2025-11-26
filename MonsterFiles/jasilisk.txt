@@ -1,0 +1,30 @@
+Jasilisk the Bard
+AC 18		HP 64         Initiative +3
+STR	DEX	CON	INT	WIS	CHA		Prof.
+-3	 +3	+0	+5	 +0	 +5		 +5
+Saves: WIS +5, CHA +10
+Skills: Arcana +15, Deception +15, Persuasion +15, Insight +10, History +10, Religion +10, Performance +10
+Passive Perception 20, Passive Investigation 15, Passive Insight 10
+Speed 30ft.
+
+Traits
+Bardic Inspiration - Jasilisk has 5 (5/5) bardic inspiration die per long rest. He has the following uses for it:
+    1) He can expend one and give it to another creature as a bonus action. That creature can use the die to roll and add to a failed D20 test to try and turn it into a success.
+    2) He can expend a die to grant up to 5 creatures within 60 feet of him twice the roll temporary HP and the ability to use their reaction to move their speed without provoking opportunity attacks.
+Jack of All Trades - If Jasilisk is not proficient in or expert at an ability check, add +2 to the check.
+Beguiling Magic (1/LR or expand a Bardic Inspiration to restore) - When Jasilisk casts an illusion or enchantment spell, he can choose 1 target to make a DC 18 WIS save to avoid being charmed or frightened (his choice) by him. The target can repeat the save at the end of each turn. The effect lasts for a minute or until such a save is successful.
+Aura of Majesty (1/LR or expend a 3+ level spell slot to restore) - Jasilisk can cast command as a bonus action without expending a spell slot, then hold concentration for up to a minute to keep an unearthly appearance. So long as he has this appearance, he can cast command again without needing a spell slot on his turn as a bonus action. If the target of such a command is Charmed by him, they automatically fail the save.
+
+Actions
+Spellcasting - Jasilisk is a level 13 bard, has spell save DC 18 and spell attack +10.
+    Cantrips: minor illusion, vicious mockery, mage hand, dancing lights
+    Level 1 (4 slots) - Command, Charm Person, Healing Word, Cure Wounds, Bane, Silvery Barbs
+    Level 2 (3 slots) - Mirror Image, Suggestion, Silence
+    Level 3 (3 slots) - Lost, Tiny Hut, Hypnotic Pattern, Fast Friends, Counterspell
+    Level 4 (3 slots) - Hallucinatory Terrain, Dimension Door
+    Level 5 (2 slots) - Synaptic Static, Scrying, Dominate Person, Geas, Lost and Wandering
+    Level 6 (1 slot) - Mass Suggestion, Heroes’ Feast
+    Level 7 (1 slot) - Teleport, Resurrection, Mirage Arcane, Doom of Summer Years
+
+Reactions
+Countercharm - As a reaction to a creature failing a save against being charmed or frightened, Jasilisk can make the creature reroll the save with advantage.

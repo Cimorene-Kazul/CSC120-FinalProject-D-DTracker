@@ -1,0 +1,24 @@
+Cloaked One Archmage
+AC 17 		HP 210        Initiative +4
+Individual Humanoid (warlock) 		
+STR	DEX	CON	INT	WIS	CHA		Prof.
++0	 +4	+0	+0	 +2	 +5		 +6			
+Saves: WIS +8, CHA +11
+Speed 30ft
+120ft Darkvision            Passive Perception 18
+
+Traits
+Seraphfrog’s Eyes - The archmage’s darkvision works in magical darkness
+Seraphfrog’s Blessing - If you hit the archmage with a melee attack, take 2d6 radiant damage.
+Spellcasting. The archmage is a warlock and can cast the following warlock spells with spell save DC 19 and spell attack bonus +11.
+    Cantrips and At Will: mage hand, minor illusion, darkness, levitate, polymorph 
+    5th Level (4 slots): fireball, wall of light, synaptic static, hunger of hadar, halluciatory terrain
+    1/day: soul cage, crown of stars, befuddlement
+
+Actions
+Multiattack - The Cloaked One Archmage may make 3 attacks or cast a spell.
+Seraphfrog Spear Strike - +10 to hit, melee weapon attack, 2d10 radiant + 1d6+4 slashing damage on a hit
+Eldritch Blast! - +11 to hit, range spell attack, range 120ft, 3d10+5 force damage on a hit
+
+Reactions
+Counterspell (3/day) - The archmage casts counterspell at 5th level in response to a triggering spell.

@@ -1,0 +1,57 @@
+Ilumetrix Ela		
+AC 21         HP 133	    Initiative +5
+Medium Humanoid (Elf, Wizard)
+STR	DEX	CON	INT	WIS	CHA		Prof.
+ +0	 +5	 +3	+5	 +4	 +2		 +6
+Saves: INT +14, WIS +13, STR +6, DEX +11, CON +9
+Skills: Arcana +17, Insight +17, Perception +10, Investigation +11, History +11
+Languages: Elvish, Dwarven, Draconic, Common, Undercommon, Sylvan, Telepathy to Luna only (infinite range)	
+30ft fly (hover), 30ft walk 			
+Truesight 60ft              Passive Perception 25
+
+Traits
+Legendary Resistance (3/day) - 3 times per day, Ela succeeds on a save that she would otherwise fail 
+Fey Lady (Crown of the Consort) - Ela does not age or die of old age.
+Cloak of Wisdom (Wisdom’s Cloak) - Ela has advantage on insight, perception, and persuasion checks. Everyone of her choice within 30ft of her has advantage on saves and checks involving INT or WIS.
+Footwork (Blade of Self-Defence) - Ela cannot be opportunity attacked.
+Consort’s Crown’s Protection (Crown of the Consort) - Ela has advantage on saves against spells and magical effects.
+Sarong Creator (Crown of the Consort) - Ela can cast through and perceive through all sarongs.
+Magesight (Crown of the Consort) - Ela sees tangible strands of magic within range of her truesight and can tell the school of magic, spell (if named) and caster. They also can, if they touch the strands, determine the nature of the spell or enchanted item more deeply. 
+Calming Presence - At the start of each turn, (if Ela wishes), all creatures of Ela’s choice within 120 feet of her make a DC 19 Charisma save (if they seek this comfort, they automatically fail and that is a good thing for them). They may choose to retry the save whenever they take damage. If they succeed, they become immune to her Calming Presence for the next hour. If they fail, they become immune to being Charmed and Frightened and become Indifferent towards creatures of her choice they were Hostile towards. She also reduces the effect of other negative emotions but that is hard for her to quantify.
+Consort’s Casting (Crown of the Consort) - The Crown of the Consort has 20 charges (20/20 remaining), regaining 1d8+2 at dawn. Ela can cast the following spells from it.
+    5 charges: Seeming, Dominate Person
+    4 charges: Dominate Beast, Greater Invisibility
+    3 charges: Blink, Plant Growth		2 charges: Misty Step
+    1 charge: Calm Emotions, Faerie Fire
+Wizard Spellcasting - Ela is a level 20 Wizard. She may cast the following spells, with save DC 21 and spell attack +13. (* marks default/favored casts in combat)
+    9th lvl (1 slot): Invulnerability*, Wish, Gate
+    8th lvl (1 slot): Demiplane, Antimagic Field, Child of Light and Darkness*
+    7th lvl (2 slots): Plane Shift, Teleport (at will b/c item), Mordenkain’s Magnificent Mansion, Forcecage*
+    6th lvl (2 slots): Scatter*, Programmed Illusion, Disintegrate, True Seeing
+    5th lvl (3 slots): Hold Monster*, Far Step, Manifestation, Magic Circle, Teleportation Circle, Scrying (at will b/c of item)
+    4th lvl (3 slots): Polymorph, Banishment*, Dimension door, Gate Seal, Private Sanctum
+    3rd lvl (3 slots): Fireball*, Lightning Bolt, Dispel Magic, Haste, Remove Curse, Counterspell, Orros Mark of Fate
+    2nd lvl (3 slots): Invisibility, See Invisibility, Scorching Rays, Web, Hold Person*
+    1st lvl (4 slots): Mage Armor, Sleep, Disguise Self, Identify, Conjure Item, silvery barbs
+    At Will: Repair, Firebolt (4d10 on hit), Light, Minor Illusion, Ray of Frost (4d8 on hit)
+
+Actions
+Your turns are my turn - Ela cannot cast spells or attack with actions. Instead, she prepares and uses reactions alongside Lair Actions. She can take the Ready action for two spells at once. If the spells do not trigger, she loses the spell slots as normal.
+
+Bonus Actions
+Protection for Another (Blade of Self-Defense) - as a bonus action, Ela can designate a creature as under their protection. Until she takes this action again, that is her designated target for this feature.
+Cloak’s Advice (Wisdom’s Cloak) - as a bonus action, Ela takes the Help action to help everyone of her choice within 45 feet of her.
+
+Reactions (6/round)
+Ela has 6 reactions per round. She can take up to two per turn.
+Shield - Ela adds 5 to someone’s AC in the combat in response to them being targeted with an attack.
+Counterspell - Ela ‘casts’ level 4 counterspell in response to a spell being cast in the vicinity. 
+Return to Sender - In response to failing a save, Ela ‘casts’ Orros Mark of Fate
+Stop Fighting! - Ela resets her Calming Presence timer on those affected and Calming Presence activates in response to a turn beginning or an individual coming into range.
+Protection for Another (Blade of Defense) - If the designated target for protection for another can be reached via 60 ft of movement and is about to be hit with an attack, Ela can move to within 5ft of the creature and make the attack miss. Attack rolls have disadvantage against the creature until Ela’s next turn or the creature is no longer within 5ft of Ela.
+
+Lair Actions
+Inside the school (including the Hexangular Tower), Ela can perform one Lair Action per round because of her attunement to the Crown of the Consort. This happens at initiative count 20.
+Normal Summon - Ela summons an Eladrin or High Fey monster that obeys her, is friendly to her, and acts on initiative count 20 after her lair action.
+Teleport - Ela teleports to some other location inside the school or within 30 ft of a sarong.
+Cast Through - Ela uses spellcasting, where her location is considered to be that of a sarong and that is where she can see.

@@ -1,0 +1,21 @@
+Senior Magedeaths
+AC 18       HP 124      Initiative +3	
+Unit			Size 10-20 		
+STR	DEX	CON	INT	WIS	CHA		Prof.
++0	 +3	+0	+2	 -2	 +4		 +4
+Speed 30ft
+Passive Perception 8
+
+Traits
+Unit - Most values are given in terms of unit Size, which for Senior Magedeaths fanatics is 10 to 20. As HP decreases, Size decreases to HP/124, rounded up. They occupy an area equal to Size square meters. They also have Size reactions.
+Reckless - All attacks made by and against the magedeaths have advantage
+
+Actions
+Magic-cutters - This is a unit attack. It affects every enemy unit or creature touching the unit on the front or sides. The attacks have advantage. Save DC 16 to halve 14*(side length touching) slashing damage. If this attack targets something conjured by a spell of level 3 or lower, the spell is dispelled. If it targets a person, they lose concentration and any spells on them are dispelled.
+Violent Spells - Choose an area within 100ft of the Magedeaths of size 16*Size square meters. Each creature in that area must make a Dex save of DC 16 or take 8d6 damage of a randomized type: Cold, Fire, Lightning, or Poison. They take half damage on a success.
+Casting - The Magedeaths can cast spells, save DC 16 and +8 to hit. They can cast and hold concentration on Size spells at once.
+    Size/day - greater invisibility, misty step, wall of force, earthbind, silence, dispel magic, create food and water
+    2*Size/day - dimension door, magic missile
+
+Reactions
+Counterspell (3*Size/day) - They cast counterspell in response to a triggering spell.

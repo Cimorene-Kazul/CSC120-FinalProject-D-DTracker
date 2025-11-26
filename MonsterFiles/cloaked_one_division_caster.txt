@@ -1,0 +1,20 @@
+Cloaked One Casting Division	
+AC 15       HP 64         Initiative +2
+Unit			Size 20-80 	
+STR	DEX	CON	INT	WIS	CHA		Prof.
++0	 +2	+0	+0	 +1	 +3		 +4		
+Speed 25ft
+60ft Darkvision 		Passive Perception 14
+
+Traits
+Unit - Most values are given in terms of unit Size, which for the casting division is 20 to 80. As HP decreases, Size decreases to HP/64, rounded up. They occupy an area equal to Size square meters. They can cast and concentrate on Size spells at once and have Size reactions.
+Seraphfrog’s Blessing - If you hit the casting division with a melee attack, take 1d6 radiant damage*side length touching.
+
+Actions
+Spellcasting - They have save DC 15 and spell attack +7.
+    Size/day - Cloud of Daggers, Hunger of Hadar
+Seraphfrog Spear Strikes - This is a unit attack. It affects every enemy unit or creature touching the unit in a targetable area. Save DC 16 to halve 10*(side length touching) slashing damage + 10*(side length touching) radiant damage.
+In Seraphfrog’s Name! - Choose an area within 60ft of the casting division of size 6*Size square meters. Each creature in that area must make a Wis save of DC 16 or take 6d6 radiant damage. They take half damage on a success.
+
+Reactions
+Counterspell (Size/day) - They cast counterspell in response to a triggering spell of level 3 or lower. 

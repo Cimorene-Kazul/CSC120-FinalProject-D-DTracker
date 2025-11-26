@@ -1,0 +1,21 @@
+Junior Magedeaths
+AC 18	    HP 72       Initiative +2
+Unit			Size 40-80 		
+STR	DEX	CON	INT	WIS	CHA		Prof.
++0	 +2	+0	+1	 -1	 +3		 +3
+Passive Perception 9
+Speed 25ft
+
+Traits
+Unit - Most values are given in terms of unit Size, which for Junior Magedeaths fanatics is between 40 and 80. As HP decreases, Size decreases to HP/72, rounded up. They occupy an area equal to Size square meters. They also have Size reactions.
+Reckless - All attacks made by and against the magedeaths have advantage
+Casting - The Magedeaths can cast spells, save DC 16 and +8 to hit. They can cast and hold concentration on Size spells at once.
+    Size/day - invisibility, misty step, earthbind, silence, dispel magic, create food and water
+    2*Size/day - magic missile
+
+Actions
+Violent Swords - This is a unit attack. It affects every enemy unit or creature touching the unit on the front or sides. The attacks have advantage. Save DC is 15 to halve 14*(side length touching) slashing damage.
+Violent Spells - Choose an area within 80ft of the Magedeaths of size 4*Size squares. Each creature in that area must make a Dex save of DC 16 or take 5d6 damage of a randomized type: Cold, Fire, Lightning, or Poison. They take half damage on a success.e
+
+Reactions
+Counterspell (Size/day) - They cast counterspell in response to a triggering spell.

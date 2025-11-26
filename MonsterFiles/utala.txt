@@ -1,0 +1,40 @@
+Utala the Sword-Mage
+AC 21     HP 145   Initiative +10
+Medium Humanoid (Elf, Warlock, Bard)        
+STR     DEX     CON     INT     WIS     CHA     Prof.
++0      +4      +2      +3      +4      +5      +6
+Saves: DEX +10, CHA +11
+Skills: +7 Acrobatics, +7 Animal Handling, +9 Arcana, +3 Athletics, +17 Deception, +6 History, +16 Insight, + 8 Intimidation, +9 Investigation, +7 Medicine, +6 Nature, +10 Perception, +11 Performance, +11 Persuasion, +9 Religion, +7 Sleight of Hand, +10 Stealth, +7 Survival
+30ft walking speed
+Languages: Common, Draconic, Elvish
+Senses: 60ft Darkvision           Passive Perception 20         Passive Insight 26
+
+Traits
+Staff Buffs - Utala has advantage made to avoid or end the charmed condition. Utala has advantage on saves against spells and magical effects.
+Lifedrinker - Once per turn, +1d6 Radiant/Necrotic/Psychic damage to a pact weapon hit and heal for 1d8+2.
+Eldritch Smite - Once per turn, expend a 5th level slot to deal an extra 6d8 Force damage to the target of a pact weapon hit.
+Bardic Inspiration - Utala has 5 bardic inspiration (d8) and regains them after a short rest.
+Action Surge (1/short rest) - Utala takes an additional, non-Magic, action.
+Luna's Luck (5/day) - Before seeing the effect but after seeing the value of an ability check or save, Utala can add 1d10 to the reuslt.
+Spellcasting - Utala has spell save DC 19 and spell attack modifier +11. She can cast the following spells and regains her spell slots after a short rest.
+    At Will: Chill Touch (4d10 necrotic on hit), Druidcraft, Eldritch Blast (4x1d10 force on hit), Guidance, Mage Hand, Mending, Minor Illusion, Sacred Flame (dex save against 4d8 radiant), True Strike (+3d6+5 radiant to weapon), Vicious Mockery (wis save against 4d6 psychic), Alter Self, Arcane Eye
+    1st Level (4 slots): Bane, Bless, Burning Hands, Command, Healing Word, Hellish Rebuke, Hex, Longstrider, Shield
+    2nd Level (3 slots): Darkness, Detect Thoughts, Hold Person, Mirror Image, Pass without Trace, Scorching Ray, Silence, Spiritual Weapon, Suggestion, Zone of Truth
+    3rd Level (3 slots): Counterspell, Dispel Magic, Fireball, Hypnotic Pattern, Leomund's Tiny Hut, Stinking Cloud
+    5th Level (3 slots): Banishment, Contact Other Plane, Dimension Door, Elemental Bane, Geas,  Hallucinatory Terrain, Hold Monster, Insect Plague, Scrying
+    1/day: True Seeing
+
+Actions
+Multiattack - Utala makes 3 attacks
+Energy Longbow (starts as pact weapon) - Ranged Attack (150/600), +14 to hit, 1d8+6 Force Damage on a hit
+Rapier - Melee Attack, +12 to hit, 1d8+6 Piercing Damage on hit
+Invisibility - Utala becomes invisible.
+
+Bonus Actions
+Bardic Inspiration - As a bonus action grant a creature a bardic inspiration. Once in the next hour they can roll the result and add it to a failed d20 test, to potentially turn it into a success.
+Pact Weapon - As a bonus action, Utala can change their pact weapon.
+Second Wind (2/day) - As a bonus action Utala regains 1d10+2 hp.
+Invisibility - Utala becomes visible again.
+
+Reactions
+Cutting Words - When a creature succeeds on an attack or check, or makes a damage roll, expend a bardic inspiration to decrease the value by the bardic inspiration roll.
