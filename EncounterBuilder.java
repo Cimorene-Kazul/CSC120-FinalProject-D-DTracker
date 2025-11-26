@@ -112,8 +112,8 @@ public class EncounterBuilder {
             FileOutputStream encounterFile = new FileOutputStream("Encounters/"+encounterName+".ser");
             ObjectOutputStream encounterWriter = new ObjectOutputStream(encounterFile);
             encounterWriter.writeObject(this.encounter.getCreatures());
-            encounterWriter.flush();
             encounterWriter.close();
+            encounterFile.close();
             System.out.println("Your encounter "+encounterName+" has been saved.");
         } catch (IOException e) {
             System.out.println("An error occured with the files in question.");
@@ -140,6 +140,7 @@ public class EncounterBuilder {
                 ArrayList<Creature> creatures = (ArrayList<Creature>) encounterReader.readObject();
                 this.encounter = new InitiativeTracker(creatures);
                 encounterReader.close();
+                encounterFile.close();
                 System.out.println("You have loaded in the saved encounter "+encounterName);
             } catch (IOException e) {
                 System.out.println("The file in question has problems and may not exist.");
