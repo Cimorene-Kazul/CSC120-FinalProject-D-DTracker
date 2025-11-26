@@ -1,5 +1,5 @@
 Ilumetrix Ela		
-AC 21         HP 133	    Initiative +5
+AC 21        HP 133        Initiative +5
 Medium Humanoid (Elf, Wizard)
 STR	DEX	CON	INT	WIS	CHA		Prof.
  +0	 +5	 +3	+5	 +4	 +2		 +6

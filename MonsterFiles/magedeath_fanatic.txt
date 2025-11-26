@@ -1,5 +1,5 @@
 Magedeath Fanatics
-AC 16		HP 44      Initiative +0
+AC 16        HP 44        Initiative +0
 Unit			Size 100-200 		
 STR	DEX	CON	INT	WIS	CHA		Prof.
 +2	 +0	+1	+0	 +0	 +0		 +2

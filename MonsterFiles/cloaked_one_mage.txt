@@ -1,5 +1,5 @@
 Cloaked One Mages	
-AC 16		HP 120	    Initiative +3
+AC 16        HP 120        Initiative +3
 Unit			Size 5-20 	
 STR	DEX	CON	INT	WIS	CHA		Prof.
 +0	 +3	+0	+0	 +1	 +4		 +5			

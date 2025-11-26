@@ -1,5 +1,5 @@
 High Magedeath
-AC 18       HP 210		Initiative +2
+AC 18        HP 210        Initiative +2
 Individual, Humanoid(Human)				
 STR	DEX	CON	INT	WIS	CHA		Prof.
 +3	 +2	+2	+3	 +0	 +5		 +5

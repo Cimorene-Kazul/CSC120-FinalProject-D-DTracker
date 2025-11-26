@@ -1,5 +1,5 @@
 Neph’kaz Archers
-AC 13 		HP 8        Initiative +1		
+AC 13        HP 8        Initiative +1		
 Unit		Size 25-75
 STR	DEX	CON	INT	WIS	CHA		Prof.
  +0	 +1	 +0	-1	 +0	 -1		 +2

@@ -1,5 +1,5 @@
 Senior Students
-AC 16			HP 56           Initiative +3
+AC 16        HP 56        Initiative +3
 Unit			Size 12 		
 STR	DEX	CON	INT	WIS	CHA		Prof.
 -2	 +3	+0	+5	 +2	 +1		 +4

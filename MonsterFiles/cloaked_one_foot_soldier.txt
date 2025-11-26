@@ -1,5 +1,5 @@
 Cloaked One Foot Troops
-AC 16       HP 18           Initiative +0	
+AC 16         HP 18         Initiative +0	
 Unit		Size 150-250	
 STR	DEX	CON	INT	WIS	CHA		Prof.
  +1	 +0	 +1	-1	 +1	 -1		 +2			

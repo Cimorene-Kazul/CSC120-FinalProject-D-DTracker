@@ -1,5 +1,5 @@
 Commander Darkstar
-AC 18		HP  68		 Initiative +3
+AC 18        HP  68        Initiative +3
 STR	DEX	CON	INT	WIS	CHA		Prof.
 -3	 +3	+0	+5	 +2	 +5		 +5
 Saves: STR -1, DEX +5, CON +2, INT +7, WIS +9, CHA +12

@@ -1,5 +1,5 @@
 Cloaked One Ranged Troops
-AC 18 		HP 18      Initiative +2
+AC 18        HP 18        Initiative +2
 Unit		Size 50-150	
 STR	DEX	CON	INT	WIS	CHA		Prof.
  +1	 +2	 +1	-1	 +1	 +2		 +3			

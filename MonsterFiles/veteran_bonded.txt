@@ -1,5 +1,5 @@
 Veteran Bonded	
-AC 14			HP 56       Initiative +1
+AC 14        HP 56        Initiative +1
 Unit			Size 36 	
 STR	DEX	CON	INT	WIS	CHA		Prof.
 -2	 +1	+0	+3	 +2	 +5		 +4

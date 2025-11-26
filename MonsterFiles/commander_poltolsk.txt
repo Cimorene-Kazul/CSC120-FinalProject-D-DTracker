@@ -1,5 +1,5 @@
 Commander Poltolsk
-AC 18		HP 64      Initiative +3
+AC 18        HP 64        Initiative +3
 STR	DEX	CON	INT	WIS	CHA		Prof.
 -3	 +3	+0	+5	 +5	 +0		 +5
 Saves: INT +10, WIS +10

@@ -1,5 +1,5 @@
 Abal’eneth
-AC 21   	HP 265	       Initiative +10
+AC 21        HP 265        Initiative +10
 Individual Humanoid (human warrior)
 STR	DEX	CON	INT	WIS	CHA		Prof.
 +5	 +0	+3	+0	 +1	 +3		 +5		

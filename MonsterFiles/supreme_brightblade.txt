@@ -1,5 +1,5 @@
 Supreme Brightblade
-AC 16 		HP 195     Initiative +3
+AC 16        HP 195        Initiative +3
 STR	DEX	CON	INT	WIS	CHA		Prof.
 -1	 +3	+0	+5	 +2	 +0		 +6
 Speed 35ft

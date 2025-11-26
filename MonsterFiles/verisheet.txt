@@ -1,5 +1,5 @@
 Verisheet the Cleric
-AC 18		HP 74	    Initiative +2
+AC 18        HP 74        Initiative +2
 STR	DEX	CON	INT	WIS	CHA		Prof.
 +0	 +2	+1	+5	 +5	 +0		 +5
 Saves: INT +10, WIS +10

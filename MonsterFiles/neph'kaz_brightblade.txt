@@ -1,5 +1,5 @@
 Neph’kaz Brightblades
-AC 16 		HP 48		Initiative +3
+AC 16        HP 48        Initiative +3
 Unit			Size 1-5 		
 STR	DEX	CON	INT	WIS	CHA		Prof.
  -1	 +3	 +0	+4	 +1	 +0		 +3

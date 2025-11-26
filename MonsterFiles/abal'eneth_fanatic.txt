@@ -1,5 +1,5 @@
 Abal’eneth’s Fanatic
-AC 18			HP max  100         Initiative +0	
+AC 18     HP 100     Initiative +0	
 Unit			Size 50 		
 STR	DEX	CON	INT	WIS	CHA		Prof.
 +3	 +0	+3	+0	 +0	 +0		 +4

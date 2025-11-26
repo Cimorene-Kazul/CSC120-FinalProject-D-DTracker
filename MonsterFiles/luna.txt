@@ -1,5 +1,5 @@
 Ilumetrix Luna
-AC 20		HP 300	    Initiative +5
+AC 20        HP 300        Initiative +5
 STR	DEX	CON	INT	WIS	CHA		Prof.
  +2	 +5	 +3	+8	 +6	 +7		 +7
 Saves: DEX +12, CON +10, INT +15, WIS +13, CHA +13

@@ -1,5 +1,5 @@
 James Magedeath
-AC 19		HP 360		Initiative +1
+AC 19        HP 360        Initiative +1
 Individual, Humanoid(Human)				
 STR	DEX	CON	INT	WIS	CHA		Prof.
 +4	 +1	+3	+3	 +0	 +4		 +6

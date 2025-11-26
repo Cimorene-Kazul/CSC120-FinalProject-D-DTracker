@@ -1,5 +1,5 @@
 Ancient Green Dragon
-AC 21       HP 402 (23d20 + 161)     Initiative +15 (25)
+AC 21        HP 402 (23d20 + 161)        Initiative +15 (25)
 Gargantuan Dragon (Chromatic), Lawful Evil
 STR  DEX  CON  INT  WIS  CHA  Prof.
 +8   +1   +7   +5   +3   +6   +7

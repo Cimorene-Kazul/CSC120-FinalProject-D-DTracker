@@ -56,13 +56,13 @@ public class MonsterBuilder {
 
     public int getInitiative(){
         if (this.initiative == null){
-            this.initiative = Integer.parseInt(nextWord(this.getKeyLine(), this.getKeyLine().indexOf("Initiative")+10));
+            this.initiative = Integer.parseInt(nextWord(this.getKeyLine(), this.getKeyLine().indexOf("Initiative")+11));
         }
         return this.initiative;
     }
 
     private static String nextWord(String string, int index){
-        String trimmed = string.substring(index, string.length()).trim();
+        String trimmed = string.substring(index).trim()+" ";
         int otherSide = trimmed.indexOf(" ");
         return trimmed.substring(0, otherSide);
     }

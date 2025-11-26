@@ -1,5 +1,5 @@
 Thespa
-AC 18       HP 136      Initiative +5
+AC 18        HP 136        Initiative +5
 STR	DEX	CON	INT	WIS	CHA		Prof.
  +0	 +5	 +3	+2	 +2	 +5		 +6
 Saves: WIS +6, CHA +11				

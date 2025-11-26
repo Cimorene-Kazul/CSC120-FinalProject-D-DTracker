@@ -1,5 +1,5 @@
 Kel’ten’s Personal Guard
-AC 20			HP 125          Initiative +2
+AC 20        HP 125        Initiative +2
 Unit			Size 20 		
 STR	DEX	CON	INT	WIS	CHA		Prof.
 +4	 +2	+3	+0	 +0	 +0		 +4

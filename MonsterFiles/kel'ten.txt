@@ -1,5 +1,5 @@
 Kel’ten
-AC 22 		HP 255		  Initiative +0
+AC 22         HP 255        Initiative +0
 Individual Humanoid (human artificer)	 		
 STR	DEX	CON	INT	WIS	CHA		Prof.
 +2	 +0	+2	+5	 +2	 +0		 +6

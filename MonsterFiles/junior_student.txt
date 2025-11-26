@@ -1,5 +1,5 @@
 Junior Students
-AC 15			HP 45           Initiative +2
+AC 15        HP 45        Initiative +2
 Unit			Size 36 		
 STR	DEX	CON	INT	WIS	CHA		Prof.
 -2	 +2	+0	+5	 +1	 +1		 +3

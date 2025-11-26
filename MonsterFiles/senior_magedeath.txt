@@ -1,5 +1,5 @@
 Senior Magedeaths
-AC 18       HP 124      Initiative +3	
+AC 18        HP 124        Initiative +3	
 Unit			Size 10-20 		
 STR	DEX	CON	INT	WIS	CHA		Prof.
 +0	 +3	+0	+2	 -2	 +4		 +4

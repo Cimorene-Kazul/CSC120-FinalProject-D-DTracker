@@ -1,5 +1,5 @@
 Kilask the Druid
-AC 16		HP 113      Initiative +3	
+AC 16        HP 113        Initiative +3	
 STR	DEX	CON	INT	WIS	CHA		Prof.
 +0	 +3	+3	+1	 +5	 +0		 +4
 Saves: CHA +4, WIS +9

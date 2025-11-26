@@ -1,6 +1,6 @@
 Milnor the Paladin
+AC 21        HP 144        Initiative +0
 Individual				Speed 30ft
-AC 21		HP 144         Initiative +0
 STR	DEX	CON	INT	WIS	CHA		Prof.
 +4	 +0	+4	+2	 +2	 +5		 +5
 Saves: STR +9, DEX +5, CON +5, INT +7, WIS +12, CHA +15

@@ -1,5 +1,5 @@
 Utala the Sword-Mage
-AC 21     HP 145   Initiative +10
+AC 21        HP 145        Initiative +10
 Medium Humanoid (Elf, Warlock, Bard)        
 STR     DEX     CON     INT     WIS     CHA     Prof.
 +0      +4      +2      +3      +4      +5      +6
