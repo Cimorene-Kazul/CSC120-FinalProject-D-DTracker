@@ -1,11 +1,8 @@
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Random;
 import java.util.Hashtable;
 import java.util.Scanner;
 
 public class Monster extends Creature{
-    protected String name;
     private Integer AC;
     protected Integer HPmax;
     protected Integer HP;
@@ -13,14 +10,13 @@ public class Monster extends Creature{
     protected String statBlock;
     private boolean preRolled = false;
     private int preRolledInitiative;
-    private int legendaryResistances;
+    private int legendaryResistances = 0;
     protected String locationNotes = null;
     private String generalNotes = null;
     private Hashtable<String, Interaction> actions;
     private Hashtable<String, Interaction> legendaryActions;
     private Hashtable<String, Interaction> reactions;
     private Hashtable<String, Interaction> bonusActions;
-    private Hashtable<String, Integer> abilities;
 
     public Monster(String fileName){
         MonsterBuilder constructor = new MonsterBuilder(fileName);

@@ -2,18 +2,21 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Scanner;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+// import java.io.FileInputStream;
+// import java.io.FileOutputStream;
+// import java.io.IOException;
+// import java.io.ObjectInputStream;
+// import java.io.ObjectOutputStream;
 
+/**
+ * This class is *not* a typical -Builder class. This is called an EncounterBuilder because within the setting of D&D, an encounter creation tool is called an 'Encounter Builder.'
+ */
 public class EncounterBuilder {
     InitiativeTracker encounter;
     boolean inProgress = true;
     ArrayList<String> creatureFiles = new ArrayList<>();
     Hashtable<String, Creature> creatures = new Hashtable<>();
-    boolean saved = true;
+    // boolean saved = true;
     String commands = """
             ENCOUNTER BUILDER COMMANDS
             add monster
@@ -25,11 +28,6 @@ public class EncounterBuilder {
             add unit with notes
             print encounter
             list avaliable monsters
-            run encounter
-            save encounter
-            list saved encounters
-            clear encounter
-            load encounter
             help
             close
             """;
@@ -60,15 +58,7 @@ public class EncounterBuilder {
             } else if (command.startsWith("list avaliable monsters")) {
                 this.listMonsters();
             } else if (command.startsWith("run encounter")) {
-                this.runEncounter();
-            } else if (command.startsWith("save encounter")){
-                this.saveEncounter(encounterScanner);
-            } else if (command.startsWith("list saved encounters")){
-                this.listEncounters();
-            } else if (command.startsWith("clear encounter")){
-                this.clearEncounter(encounterScanner);
-            } else if (command.startsWith("load encounter")) {
-                this.loadEncounter(encounterScanner);
+                 this.runEncounter();
             } else if (command.startsWith("help")) {
                 System.out.println(this.commands);
             } else if (command.startsWith("close")){
@@ -76,82 +66,91 @@ public class EncounterBuilder {
             } else {
                 System.out.println(command+" is not a valid command. If you are confused, try 'help'.");
             }
+
+            // } else if (command.startsWith("save encounter")){
+            //     this.saveEncounter(encounterScanner);
+            // } else if (command.startsWith("list saved encounters")){
+            //     this.listEncounters();
+            // } else if (command.startsWith("clear encounter")){
+            //     this.clearEncounter(encounterScanner);
+            // } else if (command.startsWith("load encounter")) {
+            //     this.loadEncounter(encounterScanner);
         }
         encounterScanner.close();
     }
 
-    private void clearEncounter(Scanner input){
-        if (!this.saved){
-            System.out.println("Are you sure? The current encounter is unsaved.");
-            String response = input.nextLine().toLowerCase().trim();
-            if (response=="yes" || response=="y"){
-                this.encounter = new InitiativeTracker(input);
-            }
-        } else {
-            this.encounter = new InitiativeTracker(input);
-        }
-    }
+    // private void clearEncounter(Scanner input){
+    //     if (!this.saved){
+    //         System.out.println("Are you sure? The current encounter is unsaved.");
+    //         String response = input.nextLine().toLowerCase().trim();
+    //         if (response=="yes" || response=="y"){
+    //             this.encounter = new InitiativeTracker(input);
+    //         }
+    //     } else {
+    //         this.encounter = new InitiativeTracker(input);
+    //     }
+    // }
 
     private void closeBuilder(Scanner input){
-        if (!this.saved){
-            System.out.println("Are you sure? The current encounter is unsaved.");
-            String response = input.nextLine().toLowerCase().trim();
-            if (response=="yes" || response=="y"){
-                this.inProgress = false;
-            }
-        } else {
-            this.inProgress = false;
-        }
+        // if (!this.saved){
+        //     System.out.println("Are you sure? The current encounter is unsaved.");
+        //     String response = input.nextLine().toLowerCase().trim();
+        //     if (response=="yes" || response=="y"){
+        //         this.inProgress = false;
+        //     }
+        // } else {
+        this.inProgress = false;
+        // }
     }
 
-    private void saveEncounter(Scanner input){
-        this.saved = true;
-        System.out.println("What should this encounter be called?");
-        String encounterName = input.nextLine().trim();
-        try {
-            FileOutputStream encounterFile = new FileOutputStream("Encounters/"+encounterName+".ser");
-            ObjectOutputStream encounterWriter = new ObjectOutputStream(encounterFile);
-            encounterWriter.writeObject(this.encounter.getCreatures());
-            encounterWriter.close();
-            encounterFile.close();
-            System.out.println("Your encounter "+encounterName+" has been saved.");
-        } catch (IOException e) {
-            System.out.println("An error occured with the files in question.");
-        }
-    }
+    // private void saveEncounter(Scanner input){
+    //     this.saved = true;
+    //     System.out.println("What should this encounter be called?");
+    //     String encounterName = input.nextLine().trim();
+    //     try {
+    //         FileOutputStream encounterFile = new FileOutputStream("Encounters/"+encounterName+".ser");
+    //         ObjectOutputStream encounterWriter = new ObjectOutputStream(encounterFile);
+    //         encounterWriter.writeObject(this.encounter.getCreatures());
+    //         encounterWriter.close();
+    //         encounterFile.close();
+    //         System.out.println("Your encounter "+encounterName+" has been saved.");
+    //     } catch (IOException e) {
+    //         System.out.println("An error occured with the files in question.");
+    //     }
+    // }
 
-    private void loadEncounter(Scanner input){
-        boolean loading = false;
-        if (!this.saved){
-            System.out.println("Are you sure? The current encounter is unsaved.");
-            String response = input.nextLine().toLowerCase().trim();
-            if (response=="yes" || response=="y"){
-                loading = true;
-            }
-        } else{
-            loading = true;
-        }
-        if (loading){
-            System.out.println("What encounter do you want to load?");
-            String encounterName = input.nextLine().trim();
-            try {
-                FileInputStream encounterFile = new FileInputStream("Encounters/"+encounterName+".ser");
-                ObjectInputStream encounterReader = new ObjectInputStream(encounterFile);
-                ArrayList<Creature> creatures = (ArrayList<Creature>) encounterReader.readObject();
-                this.encounter = new InitiativeTracker(creatures);
-                encounterReader.close();
-                encounterFile.close();
-                System.out.println("You have loaded in the saved encounter "+encounterName);
-            } catch (IOException e) {
-                System.out.println("The file in question has problems and may not exist.");
-            } catch (ClassNotFoundException e){
-                System.out.println("The file in question does not contain appropriate contents.");
-            }
-        }
-    }
+    // private void loadEncounter(Scanner input){
+    //     boolean loading = false;
+    //     if (!this.saved){
+    //         System.out.println("Are you sure? The current encounter is unsaved.");
+    //         String response = input.nextLine().toLowerCase().trim();
+    //         if (response=="yes" || response=="y"){
+    //             loading = true;
+    //         }
+    //     } else{
+    //         loading = true;
+    //     }
+    //     if (loading){
+    //         System.out.println("What encounter do you want to load?");
+    //         String encounterName = input.nextLine().trim();
+    //         try {
+    //             FileInputStream encounterFile = new FileInputStream("Encounters/"+encounterName+".ser");
+    //             ObjectInputStream encounterReader = new ObjectInputStream(encounterFile);
+    //             ArrayList<Creature> creatures = (ArrayList<Creature>) encounterReader.readObject();
+    //             this.encounter = new InitiativeTracker(creatures);
+    //             encounterReader.close();
+    //             encounterFile.close();
+    //             System.out.println("You have loaded in the saved encounter "+encounterName);
+    //         } catch (IOException e) {
+    //             System.out.println("The file in question has problems and may not exist.");
+    //         } catch (ClassNotFoundException e){
+    //             System.out.println("The file in question does not contain appropriate contents.");
+    //         }
+    //     }
+    // }
 
     private void addMonster(Scanner input){
-        this.saved = false;
+        // this.saved = false;
         try{
             System.out.println("What monster do you want to add?");
             String monsterFile = toFileName(input.nextLine().trim());
@@ -165,7 +164,7 @@ public class EncounterBuilder {
     }
 
     private void addMonsterWithNotes(Scanner input){
-        this.saved = false;
+        // this.saved = false;
         try{
             System.out.println("What monster do you want to add?");
             String monsterFile = toFileName(input.nextLine().trim());
@@ -181,13 +180,13 @@ public class EncounterBuilder {
     }
 
     private void addUnit(Scanner input){
-        this.saved = false;
+        // this.saved = false;
         try{
             System.out.println("What monster do you want to add?");
             String monsterFile = toFileName(input.nextLine().trim());
             System.out.println("How many monsters are in the unit?");
             int size = input.nextInt();
-            Monster monsterToAdd = new GroupMonster(monsterFile, size);
+            Monster monsterToAdd = new MonsterGroup(monsterFile, size);
             this.creatures.put(monsterToAdd.getName(), monsterToAdd);
             this.encounter.addCreature(monsterToAdd);
             System.out.println("The unit "+monsterToAdd.getName() + " has been added to your encounter.");
@@ -197,7 +196,7 @@ public class EncounterBuilder {
     }
 
     private void addUnitWithNotes(Scanner input){
-        this.saved = false;
+        // this.saved = false;
         try{
             System.out.println("What monster do you want to add?");
             String monsterFile = toFileName(input.nextLine().trim());
@@ -205,7 +204,7 @@ public class EncounterBuilder {
             int size = input.nextInt();
             System.out.println("What notes do you want to add about this monster's location?");
             String locationNotes = input.nextLine().trim();
-            Monster monsterToAdd = new GroupMonster(monsterFile, size, locationNotes);
+            Monster monsterToAdd = new MonsterGroup(monsterFile, size, locationNotes);
             this.creatures.put(monsterToAdd.getName(), monsterToAdd);
             this.encounter.addCreature(monsterToAdd);
             System.out.println("The unit "+monsterToAdd.getName() + " has been added to your encounter.");
@@ -215,7 +214,7 @@ public class EncounterBuilder {
     }
 
     private void removeMonster(Scanner input){
-        this.saved = false;
+        // this.saved = false;
         System.out.println("What monster do you want to remove?");
         String monsterName = input.nextLine().trim();
         if (this.creatures.containsKey(monsterName)){
@@ -231,7 +230,7 @@ public class EncounterBuilder {
     }
 
     private void addPlayer(Scanner input){
-        this.saved = false;
+        // this.saved = false;
         System.out.println("What is the player's name?");
         String playerName = input.nextLine().trim();
         System.out.println("What is "+playerName+"'s player character named?");
@@ -244,7 +243,7 @@ public class EncounterBuilder {
     }
 
     private void removePlayer(Scanner input){
-        this.saved = false;
+        // this.saved = false;
         System.out.println("Which player do you want to remove?");
         String playerName = input.nextLine().trim();
         if (this.creatures.containsKey(playerName)){
@@ -272,13 +271,13 @@ public class EncounterBuilder {
         this.encounter.rollInitiative();
     }
 
-    private void listEncounters(){
-        System.out.println("AVAILIABLE ENCOUNTERS TO LOAD");
-        File[] listOfEncounterFiles = new File("Encounters").listFiles();
-        for (File EncounterFile: listOfEncounterFiles){
-            System.out.println(toEncounterName(EncounterFile.getName()));
-        }
-    }
+    // private void listEncounters(){
+    //     System.out.println("AVAILIABLE ENCOUNTERS TO LOAD");
+    //     File[] listOfEncounterFiles = new File("Encounters").listFiles();
+    //     for (File EncounterFile: listOfEncounterFiles){
+    //         System.out.println(toEncounterName(EncounterFile.getName()));
+    //     }
+    // }
 
     private void printEncounter(){
         System.out.println(this.encounter);
@@ -292,9 +291,9 @@ public class EncounterBuilder {
         return (fileName.replaceAll("_", " ").substring(0, fileName.length()-4));
     }
 
-    private static String toEncounterName(String fileName){
-        return fileName.substring(0,fileName.length()-4);
-    }
+    // private static String toEncounterName(String fileName){
+    //     return fileName.substring(0,fileName.length()-4);
+    // }
 
     public static void main(String[] args) {
         EncounterBuilder myBuilder = new EncounterBuilder();

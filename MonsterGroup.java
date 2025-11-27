@@ -1,14 +1,14 @@
-public class GroupMonster extends Monster{
+public class MonsterGroup extends Monster{
     int size;
     Integer individualHP;
     String baseName;
     
-    public GroupMonster(String fileName, int number, String locationNotes){
+    public MonsterGroup(String fileName, int number, String locationNotes){
         this(fileName, number);
         this.locationNotes = locationNotes;
     }
 
-    public GroupMonster(String fileName, int number){
+    public MonsterGroup(String fileName, int number){
         super(fileName);
         this.size = number;
         this.individualHP = Math.max(this.HP,1);
