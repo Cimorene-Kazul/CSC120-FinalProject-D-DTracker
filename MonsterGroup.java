@@ -11,15 +11,15 @@ public class MonsterGroup extends Monster{
     public MonsterGroup(String fileName, int number){
         super(fileName);
         this.size = number;
-        this.individualHP = Math.max(this.HP,1);
-        this.HP = this.HP*number;
-        this.HPmax = this.HP*number;
+        this.HPmax *= number;
+        this.HP = this.HPmax;
+        this.individualHP = this.HP/number;
         this.baseName = this.name;
         this.name = number + " " + this.baseName;
     }
 
      public String damage(int amt){
-        this.HP = Math.min(this.HP-amt, 0);
+        this.HP = Math.max(this.HP-amt, 0);
 
         if (this.HP == this.individualHP*(this.HP/this.individualHP)){
             this.size = this.HP/this.individualHP;
@@ -37,5 +37,12 @@ public class MonsterGroup extends Monster{
 
     public String turnPrompt(){
         return "It is "+this.name+"'s turn. \n Here is a stat block for one of the creatures composing "+this.name+".\n" + this.statBlock+"\n"+this.name+" is at "+this.HP+" out of "+this.HPmax+" health.";
+    }
+
+    public int getSize(){
+        return this.size;
+    }
+
+    public static void main(String[] args) {
     }
 }

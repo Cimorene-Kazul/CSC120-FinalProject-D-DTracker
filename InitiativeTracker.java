@@ -217,45 +217,6 @@ public class InitiativeTracker implements Serializable {
         }
         System.out.println(result);
     }
-    // public static void roll(String input){
-    //     if (!input.contains("d")){
-    //         int result = 0;
-    //         if (input.contains("/")){
-    //             int x = Integer.parseInt(input.substring(0, input.indexOf("/")).trim());
-    //             int y = Integer.parseInt(input.substring(input.indexOf("/")+1).trim());
-    //             result = x/y;
-    //         } else if (input.contains("*")){
-    //             int x = Integer.parseInt(input.substring(0, input.indexOf("*")).trim());
-    //             int y = Integer.parseInt(input.substring(input.indexOf("*")+1).trim());
-    //             result = x*y;
-    //         } else if (input.contains("+")){
-    //             int x = Integer.parseInt(input.substring(0, input.indexOf("+")).trim());
-    //             int y = Integer.parseInt(input.substring(input.indexOf("+")+1).trim());
-    //             result = x+y;
-    //         } else if (input.contains("-")){
-    //             int x = Integer.parseInt(input.substring(0, input.indexOf("-")).trim());
-    //             int y = Integer.parseInt(input.substring(input.indexOf("-")+1).trim());
-    //             result = x-y;
-    //         } else{
-    //             result = Integer.parseInt(input);
-    //         }
-    //         System.out.println(input + " = " + result);
-    //         return;
-    //     }
-    //     int rollresult = 0;
-    //     for (String plusChunk: input.split("+")){
-    //         int value = 0;
-    //         for (String minusChunk: plusChunk.split("-")){
-    //             if (plusChunk.startsWith(minusChunk)){
-    //                 value += InitiativeTracker.parseDie(minusChunk);
-    //             } else {
-    //                 value -= InitiativeTracker.parseDie(minusChunk);
-    //             }
-    //         }
-    //         rollresult += value;
-    //     }
-    //     System.out.println(rollresult);
-    // }
 
     /**
      * Adds a Creature to the InitiativeTracker 
