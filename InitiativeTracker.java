@@ -20,6 +20,7 @@ public class InitiativeTracker implements Serializable {
         damage <index> <amt> - damages the creature at index <index> for amount <amount>
         heal <index> <amt> - heals the creature at index <index> for amount <amount>
         take note <index> - adds a note to the creature at index <index> (no index means the creature at the current initative)
+        stats <index> - prints stat block of creature <index>
         """;
 
     /** 
@@ -87,11 +88,11 @@ public class InitiativeTracker implements Serializable {
                 Integer amt = Integer.parseInt(commandPieces[2]);
                 System.out.println(this.initiativeOrder.get(index).damage(amt));
             } else if (input.startsWith("take note")) {
+                System.out.println("What do you want to note?");
                 Integer index = this.currentInitiative;
-                if (input.substring(10).trim() != ""){
+                if (input.substring(9).trim() != ""){
                     index = Integer.parseInt(input.substring(10).trim());
                 }
-                System.out.println("What do you want to note?");
                 String note = inputScanner.nextLine();
                 initiativeOrder.get(index).takeNote(note);
             } else if (input.startsWith("roll")){
@@ -153,11 +154,12 @@ public class InitiativeTracker implements Serializable {
                 this.printSummary();
             } else if (input.startsWith("close")){
                 this.inCombat = false;
-            } else if (input.indexOf("save") != -1){
-                String thingToBeSaved = input.substring(input.indexOf("save")+5);
-                String saveType = thingToBeSaved.split(" ")[0];
-                // do the saving throw method
-            }
+            } 
+            // else if (input.indexOf("save") != -1){
+            //     String thingToBeSaved = input.substring(input.indexOf("save")+5);
+            //     String saveType = thingToBeSaved.split(" ")[0];
+            //     // do the saving throw method
+            // }
         } catch (RuntimeException e){
             System.out.println("Something went wrong. Perhaps you formatted your command incorrectly or tried damage a creature that is not in the encounter. Please try again.");
         }
@@ -172,42 +174,88 @@ public class InitiativeTracker implements Serializable {
         }
     }
 
+    public static double parseDie(String value){
+         value = value.trim().split(" ")[0];
+         if (!value.contains("d")){
+             return Double.parseDouble(value);
+         } else {
+             int numberOfDice = Integer.parseInt(value.substring(0,value.indexOf("d")));
+             int sizeOfDie = Integer.parseInt(value.substring(value.indexOf("d")+1));
+             double result = 0;
+             for (int i = 0; i< numberOfDice; i++){
+                 result += (int)(Math.random()*sizeOfDie + 1);
+             }
+             return result;
+         }
+     }
+
     /** 
      * Rolls dice or does math based on a dice formula input by the user
      * @param input the dice formula input by the user
      */
-    public static void roll(String input){
-        if (!input.contains("d")){
-            int result = 0;
-            if (input.contains("/")){
-                int x = Integer.parseInt(input.substring(0, input.indexOf("/")).trim());
-                int y = Integer.parseInt(input.substring(input.indexOf("/")+1).trim());
-                result = x/y;
-            } else if (input.contains("*")){
-                int x = Integer.parseInt(input.substring(0, input.indexOf("*")).trim());
-                int y = Integer.parseInt(input.substring(input.indexOf("*")+1).trim());
-                result = x*y;
-            } else if (input.contains("+")){
-                int x = Integer.parseInt(input.substring(0, input.indexOf("+")).trim());
-                int y = Integer.parseInt(input.substring(input.indexOf("+")+1).trim());
-                result = x+y;
-            } else if (input.contains("-")){
-                int x = Integer.parseInt(input.substring(0, input.indexOf("-")).trim());
-                int y = Integer.parseInt(input.substring(input.indexOf("-")+1).trim());
-                result = x-y;
+    public static void roll (String input){
+        double result = 0;
+        input = input.trim();
+        for (String plusChunk: input.split("\\+")){
+            for (String minusChunk: plusChunk.split("\\-")){
+                double value = 1;
+                for (String timesChunk: minusChunk.split("\\*")){
+                    for (String divideChunk: timesChunk.split("\\/")){
+                        if (timesChunk.startsWith(divideChunk)){
+                            value = value * InitiativeTracker.parseDie(timesChunk);
+                        } else {
+                            value = value /InitiativeTracker.parseDie(timesChunk);
+                        }
+                    }
+                }
+                if (plusChunk.startsWith(minusChunk)){
+                    result += value;
+                } else {
+                    result -= value;
+                }
             }
-            System.out.println(input + " = " + result);
-            return;
         }
-        String[] dice = input.split(" ");
-        int rollresult = 0;
-        for (String die : dice){
-            int numberOfDice = Integer.parseInt(die.substring(0,die.indexOf("d")));
-            int sizeOfDie = Integer.parseInt(die.substring(die.indexOf("d")+1));
-            rollresult += numberOfDice*(int)(Math.random()*sizeOfDie + 1);
-        }
-        System.out.println(rollresult);
+        System.out.println(result);
     }
+    // public static void roll(String input){
+    //     if (!input.contains("d")){
+    //         int result = 0;
+    //         if (input.contains("/")){
+    //             int x = Integer.parseInt(input.substring(0, input.indexOf("/")).trim());
+    //             int y = Integer.parseInt(input.substring(input.indexOf("/")+1).trim());
+    //             result = x/y;
+    //         } else if (input.contains("*")){
+    //             int x = Integer.parseInt(input.substring(0, input.indexOf("*")).trim());
+    //             int y = Integer.parseInt(input.substring(input.indexOf("*")+1).trim());
+    //             result = x*y;
+    //         } else if (input.contains("+")){
+    //             int x = Integer.parseInt(input.substring(0, input.indexOf("+")).trim());
+    //             int y = Integer.parseInt(input.substring(input.indexOf("+")+1).trim());
+    //             result = x+y;
+    //         } else if (input.contains("-")){
+    //             int x = Integer.parseInt(input.substring(0, input.indexOf("-")).trim());
+    //             int y = Integer.parseInt(input.substring(input.indexOf("-")+1).trim());
+    //             result = x-y;
+    //         } else{
+    //             result = Integer.parseInt(input);
+    //         }
+    //         System.out.println(input + " = " + result);
+    //         return;
+    //     }
+    //     int rollresult = 0;
+    //     for (String plusChunk: input.split("+")){
+    //         int value = 0;
+    //         for (String minusChunk: plusChunk.split("-")){
+    //             if (plusChunk.startsWith(minusChunk)){
+    //                 value += InitiativeTracker.parseDie(minusChunk);
+    //             } else {
+    //                 value -= InitiativeTracker.parseDie(minusChunk);
+    //             }
+    //         }
+    //         rollresult += value;
+    //     }
+    //     System.out.println(rollresult);
+    // }
 
     /**
      * Adds a Creature to the InitiativeTracker 
