@@ -141,10 +141,10 @@ public class InitiativeTracker implements Serializable {
                 this.inCombat = false;
             } 
             // else if (input.indexOf("save") != -1){
-            //     String thingToBeSaved = input.substring(input.indexOf("save")+5);
-            //     String saveType = thingToBeSaved.split(" ")[0];
-            //     // do the saving throw method
-            // }
+            //      String thingToMakeSave = input.substring(input.indexOf("save")+4);
+            //      String saveType = thingToBeSaved.split(" ")[0];
+            //      // do the saving throw method
+            //  }
         } catch (RuntimeException e){
             System.out.println("Something went wrong. Perhaps you formatted your command incorrectly or tried damage a creature that is not in the encounter. Please try again.");
         }
