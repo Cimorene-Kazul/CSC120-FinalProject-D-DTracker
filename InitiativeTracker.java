@@ -10,8 +10,6 @@ public class InitiativeTracker implements Serializable {
     boolean inCombat = false;
     Integer currentInitiative;
     Scanner encounterScanner = null;
-    boolean bonusActionUsed = false;
-    boolean actionUsed = false;
     String commandOptions = """
         summary - prints a concise summary of characters in combat, with their indicies, in initiative order
         end turn - goes on to the next turn
@@ -101,16 +99,11 @@ public class InitiativeTracker implements Serializable {
             } else if (input.startsWith("options")){
                 System.out.println(commandOptions);
             } else if (input.startsWith("bonus action")){
-                if (bonusActionUsed){
-                    System.out.println("You have already used your bonus action this turn.");
-                    return;
-                }
-                String bonusAction = input.substring(13);
-                ((Monster)this.initiativeOrder.get(currentInitiative)).bonusAction(bonusAction);
-                bonusActionUsed = true;
+                String bonusAction = input.substring(12);
+                System.out.println(((Monster)this.initiativeOrder.get(this.currentInitiative)).bonusAction(bonusAction));
             } else if (input.startsWith("reaction")){
-                String reaction = input.substring(9);
-                Integer index = currentInitiative;
+                String reaction = input.substring(8).trim();
+                Integer index = this.currentInitiative;
                 for (int i = 0; i < reaction.length(); i++) {
                     if (Character.isDigit(reaction.charAt(i))) {
                         String num = reaction.substring(i);
@@ -118,10 +111,10 @@ public class InitiativeTracker implements Serializable {
                         index = Integer.parseInt(num.trim());
                     }
                 }
-                ((Monster)this.initiativeOrder.get(index)).reaction(reaction);
+                System.out.println(((Monster)this.initiativeOrder.get(index)).reaction(reaction));
             } else if (input.startsWith("legendary action")){
-                String legendaryAction = input.substring(17);
-                Integer index = currentInitiative;
+                String legendaryAction = input.substring(16).trim();
+                Integer index = this.currentInitiative;
                 for (int i = 0; i < legendaryAction.length(); i++) {
                     if (Character.isDigit(legendaryAction.charAt(i))) {
                         String num = legendaryAction.substring(i);
@@ -129,27 +122,19 @@ public class InitiativeTracker implements Serializable {
                         index = Integer.parseInt(num.trim());
                     }
                 }
-                ((Monster)this.initiativeOrder.get(index)).legendaryAction(legendaryAction);
+               System.out.println(((Monster)this.initiativeOrder.get(index)).legendaryAction(legendaryAction));
             } else if (input.startsWith("legendary resistance")){
-                String legendaryResistance = input.substring(20);
-                Integer index = Integer.parseInt(legendaryResistance.trim());
-                ((Monster)this.initiativeOrder.get(index)).useLegendaryResistance();
+                Integer index = Integer.parseInt(input.substring(20).trim());
+                System.out.println(((Monster)this.initiativeOrder.get(index)).useLegendaryResistance());
             } else if (input.startsWith("action")){
-                if (actionUsed){
-                    System.out.println("You have already used your action this turn.");
-                    return;
-                }
-                String action = input.substring(7);
-                ((Monster)this.initiativeOrder.get(currentInitiative)).action(action);
-                actionUsed = true;
+                String action = input.substring(6).trim();
+                System.out.println(((Monster)this.initiativeOrder.get(this.currentInitiative)).action(action));
             } else if (input.startsWith("end turn")){
                 this.currentInitiative += 1;
                 if (this.currentInitiative >= this.initiativeOrder.size()){
                     this.currentInitiative = 0;
                 }
                 System.out.println(this.initiativeOrder.get(this.currentInitiative).turnPrompt());
-                this.bonusActionUsed = false;
-                this.actionUsed = false;
             } else if (input.startsWith("summary")){
                 this.printSummary();
             } else if (input.startsWith("close")){
@@ -265,7 +250,7 @@ public class InitiativeTracker implements Serializable {
         Integer top = 20; // the 'top of the initiative order'
         Integer bottom = 0; // the 'bottom of the initiative order'
         for (Creature creature: this.creatures){
-            int initiative = creature.rollInitiative(initiativeScanner);
+            Integer initiative = (int) creature.rollInitiative(initiativeScanner);
             if (initiative > top){
                 top = initiative;
             } else if (initiative < bottom){

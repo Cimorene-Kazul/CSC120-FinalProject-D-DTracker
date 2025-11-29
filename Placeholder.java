@@ -12,7 +12,7 @@ public class Placeholder extends Creature {
         return this.name;
     }
     
-    public int rollInitiative(Scanner initScanner){
+    public double rollInitiative(Scanner initScanner){
         return initiative;
     }
 

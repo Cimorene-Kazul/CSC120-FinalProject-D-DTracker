@@ -1,4 +1,5 @@
-import java.util.Random;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Hashtable;
 import java.util.Scanner;
 
@@ -8,8 +9,6 @@ public class Monster extends Creature{
     protected Integer HP;
     private Integer initiativeBonus;
     protected String statBlock;
-    private boolean preRolled = false;
-    private int preRolledInitiative;
     private int legendaryResistances = 0;
     protected String locationNotes = null;
     private String generalNotes = null;
@@ -18,36 +17,62 @@ public class Monster extends Creature{
     private Hashtable<String, Interaction> reactions;
     private Hashtable<String, Interaction> bonusActions;
 
-    public Monster(String fileName){
-        MonsterBuilder constructor = new MonsterBuilder(fileName);
-        this.statBlock = constructor.getStatBlock();
-        this.name = constructor.getName();
-        this.AC = constructor.getAC();
-        this.HPmax = constructor.getHP();
-        this.HP = this.HPmax;
-        this.initiativeBonus = constructor.getInitiative();
-    }
-
     public Monster(String fileName, String locationNotes){
         this(fileName);
         this.locationNotes = locationNotes;
     }
 
-    public Monster(String name, int health, int AC, int initiativeBonus, String statBlock, int preRolledInitiative){
-        this(name, health, AC, initiativeBonus, statBlock);
-        this.preRolledInitiative = preRolledInitiative;
-        this.preRolled = true;
-    }
-    
-    public Monster(String name, int health, int AC, int initiativeBonus, String statBlock, boolean hasLair, int preRolledInitiative){
-        this(name, health, AC, initiativeBonus, statBlock, hasLair);
-        this.preRolledInitiative = preRolledInitiative;
-        this.preRolled = true;
-    }
+    public Monster(String fileName){
+        this.subclass = CreatureType.MONSTER;
+        File statBlockFile = new File("StatBlocks/"+fileName+".txt");
+        try (Scanner fileReader = new Scanner(statBlockFile)){
+            int lineNumber = 0;
+            String nextThing = "";
+            String type = "Trait";
+            while (fileReader.hasNextLine()) {
+                String line = fileReader.nextLine();
+                this.statBlock += line +" \n ";
+                lineNumber += 1;
+                if (lineNumber == 1){
+                    this.name = line.trim();
+                } else if (lineNumber == 2){
+                    this.AC = Integer.parseInt(ParsingTools.nextWord(line, line.indexOf("AC")+2));
+                    this.HPmax = Integer.parseInt(ParsingTools.nextWord(line, line.indexOf("HP")+2));
+                    this.HP = this.HPmax;
+                    this.initiativeBonus = Integer.parseInt(ParsingTools.nextWord(line, line.indexOf("Initiative")+11));
+                }
 
-    public Monster(String name, int health, int AC, int initiativeBonus, String statBlock, boolean hasLair){
-        this(name, health, AC, initiativeBonus, statBlock);
-        this.hasLair = hasLair;
+                if (line.trim().startsWith("Actions")){
+                    type = "Actions";
+                } else if (line.trim().startsWith("Reactions")){
+                    type = "Reactions";
+                } else if (line.trim().startsWith("Legendary Actions")){
+                    type = "Legendary Actions";
+                } else if (line.trim().startsWith("Bonus Actions")){
+                    type = "Bonus Actions";
+                }else{
+                    if (!line.startsWith("\t")){
+                        if (type=="Actions"){
+                            Interaction action = new Interaction(nextThing);
+                            this.actions.put(action.getName(), action);
+                        } else if (type=="Reactions"){
+                            Interaction reaction = new Interaction(nextThing);
+                            this.reactions.put(reaction.getName(), reaction);
+                        } else if (type=="Legendary Actions"){
+                            Interaction legendaryAction = new Interaction(nextThing);
+                            this.legendaryActions.put(legendaryAction.getName(), legendaryAction);
+                        } else if (type=="Bonus Actions"){
+                            Interaction bonusAction = new Interaction(nextThing);
+                            this.bonusActions.put(bonusAction.getName(), bonusAction);
+                        }
+                        nextThing = "";
+                    }
+                }
+                nextThing += line;
+            }
+        }catch(FileNotFoundException e){
+            throw new RuntimeException(statBlockFile.getName()+" is not a valid file name in MonsterFiles.");
+        }
     }
 
     public Monster(String name, int health, int AC, int initiativeBonus, String statBlock){
@@ -119,46 +144,50 @@ public class Monster extends Creature{
         return result;
     }
 
-    public int rollInitiative(Scanner initScanner){
-        if (!this.preRolled){
-            Random d20 = new Random();
-            return d20.nextInt(20)+1+this.initiativeBonus;
-        }else{
-            return preRolledInitiative;
-        }
+    public double rollInitiative(Scanner initScanner){
+        D20Test initiativeRoll = new D20Test(this.initiativeBonus);
+        return initiativeRoll.roll();
     }
 
-    public void useLegendaryResistance(){
+    public String useLegendaryResistance(){
         if (this.legendaryResistances > 0){
             this.legendaryResistances -= 1;
-            System.out.println(this.name+" uses a legendary resistance! It has "+this.legendaryResistances+" remaining.");
+            return (this.name+" uses a legendary resistance! It has "+this.legendaryResistances+" remaining.");
         } else {
-            System.out.println(this.name+" has no legendary resistances remaining!");
+            return (this.name+" has no legendary resistances remaining!");
         }
     }
 
-    public void action(String action){
-        System.out.println(name+" uses "+action+".");
-        System.out.println(actions.get(action).getDescription());
-        InitiativeTracker.roll(actions.get(action).getDiceRolls());
+    public String action(String action){
+        String message = "";
+        message += name+ " uses "+action+".";
+        message += "\n"+actions.get(action).getName() +" - "+ actions.get(action).getDescription();
+        message += "\n"+actions.get(action).getDiceRolls();
+        return message;
     }
 
-    public void bonusAction(String bonusAction){
-        System.out.println(name+" uses "+bonusAction+".");
-        System.out.println(bonusActions.get(bonusAction).getDescription());
-        InitiativeTracker.roll(bonusActions.get(bonusAction).getDiceRolls());
+    public String bonusAction(String bonusAction){
+        String message = "";
+        message += name+ " uses "+bonusAction+".";
+        message += "\n"+bonusActions.get(bonusAction).getName() +" - "+ bonusActions.get(bonusAction).getDescription();
+        message += "\n"+bonusActions.get(bonusAction).getDiceRolls();
+        return message;
     }
 
-    public void reaction(String reaction){
-        System.out.println(name+" uses "+reaction+".");
-        System.out.println(reactions.get(reaction).getDescription());
-        InitiativeTracker.roll(reactions.get(reaction).getDiceRolls());
+    public String reaction(String reaction){
+        String message = "";
+        message += name+ " uses "+reaction+".";
+        message += "\n"+reactions.get(reaction).getName() +" - "+ reactions.get(reaction).getDescription();
+        message += "\n"+reactions.get(reaction).getDiceRolls();
+        return message;
     }
 
-    public void legendaryAction(String legendaryAction){
-        System.out.println(name+" uses "+legendaryAction+".");
-        System.out.println(legendaryActions.get(legendaryAction).getDescription());
-        InitiativeTracker.roll(legendaryActions.get(legendaryAction).getDiceRolls());
+    public String legendaryAction(String legendaryAction){
+        String message = "";
+        message += name+ " uses "+legendaryAction+".";
+        message += "\n"+legendaryActions.get(legendaryAction).getName() +" - "+ legendaryActions.get(legendaryAction).getDescription();
+        message += "\n"+legendaryActions.get(legendaryAction).getDiceRolls();
+        return message;
     }
 
 
