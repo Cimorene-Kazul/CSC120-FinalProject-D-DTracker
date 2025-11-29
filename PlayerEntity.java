@@ -1,10 +1,9 @@
-import java.util.Scanner;
-
-public class Player extends Creature{
+public class PlayerEntity extends InitiativeEntityModel{
     String player;
-    int initative = 10;
+    boolean calcInit = false;
+    double initative = 10;
     
-    public Player(String PCName, String PCPlayer){
+    public PlayerEntity(String PCName, String PCPlayer){
         this.name = PCName;
         this.player = PCPlayer;
         this.subclass = CreatureType.PLAYER;
@@ -18,13 +17,15 @@ public class Player extends Creature{
         return "It is "+this.name+"'s turn. "+this.player+" please take your turn as "+this.name+".";
     }
 
-    public int rollInitiative(Scanner initScanner){
-        System.out.println(this.player+" what is "+this.name+"'s initiative?");
-        int initiative = Integer.parseInt(initScanner.nextLine().trim());
-        return initiative;
-    }
-
     public String toString(){
         return this.player+"'s player character, "+this.name;
+    }
+
+    public double rollInitiative(){
+        return this.initative;
+    }
+
+    public void setInitiative(double value){
+        this.initative = value;
     }
 }
