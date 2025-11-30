@@ -1,7 +1,7 @@
 Neph’kaz Foot Troops
 AC 13        HP 8        Initiative +0
 Unit		Size 50-200	
-STR	DEX	CON	INT	WIS	CHA		Prof.
+STR DEX	CON	INT	WIS	CHA		Prof.
  +1	 +0	 +0	-1	 +0	 -1		 +2
  Speed 20ft
  Passive Perception 10

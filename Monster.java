@@ -10,8 +10,10 @@ public class Monster extends Creature{
     private Integer initiativeBonus;
     protected String statBlock;
     private int legendaryResistances = 0;
+    private String resitanceText = "";
     protected String locationNotes = null;
     private String generalNotes = null;
+    private Hashtable<String, Interaction> traits;
     private Hashtable<String, Interaction> actions;
     private Hashtable<String, Interaction> legendaryActions;
     private Hashtable<String, Interaction> reactions;
@@ -28,7 +30,7 @@ public class Monster extends Creature{
         try (Scanner fileReader = new Scanner(statBlockFile)){
             int lineNumber = 0;
             String nextThing = "";
-            String type = "Trait";
+            String type = "";
             while (fileReader.hasNextLine()) {
                 String line = fileReader.nextLine();
                 this.statBlock += line +" \n ";
@@ -44,6 +46,8 @@ public class Monster extends Creature{
 
                 if (line.trim().startsWith("Actions")){
                     type = "Actions";
+                } else if (line.trim().startsWith("Traits")){
+                    type = "Traits";
                 } else if (line.trim().startsWith("Reactions")){
                     type = "Reactions";
                 } else if (line.trim().startsWith("Legendary Actions")){
@@ -51,10 +55,18 @@ public class Monster extends Creature{
                 } else if (line.trim().startsWith("Bonus Actions")){
                     type = "Bonus Actions";
                 }else{
-                    if (!line.startsWith("\t")){
+                    if (!line.startsWith("\t") && line.trim() != ""){
                         if (type=="Actions"){
                             Interaction action = new Interaction(nextThing);
                             this.actions.put(action.getName(), action);
+                        } else if (type=="Traits"){
+                            Interaction trait = new Interaction(nextThing);
+                            if (!nextThing.toLowerCase().trim().startsWith("legendary resistance")){
+                                this.traits.put(trait.getName(), trait);
+                            } else {
+                                this.legendaryResistances = trait.numUses();
+                                this.resitanceText = trait.getDescription();
+                            }
                         } else if (type=="Reactions"){
                             Interaction reaction = new Interaction(nextThing);
                             this.reactions.put(reaction.getName(), reaction);
@@ -66,9 +78,11 @@ public class Monster extends Creature{
                             this.bonusActions.put(bonusAction.getName(), bonusAction);
                         }
                         nextThing = "";
+                        nextThing += line;
+                    } else if (line.trim() != ""){
+                        nextThing += line;
                     }
                 }
-                nextThing += line;
             }
         }catch(FileNotFoundException e){
             throw new RuntimeException(statBlockFile.getName()+" is not a valid file name in MonsterFiles.");
@@ -152,42 +166,35 @@ public class Monster extends Creature{
     public String useLegendaryResistance(){
         if (this.legendaryResistances > 0){
             this.legendaryResistances -= 1;
-            return (this.name+" uses a legendary resistance! It has "+this.legendaryResistances+" remaining.");
+            return (this.name+" uses a legendary resistance! It has "+this.legendaryResistances+" remaining.\n As a reminder, the Legendary Resitance trait means that "+this.resitanceText);
         } else {
-            return (this.name+" has no legendary resistances remaining!");
+            return (this.name+" has no legendary resistances or no legendary resitances remaining!");
         }
     }
 
     public String action(String action){
-        String message = "";
-        message += name+ " uses "+action+".";
-        message += "\n"+actions.get(action).getName() +" - "+ actions.get(action).getDescription();
-        message += "\n"+actions.get(action).getDiceRolls();
-        return message;
+        this.actions.get(action).expendUse();
+        return this.name+ " uses "+action+". \n"+ this.actions.get(action);
     }
 
     public String bonusAction(String bonusAction){
-        String message = "";
-        message += name+ " uses "+bonusAction+".";
-        message += "\n"+bonusActions.get(bonusAction).getName() +" - "+ bonusActions.get(bonusAction).getDescription();
-        message += "\n"+bonusActions.get(bonusAction).getDiceRolls();
-        return message;
+        this.bonusActions.get(bonusAction).expendUse();
+        return name+ " uses "+bonusAction+".\n"+this.bonusActions.get(bonusAction);
     }
 
     public String reaction(String reaction){
-        String message = "";
-        message += name+ " uses "+reaction+".";
-        message += "\n"+reactions.get(reaction).getName() +" - "+ reactions.get(reaction).getDescription();
-        message += "\n"+reactions.get(reaction).getDiceRolls();
-        return message;
+        this.reactions.get(reaction).expendUse();
+        return name+ " uses "+reaction+".\n"+this.reactions.get(reaction);
     }
 
     public String legendaryAction(String legendaryAction){
-        String message = "";
-        message += name+ " uses "+legendaryAction+".";
-        message += "\n"+legendaryActions.get(legendaryAction).getName() +" - "+ legendaryActions.get(legendaryAction).getDescription();
-        message += "\n"+legendaryActions.get(legendaryAction).getDiceRolls();
-        return message;
+        this.legendaryActions.get(legendaryAction).expendUse();
+        return name+ " uses "+legendaryAction+".\n"+this.legendaryActions.get(legendaryAction);
+    }
+
+    public String useTrait(String trait){
+        this.traits.get(trait).expendUse();
+        return name+ " uses "+trait+".\n"+this.traits.get(trait);
     }
 
 

@@ -19,6 +19,11 @@ public class InitiativeTracker implements Serializable {
         heal <index> <amt> - heals the creature at index <index> for amount <amount>
         take note <index> - adds a note to the creature at index <index> (no index means the creature at the current initative)
         stats <index> - prints stat block of creature <index>
+        action <action name>
+        reaction <reaction name> <index>
+        bonus action <bonus action name>
+        legendary action <legendary action name> <index>
+        legendary resistance <index>
         """;
 
     /** 
@@ -101,6 +106,17 @@ public class InitiativeTracker implements Serializable {
             } else if (input.startsWith("bonus action")){
                 String bonusAction = input.substring(12);
                 System.out.println(((Monster)this.initiativeOrder.get(this.currentInitiative)).bonusAction(bonusAction));
+            } else if (input.startsWith("trait")){
+                String trait = input.substring(5);
+                Integer index = this.currentInitiative;
+                for (int i = 0; i < trait.length(); i++) {
+                    if (Character.isDigit(trait.charAt(i))) {
+                        String num = trait.substring(i);
+                        trait = trait.substring(0, i-1);
+                        index = Integer.parseInt(num.trim());
+                    }
+                }
+                System.out.println(((Monster)this.initiativeOrder.get(index)).useTrait(trait));
             } else if (input.startsWith("reaction")){
                 String reaction = input.substring(8).trim();
                 Integer index = this.currentInitiative;
