@@ -173,8 +173,14 @@ public class Monster extends Creature{
     }
 
     public String action(String action){
-        this.actions.get(action).expendUse();
-        return this.name+ " uses "+action+". \n"+ this.actions.get(action);
+        if (!actions.containsKey(action)){
+            return this.name+" does not have an action called "+action+".";
+        }
+        String message = "";
+        message += name+ " uses "+action+".";
+        message += "\n"+actions.get(action).getName() +" - "+ actions.get(action).getDescription();
+        message += "\n"+actions.get(action).getDiceRolls();
+        return message;
     }
 
     public String bonusAction(String bonusAction){

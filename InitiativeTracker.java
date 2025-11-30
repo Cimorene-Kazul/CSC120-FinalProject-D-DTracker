@@ -58,6 +58,28 @@ public class InitiativeTracker implements Serializable {
         this.creatures=new ArrayList<Creature>();
     }
 
+    public InitiativeTracker(String fileName){
+        String content = Files.readString(Paths.get(fileName));
+        String[] lines = content.split("\n");
+        String section = "";
+        ArrayList<Creature> creatures;
+        for (int i = 0; i < lines.length; i++){
+            if (lines[i].equals("MONSTERS: ") || lines[i].equals("PLAYERS: ") || lines[i].equals("INITIATIVE ORDER: ")){
+                section = lines[i];
+            } else if (lines[i].equals("")){
+                section = "";
+            } else if (section.equals("MONSTERS: ") && !lines[i].isEmpty()){
+                Monster monster = new Monster(lines[i]);
+                creatures.add(monster);
+            } else if (section.equals("PLAYERS: ")){
+                Player player = new Player(lines[i]);
+                creatures.add(player);
+            }
+        }
+        this.creatures = creatures;
+        this.currentInitiative = content.substring(content.indexOf("CURRENT INITIATIVE: "+20)).trim();
+    }
+
     public String toString(){
         if (this.inCombat){
             String creatures = "";
@@ -173,6 +195,14 @@ public class InitiativeTracker implements Serializable {
         for (int i=0; i<this.initiativeOrder.size(); i++){
             System.out.println(i+"\t"+initiativeOrder.get(i));
         }
+    }
+
+    public String getSummary(){
+        String summary = "";
+        for (int i=0; i<this.initiativeOrder.size(); i++){
+            summary += i+"\t"+initiativeOrder.get(i)+"\n";
+        }
+        return summary;
     }
 
     public static double parseDie(String value){
