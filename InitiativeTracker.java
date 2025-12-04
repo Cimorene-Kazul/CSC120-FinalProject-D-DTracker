@@ -19,11 +19,6 @@ public class InitiativeTracker implements Serializable {
         heal <index> <amt> - heals the creature at index <index> for amount <amount>
         take note <index> - adds a note to the creature at index <index> (no index means the creature at the current initative)
         stats <index> - prints stat block of creature <index>
-        action <action name>
-        reaction <reaction name> <index>
-        bonus action <bonus action name>
-        legendary action <legendary action name> <index>
-        legendary resistance <index>
         """;
 
     /** 
