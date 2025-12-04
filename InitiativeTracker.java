@@ -125,48 +125,9 @@ public class InitiativeTracker implements Serializable {
                 roll(die);
             } else if (input.startsWith("options")){
                 System.out.println(commandOptions);
-            } else if (input.startsWith("bonus action")){
-                String bonusAction = input.substring(12);
-                System.out.println(((Monster)this.initiativeOrder.get(this.currentInitiative)).bonusAction(bonusAction));
-            } else if (input.startsWith("trait")){
-                String trait = input.substring(5);
-                Integer index = this.currentInitiative;
-                for (int i = 0; i < trait.length(); i++) {
-                    if (Character.isDigit(trait.charAt(i))) {
-                        String num = trait.substring(i);
-                        trait = trait.substring(0, i-1);
-                        index = Integer.parseInt(num.trim());
-                    }
-                }
-                System.out.println(((Monster)this.initiativeOrder.get(index)).useTrait(trait));
-            } else if (input.startsWith("reaction")){
-                String reaction = input.substring(8).trim();
-                Integer index = this.currentInitiative;
-                for (int i = 0; i < reaction.length(); i++) {
-                    if (Character.isDigit(reaction.charAt(i))) {
-                        String num = reaction.substring(i);
-                        reaction = reaction.substring(0, i-1);
-                        index = Integer.parseInt(num.trim());
-                    }
-                }
-                System.out.println(((Monster)this.initiativeOrder.get(index)).reaction(reaction));
-            } else if (input.startsWith("legendary action")){
-                String legendaryAction = input.substring(16).trim();
-                Integer index = this.currentInitiative;
-                for (int i = 0; i < legendaryAction.length(); i++) {
-                    if (Character.isDigit(legendaryAction.charAt(i))) {
-                        String num = legendaryAction.substring(i);
-                        legendaryAction = legendaryAction.substring(0, i-1);
-                        index = Integer.parseInt(num.trim());
-                    }
-                }
-               System.out.println(((Monster)this.initiativeOrder.get(index)).legendaryAction(legendaryAction));
             } else if (input.startsWith("legendary resistance")){
                 Integer index = Integer.parseInt(input.substring(20).trim());
                 System.out.println(((Monster)this.initiativeOrder.get(index)).useLegendaryResistance());
-            } else if (input.startsWith("action")){
-                String action = input.substring(6).trim();
-                System.out.println(((Monster)this.initiativeOrder.get(this.currentInitiative)).action(action));
             } else if (input.startsWith("end turn")){
                 this.currentInitiative += 1;
                 if (this.currentInitiative >= this.initiativeOrder.size()){

@@ -1,6 +1,5 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Hashtable;
 import java.util.Scanner;
 
 public class Monster extends Creature{
@@ -13,11 +12,6 @@ public class Monster extends Creature{
     private String resitanceText = "";
     protected String locationNotes = null;
     private String generalNotes = null;
-    private Hashtable<String, Interaction> traits;
-    private Hashtable<String, Interaction> actions;
-    private Hashtable<String, Interaction> legendaryActions;
-    private Hashtable<String, Interaction> reactions;
-    private Hashtable<String, Interaction> bonusActions;
 
     public Monster(String fileName, String locationNotes){
         this(fileName);
@@ -29,8 +23,6 @@ public class Monster extends Creature{
         File statBlockFile = new File("MonsterFiles/"+fileName+".txt");
         try (Scanner fileReader = new Scanner(statBlockFile)){
             int lineNumber = 0;
-            String nextThing = "";
-            String type = "";
             while (fileReader.hasNextLine()) {
                 String line = fileReader.nextLine();
                 this.statBlock += line +" \n ";
@@ -42,46 +34,6 @@ public class Monster extends Creature{
                     this.HPmax = Integer.parseInt(ParsingTools.nextWord(line, line.indexOf("HP")+2));
                     this.HP = this.HPmax;
                     this.initiativeBonus = Integer.parseInt(ParsingTools.nextWord(line, line.indexOf("Initiative")+11));
-                }
-
-                if (line.trim().startsWith("Actions")){
-                    type = "Actions";
-                } else if (line.trim().startsWith("Traits")){
-                    type = "Traits";
-                } else if (line.trim().startsWith("Reactions")){
-                    type = "Reactions";
-                } else if (line.trim().startsWith("Legendary Actions")){
-                    type = "Legendary Actions";
-                } else if (line.trim().startsWith("Bonus Actions")){
-                    type = "Bonus Actions";
-                }else{
-                    if (!line.startsWith("\t") && line.trim() != ""){
-                        if (type=="Actions"){
-                            Interaction action = new Interaction(nextThing);
-                            this.actions.put(action.getName(), action);
-                        } else if (type=="Traits"){
-                            Interaction trait = new Interaction(nextThing);
-                            if (!nextThing.toLowerCase().trim().startsWith("legendary resistance")){
-                                this.traits.put(trait.getName(), trait);
-                            } else {
-                                this.legendaryResistances = trait.numUses();
-                                this.resitanceText = trait.getDescription();
-                            }
-                        } else if (type=="Reactions"){
-                            Interaction reaction = new Interaction(nextThing);
-                            this.reactions.put(reaction.getName(), reaction);
-                        } else if (type=="Legendary Actions"){
-                            Interaction legendaryAction = new Interaction(nextThing);
-                            this.legendaryActions.put(legendaryAction.getName(), legendaryAction);
-                        } else if (type=="Bonus Actions"){
-                            Interaction bonusAction = new Interaction(nextThing);
-                            this.bonusActions.put(bonusAction.getName(), bonusAction);
-                        }
-                        nextThing = "";
-                        nextThing += line;
-                    } else if (line.trim() != ""){
-                        nextThing += line;
-                    }
                 }
             }
         }catch(FileNotFoundException e){
@@ -170,37 +122,6 @@ public class Monster extends Creature{
         } else {
             return (this.name+" has no legendary resistances or no legendary resitances remaining!");
         }
-    }
-
-    public String action(String action){
-        if (!actions.containsKey(action)){
-            return this.name+" does not have an action called "+action+".";
-        }
-        String message = "";
-        message += name+ " uses "+action+".";
-        message += "\n"+actions.get(action).getName() +" - "+ actions.get(action).getDescription();
-        message += "\n"+actions.get(action).getDiceRolls();
-        return message;
-    }
-
-    public String bonusAction(String bonusAction){
-        this.bonusActions.get(bonusAction).expendUse();
-        return name+ " uses "+bonusAction+".\n"+this.bonusActions.get(bonusAction);
-    }
-
-    public String reaction(String reaction){
-        this.reactions.get(reaction).expendUse();
-        return name+ " uses "+reaction+".\n"+this.reactions.get(reaction);
-    }
-
-    public String legendaryAction(String legendaryAction){
-        this.legendaryActions.get(legendaryAction).expendUse();
-        return name+ " uses "+legendaryAction+".\n"+this.legendaryActions.get(legendaryAction);
-    }
-
-    public String useTrait(String trait){
-        this.traits.get(trait).expendUse();
-        return name+ " uses "+trait+".\n"+this.traits.get(trait);
     }
 
 

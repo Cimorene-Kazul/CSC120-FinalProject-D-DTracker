@@ -22,66 +22,19 @@ _____ 1 pts: The command line successfully works as a dice roller and 4-function
 
 _____ 1 pts: The command 'summary' prints a list of creatures in initiative order, with their Armor Classes, current health, and indicies
 
+## More Elaborate Functionality (5 pts)
 
-## Built-in Interactions (5 pts)
-
-_____ 1 pts: The command '*type* save *index*' has the creature with index *index* roll a saving throw of type *type* if it has the ability to roll saves. *type* can be STR (strength), DEX (dexterity), CON (constitution), WIS (wisdom), INT (intelligence), or CHA (charisma).
-
-_____ 2 pts: Interactions are implemented properly.  If a character has the ability to take a form of interaction, they can do the following:
-
-     _____ .25 pts: On a creature's turn, the command 'action *name of action*' will print the text of and make any relevent dice rolls associated with the action *name of action*. Attacks roll both the attack roll and the damage roll. Results are printed in a readable manner (ie, "21 to hit, 12 damage on hit"). Creatures can only take 1 action per turn.
-
-     _____ .25 pts: On a creature's turn, the command 'bonus action *name of bonus action*' will print the text of and make any relevent dice rolls associated with the bonus action *name of bonus action*. Attacks roll both the attack roll and the damage roll. Results are printed in a readable manner (ie, "21 to hit, 12 damage on hit"). Creatures can only take 1 bonus action per turn.
-
-     ____ .5 pts: At any time, the command 'reaction *name of reaction* *index*' will print the text of and make any relevent dice rolls associated with the reaction *name of reaction* that is possessed by the creature with index *index*. Attacks roll both the attack roll and the damage roll. Results are printed in a readable manner (ie, "21 to hit, 12 damage on hit"). Creatures can only take 1 reaction per round unless specified otherwise.
-
-     ____ .5 pts: At any time, the command 'legendary action *name of legendary action* *index*' will print the text of and make any relevent dice rolls associated with the legendary action *name of legendary action* that is possessed by the creature with index *index*. Attacks roll both the attack roll and the damage roll. Results are printed in a readable manner (ie, "21 to hit, 12 damage on hit"). Only some creatures have legendary actions.
-
-     ____ .5 pts: At any time, the command 'legendary resistance *index*' will decriment the number of legendary resistances the monster with index *index* has remaining, or print a message if there are none left. Only some creatures have legendary resistances.
-
-____ 0.5 pts: At initiative count 20, if and only if there are monsters with lair actions availiable, a prompt with the monsters' names and stats is printed.
-
-____ 0.5 pts: The command 'action summary' details availiable commands.
-
-____ 0.5 pts: Abilities with limited uses are only useable up to those use limits before they print a message saying they are unavailiable.
-
-____ 0.5 pts: Characters with and without interactions are compatible in the same initiative tracker.
-
-## Scraping and File Reading (5 pts)
+_____ 1 pts: At initiative count 20, if and only if there are monsters with lair actions availiable, a prompt is printed with the monster's name
 
 _____ 1 pts: A clear readme documenting how to write a file that can be translated into a Monster object, along with how to use the encounter builder, scraping tool, and file reader, is included in the submission.
 
-_____ 2 pts: A program is included to convert a specially-formated .txt file into a Monster object.
-      
-      _____ 1 pts: The program can create a basic monster.
+_____ 1 pts: A program is included to convert a specially-formated .txt file into a Monster object.
 
-      _____ 1 pts: The program can add the interaction components to the monster.
+_____ 2 pts: An encounter builder program is included that allows the user to use clearly-described text interactions to add monsters to an initiative and then run the encounter.
 
-_____ 1 pts: A program is included to scrape 5e.tools and create the specially formated .txt files for the monsters involved.
+      _____ 1 pts: The program can be used to utilize command-line alone to build an encounter.
 
-_____ 1 pts: An encounter builder program is included that allows the user to use clearly-described text interactions to add monsters to an initiative and then run the encounter.
-
-      _____ 0.5 pts: The program can be used to utilize command-line alone to build an encounter.
-
-      _____ 0.5 pts: The program is easy to use without needing to read documentation.
-
-## Kudos: Location Tracking (5 pts)
-
-*This section is not required. If we are permitted, we would appreciate it becoming extra credit. It is substantially beyond what we expect to accomplish, but would come in seriously handy. Otherwise, don't score this section.*
-
-_____ 1 pts: A boolean is added to turn on use of coordinates. When on, a Turtle-like tool appears, with a dot tracking the location of each character.
-
-_____ 1 pts: When coordinates are on, the code will prompt for each character to have a location relative to (0,0). They appear in the given locations on the location tracker. Characters are labeled with their index.
-
-_____ 1 pts: On a turn, 'move *2D vector*' will move the character by adding the *2D vector* to their location. 'move *2D vector* *index*' will work with whatever character has index *index*. Character dots update to their new location. Distances are in feet.
-
-_____ 0.5 pts: Characters can only use abilities within the given range, when coordinates are turned on.
-
-_____ 0.5 pts: AOE abilities are drawn on the map for the duration of the turn where they are used.
-
-_____ 0.5 pts: The map has a clear scale that can be read by users and the map is scaled to be appropriate for the distances involved.
-
-_____ 0.5 pts: Creatures cover the convetntional area (5x5 for medium, 10x10 for large etc)
+      _____ 1 pts: The program is easy to use without needing to read documentation.
 
 ## Back-End Design (10 pts)
 
@@ -96,8 +49,8 @@ _____ 2 pts: The project's design is **extensible** (i.e. someone else could pic
 _____ 2 pts: Submission includes an **architecture diagram** describing the relationships between all classes.
 
 
-## General Items (12 pts):
-_____ 4 pts: Program compiles without errors or warnings.
+## General Items (10 pts):
+_____ 2 pts: Program compiles without errors or warnings.
 
 _____ 2 pts: Executes fully & consistently without crashing (exception/freeze).
 
