@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Monster extends Creature{
@@ -8,8 +10,6 @@ public class Monster extends Creature{
     protected Integer HP;
     private Integer initiativeBonus;
     protected String statBlock;
-    private int legendaryResistances = 0;
-    private String resitanceText = "";
     protected String locationNotes = null;
     private String generalNotes = null;
 
@@ -72,6 +72,10 @@ public class Monster extends Creature{
         return this.AC;
     }
 
+    private int getInitiative(){
+        return this.initiativeBonus;
+    }
+
     public String damage(int amt){
         this.HP = Math.max(this.HP-amt, 0);
         return this.name+" has been hit for "+amt+" reducing it to "+this.HP+" hit points.";
@@ -115,15 +119,35 @@ public class Monster extends Creature{
         return initiativeRoll.roll();
     }
 
-    public String useLegendaryResistance(){
-        if (this.legendaryResistances > 0){
-            this.legendaryResistances -= 1;
-            return (this.name+" uses a legendary resistance! It has "+this.legendaryResistances+" remaining.\n As a reminder, the Legendary Resitance trait means that "+this.resitanceText);
-        } else {
-            return (this.name+" has no legendary resistances or no legendary resitances remaining!");
+    public static void saveMonster(Monster m){
+        String fileName = (m.getName().replaceAll(" ", "_")).toLowerCase();
+        File monsterFile = new File("MonsterFiles/"+fileName+".txt");
+        if (!monsterFile.exists()){
+            try {
+                FileWriter monsterWriter = new FileWriter(monsterFile);
+                String monsterStats = m.getStats();
+                String keyLine = monsterStats.split("\n")[1];
+                try {
+                    Integer.parseInt(ParsingTools.nextWord(keyLine, keyLine.indexOf("AC")+2));
+                    Integer.parseInt(ParsingTools.nextWord(keyLine, keyLine.indexOf("HP")+2));
+                    Integer.parseInt(ParsingTools.nextWord(keyLine, keyLine.indexOf("Initiative")+11));
+                } catch (Exception e) {
+                    monsterWriter.write(m.getName()+"\n");
+                    monsterWriter.write("AC "+m.getAC()+" \t HP "+m.getHPmax()+" \t Initiative "+m.getInitiative()+"\n");
+                }
+                monsterWriter.write(monsterStats);
+                monsterWriter.close();
+            } catch (IOException e) {
+                throw new RuntimeException(fileName+".txt had some issue. An IOException occured with message "+e.getMessage());
+            }
         }
     }
 
+    public static Monster getMonster(String monsterName, int currentHP){
+        Monster m = new Monster((monsterName.replaceAll(" ", "_")).toLowerCase());
+        m.damage(m.getHPmax()-currentHP);
+        return m;
+    }
 
     public static void main(String[] args) {
     }
