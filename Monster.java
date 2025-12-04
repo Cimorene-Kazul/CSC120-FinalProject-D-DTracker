@@ -26,7 +26,7 @@ public class Monster extends Creature{
 
     public Monster(String fileName){
         this.subclass = CreatureType.MONSTER;
-        File statBlockFile = new File("StatBlocks/"+fileName+".txt");
+        File statBlockFile = new File("MonsterFiles/"+fileName+".txt");
         try (Scanner fileReader = new Scanner(statBlockFile)){
             int lineNumber = 0;
             String nextThing = "";
