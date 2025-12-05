@@ -19,7 +19,7 @@ public class Placeholder extends Creature {
         return this.name;
     }
     
-    public double rollInitiative(Scanner initScanner){
+    public int rollInitiative(Scanner initScanner){
         return initiative;
     }
 
@@ -33,5 +33,10 @@ public class Placeholder extends Creature {
 
     public String saveInfo(){
         return "PLACEHOLDER \t"+this.initiative+"\t"+this.name;
+    }
+
+    public static Placeholder parsePlaceholder(String saveInfo){
+        String[] pieces = saveInfo.split("\t");
+        return new Placeholder(Integer.parseInt(pieces[1].trim()), pieces[2].trim());
     }
 }

@@ -1,0 +1,24 @@
+MONSTER hesher  114
+MONSTER high_magedeath  210
+MONSTER verisheet   74
+MONSTER commander_poltolsk  64
+PLAYER  Moth    Eli
+MONSTER kilask  84
+MONSTER high_magedeath  144
+MONSTER utala   83
+MONSTER subcommander_res’seth   78
+PLAYER  Psyin   Tianyi
+MONSTER high_magedeath  163
+MONSTER high_magedeath  210
+MONSTER high_magedeath  196
+MONSTER high_magedeath  210
+MONSTER high_magedeath  210
+MONSTER jasilisk    64
+UNIT    senior_magedeath    317 3
+PLAYER  Emia    Celina
+MONSTER levadra 68
+UNIT    magedeath_fanatic   4400    100
+MONSTER high_magedeath  210
+UNIT    senior_student  309 6
+MONSTER milnor  124
+UNIT    high_magedeath  203

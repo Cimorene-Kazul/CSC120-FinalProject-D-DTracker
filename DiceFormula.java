@@ -9,23 +9,23 @@ public class DiceFormula {
         this.value = formula;
     }
 
-    public double roll(){
+    public int roll(){
         return parseFormula(this.value);
     }
 
-    public static double rollDie(int size){
+    public static int rollDie(int size){
         return (int)(Math.random()*size + 1);
     }
 
-    public static double parseDie(String value){
+    public static int parseDie(String value){
          value = (value.trim().split(" ")[0]).toLowerCase();
          try {
             if (!value.contains("d")){
-                return Double.parseDouble(value);
+                return Integer.parseInt(value);
             } else {
                 int numberOfDice = Integer.parseInt(value.substring(0,value.indexOf("d")));
                 int sizeOfDie = Integer.parseInt(value.substring(value.indexOf("d")+1));
-                double result = 0;
+                int result = 0;
                 for (int i = 0; i< numberOfDice; i++){
                     result += rollDie(sizeOfDie);
                 }
@@ -36,13 +36,13 @@ public class DiceFormula {
          }
      }
 
-    public static double parseFormula (String formula){
-        double result = 0;
+    public static int parseFormula (String formula){
+        int result = 0;
         formula = formula.trim();
         try {
             for (String plusChunk: formula.split("\\+")){
                 for (String minusChunk: plusChunk.split("\\-")){
-                    double value = Integer.parseInt(minusChunk);
+                    int value = Integer.parseInt(minusChunk);
                     if (plusChunk.startsWith(minusChunk)){
                         result += value;
                     } else {

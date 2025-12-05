@@ -1,7 +1,12 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class MonsterGroup extends Monster{
     int size;
     Integer individualHP;
     String baseName;
+    String fileName;
     
 
     public MonsterGroup(String fileName, int number){
@@ -28,6 +33,14 @@ public class MonsterGroup extends Monster{
         return this.name+" has been hit for "+amt+" reducing it to "+this.HP+" hit points and size "+this.size+".";
     }
 
+    private int getIndividualHP(){
+        return this.individualHP;
+    }
+
+    private String getOriginalName(){
+        return this.baseName;
+    }
+
     public String toString(){
         return super.toString() + " size "+this.size;
     }
@@ -41,12 +54,41 @@ public class MonsterGroup extends Monster{
     }
 
     public String saveInfo(){
-        return "UNIT \t"+this.baseName+"\t"+this.HP+"\t"+this.size;
+        if (this.fileOrigin == null){
+            MonsterGroup.saveMonster(this);
+            this.fileOrigin = (this.name.trim().replaceAll(" ", "_")).toLowerCase();
+        }
+        return "UNIT \t"+this.fileName+"\t"+this.HP+"\t"+this.size;
     }
 
-    public static MonsterGroup getMonsterGroup(String groupName, int currentHP, int size){
-        MonsterGroup m = new MonsterGroup((groupName.replaceAll(" ", "_")).toLowerCase(), size);
-        m.damage(m.getHPmax()-currentHP);
+    public static void saveMonster(MonsterGroup m){
+        String fileName = (m.getName().trim().replaceAll(" ", "_")).toLowerCase();
+        File monsterFile = new File("MonsterFiles/"+fileName+".txt");
+        if (!monsterFile.exists()){
+            try {
+                FileWriter monsterWriter = new FileWriter(monsterFile);
+                String monsterStats = m.getStats();
+                String keyLine = monsterStats.split("\n")[1];
+                try {
+                    Integer.parseInt(ParsingTools.nextWord(keyLine, keyLine.indexOf("AC")+2));
+                    Integer.parseInt(ParsingTools.nextWord(keyLine, keyLine.indexOf("HP")+2));
+                    Integer.parseInt(ParsingTools.nextWord(keyLine, keyLine.indexOf("Initiative")+11));
+                } catch (Exception e) {
+                    monsterWriter.write(m.getOriginalName()+"\n");
+                    monsterWriter.write("AC "+m.getAC()+" \t HP "+m.getIndividualHP()+" \t Initiative "+m.getInitiative()+"\n");
+                }
+                monsterWriter.write(monsterStats);
+                monsterWriter.close();
+            } catch (IOException e) {
+                throw new RuntimeException(fileName+".txt had some issue. An IOException occured with message "+e.getMessage());
+            }
+        }
+    }
+
+    public static MonsterGroup parseMonster(String saveInfo){
+        String[] pieces = saveInfo.split("\t");
+        MonsterGroup m = new MonsterGroup(pieces[1].trim(), Integer.parseInt(pieces[3].trim()));
+        m.damage(m.getHPmax()-Integer.parseInt(pieces[2]));
         return m;
     }
 

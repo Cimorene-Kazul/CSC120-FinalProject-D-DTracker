@@ -11,9 +11,11 @@ public class Monster extends Creature{
     private Integer initiativeBonus;
     protected String statBlock;
     private String notes = null;
+    protected String fileOrigin = null;
 
     public Monster(String fileName){
         this.subclass = CreatureType.MONSTER;
+        this.fileOrigin = fileName;
         File statBlockFile = new File("MonsterFiles/"+fileName+".txt");
         try (Scanner fileReader = new Scanner(statBlockFile)){
             int lineNumber = 0;
@@ -66,7 +68,7 @@ public class Monster extends Creature{
         return this.AC;
     }
 
-    private int getInitiative(){
+    protected int getInitiative(){
         return this.initiativeBonus;
     }
 
@@ -105,13 +107,13 @@ public class Monster extends Creature{
         return result;
     }
 
-    public double rollInitiative(Scanner initScanner){
+    public int rollInitiative(Scanner initScanner){
         D20Test initiativeRoll = new D20Test(this.initiativeBonus);
         return initiativeRoll.roll();
     }
 
     public static void saveMonster(Monster m){
-        String fileName = (m.getName().replaceAll(" ", "_")).toLowerCase();
+        String fileName = (m.getName().trim().replaceAll(" ", "_")).toLowerCase();
         File monsterFile = new File("MonsterFiles/"+fileName+".txt");
         if (!monsterFile.exists()){
             try {
@@ -134,14 +136,19 @@ public class Monster extends Creature{
         }
     }
 
-    public static Monster getMonster(String monsterName, int currentHP){
-        Monster m = new Monster((monsterName.replaceAll(" ", "_")).toLowerCase());
-        m.damage(m.getHPmax()-currentHP);
+    public static Monster parseMonster(String saveInfo){
+        String[] pieces = saveInfo.split("\t");
+        Monster m = new Monster(pieces[1].trim());
+        m.damage(m.getHPmax()-Integer.parseInt(pieces[2]));
         return m;
     }
 
     public String saveInfo(){
-        return "MONSTER \t"+this.name+"\t"+this.HP;
+        if (this.fileOrigin == null){
+            Monster.saveMonster(this);
+            this.fileOrigin = (this.name.trim().replaceAll(" ", "_")).toLowerCase();
+        }
+        return "MONSTER \t"+this.fileOrigin+"\t"+this.HP;
     }
 
     public static void main(String[] args) {

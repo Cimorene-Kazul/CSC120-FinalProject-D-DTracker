@@ -272,15 +272,14 @@ public class Encounter implements Serializable {
             } 
             while (encounterScanner.hasNextLine()) {
                 String creatureLine = encounterScanner.nextLine();
-                String[] pieces = creatureLine.split("\t");
                 if (creatureLine.startsWith("MONSTER")){
-                    storageLoc.add(Monster.getMonster(pieces[1].trim(), Integer.getInteger(pieces[2].trim())));
+                    storageLoc.add(Monster.parseMonster(creatureLine));
                 } else if (creatureLine.startsWith("UNIT")){
-                    storageLoc.add(MonsterGroup.getMonsterGroup(pieces[1].trim(), Integer.getInteger(pieces[2].trim()), Integer.getInteger(pieces[3].trim())));
+                    storageLoc.add(MonsterGroup.parseMonster(creatureLine));
                 } else if (creatureLine.startsWith("PLACEHOLDER")){
-                    storageLoc.add(new Placeholder(Integer.getInteger(pieces[1].trim()), pieces[2].trim()));
+                    storageLoc.add(Placeholder.parsePlaceholder(creatureLine));
                 } else if (creatureLine.startsWith("PLAYER")){
-                    storageLoc.add(new Player(pieces[1].trim(), pieces[2].trim()));
+                    storageLoc.add(Player.parsePlayer(creatureLine));
                 }
             }
             encounterScanner.close();

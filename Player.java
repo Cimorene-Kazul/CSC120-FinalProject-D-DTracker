@@ -17,7 +17,7 @@ public class Player extends Creature{
         return "It is "+this.name+"'s turn. "+this.player+" please take your turn as "+this.name+".";
     }
 
-    public double rollInitiative(Scanner initScanner){
+    public int rollInitiative(Scanner initScanner){
         System.out.println(this.player+" what is "+this.name+"'s initiative?");
         int initiative = Integer.parseInt(initScanner.nextLine().trim());
         return initiative;
@@ -29,5 +29,10 @@ public class Player extends Creature{
 
     public String saveInfo(){
         return "PLAYER"+"\t"+this.name+"\t"+this.player;
+    }
+
+    public static Player parsePlayer(String saveInfo){
+        String[] pieces = saveInfo.split("\t");
+        return new Player(pieces[1].trim(), pieces[2].trim());
     }
 }
