@@ -23,6 +23,7 @@ public class InitiativeTracker implements Serializable {
         heal <index> <amt> - heals the creature at index <index> for amount <amount>
         take note <index> - adds a note to the creature at index <index> (no index means the creature at the current initative)
         stats <index> - prints stat block of creature <index>
+        save - saves the encounter as a file
         """;
 
     /** 
@@ -56,52 +57,6 @@ public class InitiativeTracker implements Serializable {
         this.encounterScanner = encounterScanner;
         this.creatures=new ArrayList<Creature>();
     }
-
-    // public InitiativeTracker(String fileName){
-    //     String content = Files.readString(Paths.get("Encounters/"+fileName+".txt"));
-    //     this.inCombat = content.startsWith("active");
-    //     String[] lines = content.split("\n");
-    //     String section = "";
-    //     ArrayList<Creature> creatures;
-    //     for (int i = 0; i < lines.length; i++){
-    //         if (lines[i].equals("MONSTERS: ") || lines[i].equals("PLAYERS: ") || lines[i].equals("INITIATIVE ORDER: ")){
-    //             section = lines[i];
-    //         } else if (lines[i].equals("")){
-    //             section = "";
-    //         } else if (section.equals("MONSTERS: ") && !lines[i].isEmpty()){
-    //             Monster monster = new Monster(lines[i]);
-    //             creatures.add(monster);
-    //         } else if (section.equals("PLAYERS: ")){
-    //             Player player = new Player(lines[i]);
-    //             creatures.add(player);
-    //         }
-    //     }
-    //     this.creatures = creatures;
-    //     this.currentInitiative = content.substring(content.indexOf("CURRENT INITIATIVE: "+20)).trim();
-    // }
-
-    // public void saveEncounter(String fileName){
-    //     try {
-    //         FileWriter encounterWriter = new FileWriter(new File("Encounters/"+fileName+".txt"));
-    //         if (this.inCombat){
-    //             encounterWriter.write("active \n");
-    //             for (Creature c:this.initiativeOrder){
-    //                 if (c.getType() == CreatureType.MONSTER){
-    //                     Monster m = (Monster) c;
-    //                     encounterWriter.write("MONSTER \t"+m.getHP()+""+m.getName());
-    //                     Monster.saveMonster(m);
-    //                 } else if (c.getType() == CreatureType.UNIT){
-
-    //                 }
-    //             }
-    //         } else {
-    //             encounterWriter.write("inactive \n");
-    //         }
-    //         encounterWriter.close();
-    //     } catch (IOException e) {
-    //         throw new RuntimeException("Something went wrong when saving this encounter. There was an IOException with message"+e.getMessage());
-    //     }
-    // }
 
     public String toString(){
         if (this.inCombat){
@@ -161,6 +116,10 @@ public class InitiativeTracker implements Serializable {
                 this.printSummary();
             } else if (input.startsWith("close")){
                 this.inCombat = false;
+            } else if (input.startsWith("save")){
+                System.out.println("What is the name of the file you want to save this file in?");
+                String fileName = inputScanner.nextLine().trim();
+                this.saveEncounter(fileName);
             }
         } catch (RuntimeException e){
             System.out.println("Something went wrong. Perhaps you formatted your command incorrectly or tried damage a creature that is not in the encounter. Please try again.");
@@ -302,7 +261,7 @@ public class InitiativeTracker implements Serializable {
         }
     }
 
-    public InitiativeTracker loadEncounter(String fileName){
+    public static InitiativeTracker loadEncounter(String fileName){
         try {
             File encounterFile = new File("Encounters/"+fileName+".txt");
             Scanner encounterScanner = new Scanner(encounterFile);
