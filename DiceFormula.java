@@ -42,16 +42,7 @@ public class DiceFormula {
         try {
             for (String plusChunk: formula.split("\\+")){
                 for (String minusChunk: plusChunk.split("\\-")){
-                    double value = 1;
-                    for (String timesChunk: minusChunk.split("\\*")){
-                        for (String divideChunk: timesChunk.split("\\/")){
-                            if (timesChunk.startsWith(divideChunk)){
-                                value = value * parseDie(timesChunk);
-                            } else {
-                                value = value /parseDie(timesChunk);
-                            }
-                        }
-                    }
+                    double value = Integer.parseInt(minusChunk);
                     if (plusChunk.startsWith(minusChunk)){
                         result += value;
                     } else {
