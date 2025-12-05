@@ -1,21 +1,20 @@
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Scanner;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 import java.lang.Integer;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class InitiativeTracker implements Serializable {
-    ArrayList<Creature> creatures;
-    ArrayList<Creature> initiativeOrder;
-    boolean inCombat = false;
-    Integer currentInitiative;
-    Scanner encounterScanner = null;
-    String commandOptions = """
+    private ArrayList<Creature> creatures;
+    private ArrayList<Creature> initiativeOrder;
+    private boolean inCombat = false;
+    private Integer currentInitiative;
+    private Scanner encounterScanner = null;
+    private String commandOptions = """
         summary - prints a concise summary of characters in combat, with their indicies, in initiative order
         end turn - goes on to the next turn
         close - closes the whole program
@@ -162,13 +161,7 @@ public class InitiativeTracker implements Serializable {
                 this.printSummary();
             } else if (input.startsWith("close")){
                 this.inCombat = false;
-            } else if (input.startsWith("detailed summary")){
             }
-            // else if (input.indexOf("save") != -1){
-            //      String thingToMakeSave = input.substring(input.indexOf("save")+4);
-            //      String saveType = thingToBeSaved.split(" ")[0];
-            //      // do the saving throw method
-            //  }
         } catch (RuntimeException e){
             System.out.println("Something went wrong. Perhaps you formatted your command incorrectly or tried damage a creature that is not in the encounter. Please try again.");
         }
@@ -179,7 +172,11 @@ public class InitiativeTracker implements Serializable {
      */
     private void printSummary(){
         for (int i=0; i<this.initiativeOrder.size(); i++){
-            System.out.println(i+"\t"+initiativeOrder.get(i));
+            String line = i+"\t"+initiativeOrder.get(i);
+            if (i==this.currentInitiative){
+                line += " <- current";
+            }
+            System.out.println(line);
         }
     }
 
@@ -289,8 +286,48 @@ public class InitiativeTracker implements Serializable {
         this.encounterScanner.close();
     }
 
+    public void saveEncounter(String fileName){
+        try {
+            File encounterFile = new File("Encounters/"+fileName+".txt");
+            BufferedWriter encounterWriter = new BufferedWriter(new FileWriter(encounterFile));
+            if (!this.inCombat){
+                encounterWriter.write("INACTIVE");
+            }
+            for (int i = 0; i<this.initiativeOrder.size(); i++){
+                encounterWriter.write((this.initiativeOrder.get(this.currentInitiative+i % this.initiativeOrder.size()).saveInfo()));
+            }
+            encounterWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException("Something went wrong and the encounter could not be saved");
+        }
+    }
 
-
-    public static void main(String[] args) {
+    public InitiativeTracker loadEncounter(String fileName){
+        try {
+            File encounterFile = new File("Encounters/"+fileName+".txt");
+            Scanner encounterScanner = new Scanner(encounterFile);
+            InitiativeTracker encounter = new InitiativeTracker();
+            ArrayList<Creature> storageLoc = encounter.initiativeOrder;
+            if (encounterScanner.nextLine().startsWith("INACTIVE")){
+                storageLoc = encounter.creatures;
+            } 
+            while (encounterScanner.hasNextLine()) {
+                String creatureLine = encounterScanner.nextLine();
+                String[] pieces = creatureLine.split("\t");
+                if (creatureLine.startsWith("MONSTER")){
+                    storageLoc.add(Monster.getMonster(pieces[1].trim(), Integer.getInteger(pieces[2].trim())));
+                } else if (creatureLine.startsWith("UNIT")){
+                    storageLoc.add(MonsterGroup.getMonsterGroup(pieces[1].trim(), Integer.getInteger(pieces[2].trim()), Integer.getInteger(pieces[3].trim())));
+                } else if (creatureLine.startsWith("PLACEHOLDER")){
+                    storageLoc.add(new Placeholder(Integer.getInteger(pieces[1].trim()), pieces[2].trim()));
+                } else if (creatureLine.startsWith("PLAYER")){
+                    storageLoc.add(new Player(pieces[1].trim(), pieces[2].trim()));
+                }
+            }
+            encounterScanner.close();
+            return encounter;
+        } catch (IOException e) {
+            throw new RuntimeException("Something went wrong and the encounter could not be loaded");
+        }
     }
 }

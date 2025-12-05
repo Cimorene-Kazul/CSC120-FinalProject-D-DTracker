@@ -26,4 +26,8 @@ public class Player extends Creature{
     public String toString(){
         return this.player+"'s player character, "+this.name;
     }
+
+    public String saveInfo(){
+        return "PLAYER"+"\t"+this.name+"\t"+this.player;
+    }
 }

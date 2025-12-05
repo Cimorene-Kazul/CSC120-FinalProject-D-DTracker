@@ -30,4 +30,8 @@ public class Placeholder extends Creature {
     public String toString(){
         return "Placeholder in initiative order for "+this.name;
     }
+
+    public String saveInfo(){
+        return "PLACEHOLDER \t"+this.initiative+"\t"+this.name;
+    }
 }

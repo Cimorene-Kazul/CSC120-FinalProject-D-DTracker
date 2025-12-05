@@ -40,6 +40,16 @@ public class MonsterGroup extends Monster{
         return this.size;
     }
 
+    public String saveInfo(){
+        return "UNIT \t"+this.baseName+"\t"+this.HP+"\t"+this.size;
+    }
+
+    public static MonsterGroup getMonsterGroup(String groupName, int currentHP, int size){
+        MonsterGroup m = new MonsterGroup((groupName.replaceAll(" ", "_")).toLowerCase(), size);
+        m.damage(m.getHPmax()-currentHP);
+        return m;
+    }
+
     public static void main(String[] args) {
     }
 }

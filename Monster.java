@@ -140,6 +140,10 @@ public class Monster extends Creature{
         return m;
     }
 
+    public String saveInfo(){
+        return "MONSTER \t"+this.name+"\t"+this.HP;
+    }
+
     public static void main(String[] args) {
     }
 }

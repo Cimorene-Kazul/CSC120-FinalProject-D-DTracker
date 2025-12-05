@@ -28,7 +28,7 @@ abstract class Creature {
     public String takeNote(String note){
         return this.name+" is not a monster and thus cannot take notes.";
     }
-
+    abstract String saveInfo();
     abstract double rollInitiative(Scanner initScanner);
     abstract String turnPrompt();
 }
