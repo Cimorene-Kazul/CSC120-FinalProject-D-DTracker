@@ -1,8 +1,13 @@
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Serializable;
 import java.lang.Integer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class InitiativeTracker implements Serializable {
     ArrayList<Creature> creatures;
@@ -53,27 +58,51 @@ public class InitiativeTracker implements Serializable {
         this.creatures=new ArrayList<Creature>();
     }
 
-    public InitiativeTracker(String fileName){
-        String content = Files.readString(Paths.get(fileName));
-        String[] lines = content.split("\n");
-        String section = "";
-        ArrayList<Creature> creatures;
-        for (int i = 0; i < lines.length; i++){
-            if (lines[i].equals("MONSTERS: ") || lines[i].equals("PLAYERS: ") || lines[i].equals("INITIATIVE ORDER: ")){
-                section = lines[i];
-            } else if (lines[i].equals("")){
-                section = "";
-            } else if (section.equals("MONSTERS: ") && !lines[i].isEmpty()){
-                Monster monster = new Monster(lines[i]);
-                creatures.add(monster);
-            } else if (section.equals("PLAYERS: ")){
-                Player player = new Player(lines[i]);
-                creatures.add(player);
-            }
-        }
-        this.creatures = creatures;
-        this.currentInitiative = content.substring(content.indexOf("CURRENT INITIATIVE: "+20)).trim();
-    }
+    // public InitiativeTracker(String fileName){
+    //     String content = Files.readString(Paths.get("Encounters/"+fileName+".txt"));
+    //     this.inCombat = content.startsWith("active");
+    //     String[] lines = content.split("\n");
+    //     String section = "";
+    //     ArrayList<Creature> creatures;
+    //     for (int i = 0; i < lines.length; i++){
+    //         if (lines[i].equals("MONSTERS: ") || lines[i].equals("PLAYERS: ") || lines[i].equals("INITIATIVE ORDER: ")){
+    //             section = lines[i];
+    //         } else if (lines[i].equals("")){
+    //             section = "";
+    //         } else if (section.equals("MONSTERS: ") && !lines[i].isEmpty()){
+    //             Monster monster = new Monster(lines[i]);
+    //             creatures.add(monster);
+    //         } else if (section.equals("PLAYERS: ")){
+    //             Player player = new Player(lines[i]);
+    //             creatures.add(player);
+    //         }
+    //     }
+    //     this.creatures = creatures;
+    //     this.currentInitiative = content.substring(content.indexOf("CURRENT INITIATIVE: "+20)).trim();
+    // }
+
+    // public void saveEncounter(String fileName){
+    //     try {
+    //         FileWriter encounterWriter = new FileWriter(new File("Encounters/"+fileName+".txt"));
+    //         if (this.inCombat){
+    //             encounterWriter.write("active \n");
+    //             for (Creature c:this.initiativeOrder){
+    //                 if (c.getType() == CreatureType.MONSTER){
+    //                     Monster m = (Monster) c;
+    //                     encounterWriter.write("MONSTER \t"+m.getHP()+""+m.getName());
+    //                     Monster.saveMonster(m);
+    //                 } else if (c.getType() == CreatureType.UNIT){
+
+    //                 }
+    //             }
+    //         } else {
+    //             encounterWriter.write("inactive \n");
+    //         }
+    //         encounterWriter.close();
+    //     } catch (IOException e) {
+    //         throw new RuntimeException("Something went wrong when saving this encounter. There was an IOException with message"+e.getMessage());
+    //     }
+    // }
 
     public String toString(){
         if (this.inCombat){
@@ -117,23 +146,24 @@ public class InitiativeTracker implements Serializable {
                 initiativeOrder.get(index).takeNote(note);
             } else if (input.startsWith("roll")){
                 String die = input.substring(5);
-                roll(die);
+                System.out.println(DiceFormula.parseFormula(die.trim()));
             } else if (input.startsWith("options")){
                 System.out.println(commandOptions);
-            } else if (input.startsWith("legendary resistance")){
-                Integer index = Integer.parseInt(input.substring(20).trim());
-                System.out.println(((Monster)this.initiativeOrder.get(index)).useLegendaryResistance());
             } else if (input.startsWith("end turn")){
                 this.currentInitiative += 1;
                 if (this.currentInitiative >= this.initiativeOrder.size()){
                     this.currentInitiative = 0;
                 }
                 System.out.println(this.initiativeOrder.get(this.currentInitiative).turnPrompt());
-            } else if (input.startsWith("summary")){
+            } else if (input.startsWith("stats")) {
+                Integer index = Integer.parseInt(input.substring(5));
+                System.out.println(((Monster) this.initiativeOrder.get(index)).getStats());
+            }else if (input.startsWith("summary")){
                 this.printSummary();
             } else if (input.startsWith("close")){
                 this.inCombat = false;
-            } 
+            } else if (input.startsWith("detailed summary")){
+            }
             // else if (input.indexOf("save") != -1){
             //      String thingToMakeSave = input.substring(input.indexOf("save")+4);
             //      String saveType = thingToBeSaved.split(" ")[0];
@@ -160,51 +190,6 @@ public class InitiativeTracker implements Serializable {
         }
         return summary;
     }
-
-    public static double parseDie(String value){
-         value = value.trim().split(" ")[0];
-         if (!value.contains("d")){
-             return Double.parseDouble(value);
-         } else {
-             int numberOfDice = Integer.parseInt(value.substring(0,value.indexOf("d")));
-             int sizeOfDie = Integer.parseInt(value.substring(value.indexOf("d")+1));
-             double result = 0;
-             for (int i = 0; i< numberOfDice; i++){
-                 result += (int)(Math.random()*sizeOfDie + 1);
-             }
-             return result;
-         }
-     }
-
-    /** 
-     * Rolls dice or does math based on a dice formula input by the user
-     * @param input the dice formula input by the user
-     */
-    public static void roll (String input){
-        double result = 0;
-        input = input.trim();
-        for (String plusChunk: input.split("\\+")){
-            for (String minusChunk: plusChunk.split("\\-")){
-                double value = 1;
-                for (String timesChunk: minusChunk.split("\\*")){
-                    for (String divideChunk: timesChunk.split("\\/")){
-                        if (timesChunk.startsWith(divideChunk)){
-                            value = value * InitiativeTracker.parseDie(timesChunk);
-                        } else {
-                            value = value /InitiativeTracker.parseDie(timesChunk);
-                        }
-                    }
-                }
-                if (plusChunk.startsWith(minusChunk)){
-                    result += value;
-                } else {
-                    result -= value;
-                }
-            }
-        }
-        System.out.println(result);
-    }
-
     /**
      * Adds a Creature to the InitiativeTracker 
      * @param c the Creature to be added

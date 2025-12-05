@@ -8,12 +8,11 @@ public class Placeholder extends Creature {
         this.initiative=initiative;
         this.name=name;
         this.text=text;
+        this.subclass = CreatureType.PLACEHOLDER;
     }
 
     public Placeholder(int initiative, String name){
-        this.initiative=initiative;
-        this.name=name;
-        this.text="";
+        this(initiative, name, "");
     }
 
     public String getName(){

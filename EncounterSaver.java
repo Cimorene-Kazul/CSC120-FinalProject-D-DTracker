@@ -3,7 +3,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 public class EncounterSaver {
 
-    public void saveEncounter(InitiativeTracker tracker, String fileName){
+    public static void saveEncounter(InitiativeTracker tracker, String fileName){
         String encounter = fileName + ": \nMONSTERS: \n";
         for (int i = 0; i < tracker.creatures.size(); i++){
             Creature c = tracker.creatures.get(i);

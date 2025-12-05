@@ -1,3 +1,3 @@
 public enum CreatureType {
-    PLAYER, MONSTER, LAIR
+    PLAYER, MONSTER, PLACEHOLDER, UNIT
 }

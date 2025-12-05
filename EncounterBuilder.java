@@ -20,12 +20,10 @@ public class EncounterBuilder {
     String commands = """
             ENCOUNTER BUILDER COMMANDS
             add monster
-            add monster with notes
             remove monster
             add player
             remove player
             add unit
-            add unit with notes
             print encounter
             list avaliable monsters
             help
@@ -39,9 +37,7 @@ public class EncounterBuilder {
         while (inProgress) {
             System.out.println("What do you want to do?");
             String command = (encounterScanner.nextLine().trim()).toLowerCase();
-            if (command.startsWith("add monster with notes")){
-                this.addMonsterWithNotes(encounterScanner);
-            } else if (command.startsWith("add monster")){
+            if (command.startsWith("add monster")){
                 this.addMonster(encounterScanner);
             } else if (command.startsWith("remove monster")){
                 this.removeMonster(encounterScanner);
@@ -49,8 +45,6 @@ public class EncounterBuilder {
                 this.addPlayer(encounterScanner);
             } else if (command.startsWith("remove player")) {
                 this.removePlayer(encounterScanner);
-            } else if (command.startsWith("add unit with notes")) {
-                this.addUnitWithNotes(encounterScanner);
             } else if (command.startsWith("add unit")) {
                 this.addUnit(encounterScanner);
             } else if (command.startsWith("print encounter")) {
@@ -163,22 +157,6 @@ public class EncounterBuilder {
         }
     }
 
-    private void addMonsterWithNotes(Scanner input){
-        // this.saved = false;
-        try{
-            System.out.println("What monster do you want to add?");
-            String monsterFile = toFileName(input.nextLine().trim());
-            System.out.println("What notes do you want to add about this monster's location?");
-            String locationNotes = input.nextLine().trim();
-            Monster monsterToAdd = new Monster(monsterFile, locationNotes);
-            this.creatures.put(monsterToAdd.getName(), monsterToAdd);
-            this.encounter.addCreature(monsterToAdd);
-            System.out.println(monsterToAdd.getName() + " has been added to your encounter.");
-        } catch (RuntimeException e){
-            System.out.println(e.getMessage());
-        }
-    }
-
     private void addUnit(Scanner input){
         // this.saved = false;
         try{
@@ -187,24 +165,6 @@ public class EncounterBuilder {
             System.out.println("How many monsters are in the unit?");
             int size = input.nextInt();
             Monster monsterToAdd = new MonsterGroup(monsterFile, size);
-            this.creatures.put(monsterToAdd.getName(), monsterToAdd);
-            this.encounter.addCreature(monsterToAdd);
-            System.out.println("The unit "+monsterToAdd.getName() + " has been added to your encounter.");
-        } catch (RuntimeException e){
-            System.out.println(e.getMessage());
-        }
-    }
-
-    private void addUnitWithNotes(Scanner input){
-        // this.saved = false;
-        try{
-            System.out.println("What monster do you want to add?");
-            String monsterFile = toFileName(input.nextLine().trim());
-            System.out.println("How many monsters are in the unit?");
-            int size = input.nextInt();
-            System.out.println("What notes do you want to add about this monster's location?");
-            String locationNotes = input.nextLine().trim();
-            Monster monsterToAdd = new MonsterGroup(monsterFile, size, locationNotes);
             this.creatures.put(monsterToAdd.getName(), monsterToAdd);
             this.encounter.addCreature(monsterToAdd);
             System.out.println("The unit "+monsterToAdd.getName() + " has been added to your encounter.");

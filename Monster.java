@@ -10,13 +10,7 @@ public class Monster extends Creature{
     protected Integer HP;
     private Integer initiativeBonus;
     protected String statBlock;
-    protected String locationNotes = null;
-    private String generalNotes = null;
-
-    public Monster(String fileName, String locationNotes){
-        this(fileName);
-        this.locationNotes = locationNotes;
-    }
+    private String notes = null;
 
     public Monster(String fileName){
         this.subclass = CreatureType.MONSTER;
@@ -87,29 +81,26 @@ public class Monster extends Creature{
     }
 
     public String takeNote(String note){
-        if (this.generalNotes == null){
-            this.generalNotes = note;
+        if (this.notes == null){
+            this.notes = note;
         } else {
-            this.generalNotes += " \n "+ note;
+            this.notes += " \n "+ note;
         }
         return "Notes have been saved.";
     }
     public String toString(){
-        if (this.locationNotes == null){
-            return name+" at "+HP+"/"+HPmax+" HP, AC "+AC;
-        } else {
-            return name+" at "+HP+"/"+HPmax+" HP, AC "+AC + " ("+this.locationNotes+")";
+        String result = name+" at "+HP+"/"+HPmax+" HP, AC "+AC;
+        if (this.notes != null){
+            result += " ("+this.notes.replaceAll("\n", "\t")+")";
         }
+        return result;
     }
 
     public String turnPrompt(){
         String result = "It is "+this.name+"'s turn.";
-        if (this.locationNotes != null){
-            result += " \n Specific location notes for "+this.name+" are "+ this.locationNotes +".";
-        }
         result += "\n Here is a stat block for "+this.name+".\n" + this.statBlock+"\n"+this.name+" is at "+this.HP+" out of "+this.HPmax+" health.";
-        if (this.generalNotes != null){
-            result += " \n Additional notes for "+this.name+": \n "+this.generalNotes;
+        if (this.notes != null){
+            result += " \n Additional notes for "+this.name+": \n "+this.notes;
         }
         return result;
     }

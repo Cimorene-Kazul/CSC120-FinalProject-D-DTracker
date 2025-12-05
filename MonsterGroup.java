@@ -3,13 +3,10 @@ public class MonsterGroup extends Monster{
     Integer individualHP;
     String baseName;
     
-    public MonsterGroup(String fileName, int number, String locationNotes){
-        this(fileName, number);
-        this.locationNotes = locationNotes;
-    }
 
     public MonsterGroup(String fileName, int number){
         super(fileName);
+        this.subclass = CreatureType.UNIT;
         this.size = number;
         this.HPmax *= number;
         this.HP = this.HPmax;
