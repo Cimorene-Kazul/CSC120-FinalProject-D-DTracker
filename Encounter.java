@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.lang.Integer;
 
-public class InitiativeTracker implements Serializable {
+public class Encounter implements Serializable {
     private ArrayList<Creature> creatures;
     private ArrayList<Creature> initiativeOrder;
     private boolean inCombat = false;
@@ -30,7 +30,7 @@ public class InitiativeTracker implements Serializable {
      * Constructor for InitiativeTracker given an array of Creatures
      * @param creatureList an array of Creatures to be added to the InitiativeTracker
      */
-    public InitiativeTracker(Creature[] creatureList){
+    public Encounter(Creature[] creatureList){
         ArrayList<Creature> creatures = new ArrayList<>();
         for (Creature c: creatureList){
             creatures.add(c);
@@ -41,7 +41,7 @@ public class InitiativeTracker implements Serializable {
     /** 
      * Default constructor for InitiativeTracker
      */
-    public InitiativeTracker(){
+    public Encounter(){
         this.creatures=new ArrayList<Creature>();
     }
 
@@ -49,11 +49,11 @@ public class InitiativeTracker implements Serializable {
      * Constructor for InitiativeTracker given an ArrayList of Creatures
      * @param creatures an ArrayList of Creatures to be added to the InitiativeTracker
      */
-    public InitiativeTracker(ArrayList<Creature> creatures){
+    public Encounter(ArrayList<Creature> creatures){
         this.creatures = creatures;
     }
 
-    public InitiativeTracker(Scanner encounterScanner){
+    public Encounter(Scanner encounterScanner){
         this.encounterScanner = encounterScanner;
         this.creatures=new ArrayList<Creature>();
     }
@@ -261,11 +261,11 @@ public class InitiativeTracker implements Serializable {
         }
     }
 
-    public static InitiativeTracker loadEncounter(String fileName){
+    public static Encounter loadEncounter(String fileName){
         try {
             File encounterFile = new File("Encounters/"+fileName+".txt");
             Scanner encounterScanner = new Scanner(encounterFile);
-            InitiativeTracker encounter = new InitiativeTracker();
+            Encounter encounter = new Encounter();
             ArrayList<Creature> storageLoc = encounter.initiativeOrder;
             if (encounterScanner.nextLine().startsWith("INACTIVE")){
                 storageLoc = encounter.creatures;

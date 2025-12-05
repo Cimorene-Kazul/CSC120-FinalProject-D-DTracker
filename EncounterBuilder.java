@@ -6,7 +6,7 @@ import java.io.File;
  * This class is *not* a typical -Builder class. This is called an EncounterBuilder because within the setting of D&D, an encounter creation tool is called an 'Encounter Builder.'
  */
 public class EncounterBuilder {
-    InitiativeTracker encounter;
+    Encounter encounter;
     boolean inProgress = true;
     ArrayList<String> creatureFiles = new ArrayList<>();
     Hashtable<String, Creature> creatures = new Hashtable<>();
@@ -20,6 +20,10 @@ public class EncounterBuilder {
             add unit
             print encounter
             list avaliable monsters
+            save encounter
+            list saved encounters
+            load encounter
+            clear encounter
             help
             close
             """;
@@ -27,7 +31,7 @@ public class EncounterBuilder {
     public void buildEncounter(){
         System.out.println("Welcome to JEB - the Java Encounter Builder! \n If you don't know what to do, the command 'help' will bring up a list of options.");
         Scanner encounterScanner = new Scanner(System.in);
-        this.encounter = new InitiativeTracker(encounterScanner);
+        this.encounter = new Encounter(encounterScanner);
         while (inProgress) {
             System.out.println("What do you want to do?");
             String command = (encounterScanner.nextLine().trim()).toLowerCase();
@@ -71,10 +75,10 @@ public class EncounterBuilder {
             System.out.println("Are you sure? The current encounter is unsaved.");
             String response = input.nextLine().toLowerCase().trim();
             if (response=="yes" || response=="y"){
-                this.encounter = new InitiativeTracker(input);
+                this.encounter = new Encounter(input);
             }
         } else {
-            this.encounter = new InitiativeTracker(input);
+            this.encounter = new Encounter(input);
         }
     }
 
@@ -116,7 +120,7 @@ public class EncounterBuilder {
             System.out.println("What encounter do you want to load?");
             String encounterName = input.nextLine().trim();
             try {
-                this.encounter = InitiativeTracker.loadEncounter(encounterName);
+                this.encounter = Encounter.loadEncounter(encounterName);
             } catch (RuntimeException e) {
                 System.out.println("The file in question has problems and may not exist.");
             }
