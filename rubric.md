@@ -18,7 +18,7 @@ _____ 0.5 pts: The command 'heal *index* *value*' heals the creature at index *i
 
 _____ 1 pts: The command 'end turn' successfully changes the current turn to the turn of the next character in initiative.
 
-_____ 1 pts: The command line successfully works as a dice roller and 4-function calculator, by writing 'roll *computation*'.
+_____ 1 pts: The command line successfully works as a dice roller that can also handle addition and multiplication, by writing 'roll *computation*'.
 
 _____ 1 pts: The command 'summary' prints a list of creatures in initiative order, with their Armor Classes, current health, and indicies
 
