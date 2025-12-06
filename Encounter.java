@@ -10,9 +10,9 @@ import java.lang.Integer;
 
 public class Encounter implements Serializable {
     private ArrayList<Creature> creatures;
-    private ArrayList<Creature> initiativeOrder;
+    private ArrayList<Creature> initiativeOrder = new ArrayList<>();
     private boolean inCombat = false;
-    private Integer currentInitiative;
+    private Integer currentInitiative = 0;
     private Scanner encounterScanner = null;
     private String commandOptions = """
         summary - prints a concise summary of characters in combat, with their indicies, in initiative order
@@ -251,11 +251,18 @@ public class Encounter implements Serializable {
         try {
             File encounterFile = new File("Encounters/"+fileName+".txt");
             BufferedWriter encounterWriter = new BufferedWriter(new FileWriter(encounterFile));
-            if (!this.inCombat){
+            ArrayList<Creature> creatureSource = this.creatures;
+            if (this.inCombat){
+                creatureSource = this.initiativeOrder;
+            } else {
                 encounterWriter.write("INACTIVE");
+                encounterWriter.newLine();
             }
-            for (int i = 0; i<this.initiativeOrder.size(); i++){
-                encounterWriter.write((this.initiativeOrder.get(this.currentInitiative+i % this.initiativeOrder.size()).saveInfo()));
+            for (int i = 0; i<creatureSource.size(); i++){
+                encounterWriter.write((creatureSource.get(this.currentInitiative+i % creatureSource.size()).saveInfo()));
+                if (i!= creatureSource.size()-1){
+                    encounterWriter.newLine();
+                }
             }
             encounterWriter.close();
         } catch (IOException e) {
@@ -292,5 +299,13 @@ public class Encounter implements Serializable {
         } catch (IOException e) {
             throw new RuntimeException("Something went wrong and the encounter could not be loaded");
         }
+    }
+
+    public static void main(String[] args) {
+        Encounter e = new Encounter();
+        e.addCreature(new Player("Emia", "Celina"));
+        e.addCreature(new Monster("luna"));
+        e.addCreature(new MonsterGroup("veteran_bonded", 3));
+        e.saveEncounter("test_encounter");
     }
 }
