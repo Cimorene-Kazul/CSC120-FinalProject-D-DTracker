@@ -268,9 +268,10 @@ public class Encounter implements Serializable {
             File encounterFile = new File("Encounters/"+fileName+".txt");
             Scanner encounterScanner = new Scanner(encounterFile);
             Encounter encounter = new Encounter();
-            ArrayList<Creature> storageLoc = encounter.initiativeOrder;
-            if (encounterScanner.nextLine().startsWith("INACTIVE")){
-                storageLoc = encounter.creatures;
+            ArrayList<Creature> storageLoc = encounter.creatures;
+            if (!encounterScanner.nextLine().startsWith("INACTIVE")){
+                encounter.initiativeOrder = new ArrayList<>();
+                storageLoc = encounter.initiativeOrder;
                 encounter.inCombat = true;
             } 
             while (encounterScanner.hasNextLine()) {
@@ -285,6 +286,7 @@ public class Encounter implements Serializable {
                     storageLoc.add(Player.parsePlayer(creatureLine));
                 }
             }
+            encounter.creatures = encounter.initiativeOrder;
             encounterScanner.close();
             return encounter;
         } catch (IOException e) {

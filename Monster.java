@@ -15,8 +15,8 @@ public class Monster extends Creature{
 
     public Monster(String fileName){
         this.subclass = CreatureType.MONSTER;
-        this.fileOrigin = fileName;
-        File statBlockFile = new File("MonsterFiles/"+fileName+".txt");
+        this.fileOrigin = fileName.trim();
+        File statBlockFile = new File("MonsterFiles/"+fileName.trim()+".txt");
         try (Scanner fileReader = new Scanner(statBlockFile)){
             int lineNumber = 0;
             while (fileReader.hasNextLine()) {
@@ -137,10 +137,10 @@ public class Monster extends Creature{
     }
 
     public static Monster parseMonster(String saveInfo){
-        String[] pieces = saveInfo.split("\t");
+        String[] pieces = saveInfo.split("<<<SPACING MARKER>>>");
         Monster m = new Monster(pieces[1].trim());
-        m.damage(m.getHPmax()-Integer.parseInt(pieces[2]));
-        m.takeNote(pieces[3]);
+        m.damage(m.getHPmax()-Integer.parseInt(pieces[2].trim()));
+        m.takeNote(pieces[3].trim());
         return m;
     }
 
@@ -152,7 +152,7 @@ public class Monster extends Creature{
         if (this.notes == null){
             this.notes = "";
         }
-        return "MONSTER \t"+this.fileOrigin+"\t"+this.HP+"\t  "+this.notes.replaceAll("\n", " ");
+        return "MONSTER <<<SPACING MARKER>>>"+this.fileOrigin+"<<<SPACING MARKER>>>"+this.HP+"<<<SPACING MARKER>>>  "+this.notes.replaceAll("\n", " ");
     }
 
     public static void main(String[] args) {

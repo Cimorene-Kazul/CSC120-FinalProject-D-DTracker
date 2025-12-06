@@ -32,11 +32,11 @@ public class Placeholder extends Creature {
     }
 
     public String saveInfo(){
-        return "PLACEHOLDER \t"+this.initiative+"\t"+this.name;
+        return "PLACEHOLDER <<<SPACING MARKER>>>"+this.initiative+"<<<SPACING MARKER>>>"+this.name;
     }
 
     public static Placeholder parsePlaceholder(String saveInfo){
-        String[] pieces = saveInfo.split("\t");
+        String[] pieces = saveInfo.split("<<<SPACING MARKER>>>");
         return new Placeholder(Integer.parseInt(pieces[1].trim()), pieces[2].trim());
     }
 }

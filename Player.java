@@ -28,11 +28,11 @@ public class Player extends Creature{
     }
 
     public String saveInfo(){
-        return "PLAYER"+"\t"+this.name+"\t"+this.player;
+        return "PLAYER <<<SPACING MARKER>>>"+this.name+"<<<SPACING MARKER>>>"+this.player;
     }
 
     public static Player parsePlayer(String saveInfo){
-        String[] pieces = saveInfo.split("\t");
+        String[] pieces = saveInfo.split("<<<SPACING MARKER>>>");
         return new Player(pieces[1].trim(), pieces[2].trim());
     }
 }

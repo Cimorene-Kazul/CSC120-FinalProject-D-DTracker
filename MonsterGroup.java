@@ -61,7 +61,7 @@ public class MonsterGroup extends Monster{
         if (this.notes == null){
             this.notes = "";
         }
-        return "UNIT \t"+this.fileName+"\t"+this.HP+"\t"+this.size+"\t  "+this.notes.replaceAll("\n", " ");
+        return "UNIT <<<SPACING MARKER>>>"+this.fileName+"<<<SPACING MARKER>>>"+this.HP+"<<<SPACING MARKER>>>"+this.size+"<<<SPACING MARKER>>>  "+this.notes.replaceAll("\n", " ");
     }
 
     public static void saveMonster(MonsterGroup m){
@@ -89,10 +89,10 @@ public class MonsterGroup extends Monster{
     }
 
     public static MonsterGroup parseMonster(String saveInfo){
-        String[] pieces = saveInfo.split("\t");
+        String[] pieces = saveInfo.split("<<<SPACING MARKER>>>");
         MonsterGroup m = new MonsterGroup(pieces[1].trim(), Integer.parseInt(pieces[3].trim()));
-        m.damage(m.getHPmax()-Integer.parseInt(pieces[2]));
-        m.takeNote(pieces[4]);
+        m.damage(m.getHPmax()-Integer.parseInt(pieces[2].trim()));
+        m.takeNote(pieces[4].trim());
         return m;
     }
 
