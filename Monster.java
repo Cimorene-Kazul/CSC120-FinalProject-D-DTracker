@@ -92,7 +92,7 @@ public class Monster extends Creature{
     }
     public String toString(){
         String result = name+" at "+HP+"/"+HPmax+" HP, AC "+AC;
-        if (this.notes != null){
+        if (this.notes != null && this.notes.trim() != ""){
             result += " ("+this.notes.replaceAll("\n", "\t")+")";
         }
         return result;
