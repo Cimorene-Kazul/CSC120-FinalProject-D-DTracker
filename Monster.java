@@ -10,7 +10,7 @@ public class Monster extends Creature{
     protected Integer HP;
     private Integer initiativeBonus;
     protected String statBlock;
-    private String notes = null;
+    protected String notes = null;
     protected String fileOrigin = null;
 
     public Monster(String fileName){
@@ -140,6 +140,7 @@ public class Monster extends Creature{
         String[] pieces = saveInfo.split("\t");
         Monster m = new Monster(pieces[1].trim());
         m.damage(m.getHPmax()-Integer.parseInt(pieces[2]));
+        m.takeNote(pieces[3]);
         return m;
     }
 
@@ -148,7 +149,10 @@ public class Monster extends Creature{
             Monster.saveMonster(this);
             this.fileOrigin = (this.name.trim().replaceAll(" ", "_")).toLowerCase();
         }
-        return "MONSTER \t"+this.fileOrigin+"\t"+this.HP;
+        if (this.notes == null){
+            this.notes = "";
+        }
+        return "MONSTER \t"+this.fileOrigin+"\t"+this.HP+"\t  "+this.notes.replaceAll("\n", " ");
     }
 
     public static void main(String[] args) {

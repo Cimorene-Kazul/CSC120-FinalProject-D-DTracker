@@ -58,7 +58,10 @@ public class MonsterGroup extends Monster{
             MonsterGroup.saveMonster(this);
             this.fileOrigin = (this.name.trim().replaceAll(" ", "_")).toLowerCase();
         }
-        return "UNIT \t"+this.fileName+"\t"+this.HP+"\t"+this.size;
+        if (this.notes == null){
+            this.notes = "";
+        }
+        return "UNIT \t"+this.fileName+"\t"+this.HP+"\t"+this.size+"\t  "+this.notes.replaceAll("\n", " ");
     }
 
     public static void saveMonster(MonsterGroup m){
@@ -89,6 +92,7 @@ public class MonsterGroup extends Monster{
         String[] pieces = saveInfo.split("\t");
         MonsterGroup m = new MonsterGroup(pieces[1].trim(), Integer.parseInt(pieces[3].trim()));
         m.damage(m.getHPmax()-Integer.parseInt(pieces[2]));
+        m.takeNote(pieces[4]);
         return m;
     }
 

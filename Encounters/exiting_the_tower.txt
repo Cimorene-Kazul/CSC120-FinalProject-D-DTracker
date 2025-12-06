@@ -1,24 +1,24 @@
-MONSTER hesher  114
-MONSTER high_magedeath  210
-MONSTER verisheet   74
-MONSTER commander_poltolsk  64
-PLAYER  Moth    Eli
-MONSTER kilask  84
-MONSTER high_magedeath  144
-MONSTER utala   83
-MONSTER subcommander_res’seth   78
-PLAYER  Psyin   Tianyi
-MONSTER high_magedeath  163
-MONSTER high_magedeath  210
-MONSTER high_magedeath  196
-MONSTER high_magedeath  210
-MONSTER high_magedeath  210
-MONSTER jasilisk    64
-UNIT    senior_magedeath    317 3
-PLAYER  Emia    Celina
-MONSTER levadra 68
-UNIT    magedeath_fanatic   4400    100
-MONSTER high_magedeath  210
-UNIT    senior_student  309 6
-MONSTER milnor  124
-UNIT    high_magedeath  203
+MONSTER hesher  114   
+MONSTER high_magedeath  210   is marker 2
+MONSTER verisheet   74    
+MONSTER commander_poltolsk  64    
+PLAYER  Moth    Eli   
+MONSTER kilask  84    
+MONSTER high_magedeath  144   has used antimagic field; is marker 7
+MONSTER utala   83    
+MONSTER subcommander_res’seth   78    
+PLAYER  Psyin   Tianyi    
+MONSTER high_magedeath  163   is marker 11
+MONSTER high_magedeath  210    under suggestion, is marker 12
+MONSTER high_magedeath  196   is marker 13
+MONSTER high_magedeath  210   is marker 14
+MONSTER high_magedeath  210   has used antimagic field, is marker 15
+MONSTER jasilisk    64    
+UNIT    senior_magedeath    317 3     
+PLAYER  Emia    Celina    
+MONSTER levadra 68     
+UNIT    magedeath_fanatic   4400    100   
+MONSTER high_magedeath  210   is marker 21
+UNIT    senior_student  309 6     
+MONSTER milnor  124   
+UNIT    high_magedeath  203   has used antimagic, has marker 0

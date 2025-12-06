@@ -188,32 +188,34 @@ public class Encounter implements Serializable {
      * @param initiativeScanner a Scanner to read user input for initiatives
      */
     private void rollInitiatives(Scanner initiativeScanner){
-        Hashtable<Integer, ArrayList<Creature>> initiativeTable = new Hashtable<>();
-        this.addLairs();
-        Integer top = 20; // the 'top of the initiative order'
-        Integer bottom = 0; // the 'bottom of the initiative order'
-        for (Creature creature: this.creatures){
-            Integer initiative = (int) creature.rollInitiative(initiativeScanner);
-            if (initiative > top){
-                top = initiative;
-            } else if (initiative < bottom){
-                bottom = initiative;
+        if (!this.inCombat){
+            Hashtable<Integer, ArrayList<Creature>> initiativeTable = new Hashtable<>();
+            this.addLairs();
+            Integer top = 20; // the 'top of the initiative order'
+            Integer bottom = 0; // the 'bottom of the initiative order'
+            for (Creature creature: this.creatures){
+                Integer initiative = (int) creature.rollInitiative(initiativeScanner);
+                if (initiative > top){
+                    top = initiative;
+                } else if (initiative < bottom){
+                    bottom = initiative;
+                }
+                if (initiativeTable.containsKey(initiative)){
+                    initiativeTable.get(initiative).add(creature);
+                } else {
+                    ArrayList<Creature> startingArray = new ArrayList<>();
+                    startingArray.add(creature);
+                    initiativeTable.put(initiative, startingArray);
+                }
             }
-            if (initiativeTable.containsKey(initiative)){
-                initiativeTable.get(initiative).add(creature);
-            } else {
-                ArrayList<Creature> startingArray = new ArrayList<>();
-                startingArray.add(creature);
-                initiativeTable.put(initiative, startingArray);
-            }
-        }
 
-        initiativeOrder = new ArrayList<>();
+            initiativeOrder = new ArrayList<>();
 
-        for (Integer i=top; i>=bottom; i-=1){
-            if (initiativeTable.containsKey(i)) {
-                for (Creature c:initiativeTable.get(i)){
-                    this.initiativeOrder.add(c);
+            for (Integer i=top; i>=bottom; i-=1){
+                if (initiativeTable.containsKey(i)) {
+                    for (Creature c:initiativeTable.get(i)){
+                        this.initiativeOrder.add(c);
+                    }
                 }
             }
         }
@@ -269,6 +271,7 @@ public class Encounter implements Serializable {
             ArrayList<Creature> storageLoc = encounter.initiativeOrder;
             if (encounterScanner.nextLine().startsWith("INACTIVE")){
                 storageLoc = encounter.creatures;
+                encounter.inCombat = true;
             } 
             while (encounterScanner.hasNextLine()) {
                 String creatureLine = encounterScanner.nextLine();
