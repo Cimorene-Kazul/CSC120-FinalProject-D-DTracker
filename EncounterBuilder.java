@@ -36,9 +36,6 @@ public class EncounterBuilder {
         Scanner encounterScanner = new Scanner(System.in);
         this.encounter = new Encounter(encounterScanner);
         while (inProgress) {
-            while (encounterScanner.hasNextLine()){
-                encounterScanner.nextLine();
-            }
             System.out.println("What do you want to do?");
             String command = (encounterScanner.nextLine().trim()).toLowerCase();
             if (command.startsWith("add monster with note")) {
@@ -86,7 +83,7 @@ public class EncounterBuilder {
         if (!this.saved){
             System.out.println("Are you sure? The current encounter is unsaved.");
             String response = input.nextLine().toLowerCase().trim();
-            if (response=="yes" || response=="y"){
+            if (response.startsWith("y")){
                 this.encounter = new Encounter(input);
             }
         } else {
@@ -98,7 +95,7 @@ public class EncounterBuilder {
         if (!this.saved){
             System.out.println("Are you sure? The current encounter is unsaved.");
             String response = input.nextLine().toLowerCase().trim();
-            if (response=="yes" || response=="y"){
+            if (response.startsWith("y")){
                 this.inProgress = false;
             }
         } else {
@@ -122,7 +119,7 @@ public class EncounterBuilder {
         if (!this.saved){
             System.out.println("Are you sure? The current encounter is unsaved.");
             String response = input.nextLine().toLowerCase().trim();
-            if (response=="yes" || response=="y"){
+            if (response.startsWith("y")){
                 loading = true;
             }
         } else{
@@ -201,6 +198,7 @@ public class EncounterBuilder {
             String monsterFile = toFileName(input.nextLine().trim());
             System.out.println("How many monsters are in the unit?");
             int size = input.nextInt();
+            input.nextLine();
             System.out.println("What note do you want to add to this unit?");
             String monsterNote = input.nextLine().trim();
             Monster monsterToAdd =  new MonsterGroup(monsterFile, size, monsterNote);
@@ -219,6 +217,7 @@ public class EncounterBuilder {
             String monsterFile = toFileName(input.nextLine().trim());
             System.out.println("How many monsters are in the unit?");
             int size = input.nextInt();
+            input.nextLine();
             Monster monsterToAdd = new MonsterGroup(monsterFile, size);
             this.creatures.put(monsterToAdd.getName(), monsterToAdd);
             this.encounter.addCreature(monsterToAdd);
