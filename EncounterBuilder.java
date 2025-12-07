@@ -14,6 +14,7 @@ public class EncounterBuilder {
     String commands = """
             ENCOUNTER BUILDER COMMANDS
             add monster - adds a single entity defined by a stat block to the encounter.
+            add multiple monsters - adds a given number of monsters to the encounter. Good for a fight with 5 goblins or 10 guards, to avoid repeats.
             add monster with note - does the same thing as add monster but gives the option to add a note to make it easier to keep track of things in large encounters.
             remove monster - removes a monster or unit from the encounter
             add player - adds a player-controled character to the encounter
@@ -42,6 +43,8 @@ public class EncounterBuilder {
             String command = (encounterScanner.nextLine().trim()).toLowerCase();
             if (command.startsWith("add monster with note")) {
                 this.addMonsterWithNotes(encounterScanner);
+            } else if (command.startsWith("add multiple monsters")){
+                this.addNMonsters(encounterScanner);
             } else if (command.startsWith("add monster")){
                 this.addMonster(encounterScanner);
             } else if (command.startsWith("remove monster")){
@@ -148,6 +151,29 @@ public class EncounterBuilder {
             this.creatures.put(monsterToAdd.getName(), monsterToAdd);
             this.encounter.addCreature(monsterToAdd);
             System.out.println(monsterToAdd.getName() + " has been added to your encounter.");
+        } catch (RuntimeException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void addNMonsters(Scanner input){
+        this.saved = false;
+        try{
+            System.out.println("What monster do you want to add?");
+            String monsterFile = toFileName(input.nextLine().trim());
+            System.out.println("How many copies of this monster do you want to add?");
+            Integer n = 0;
+            try {
+                n = Integer.parseInt(input.nextLine());
+            } catch (RuntimeException e) {
+                throw new RuntimeException("You can only add a nonnegative integer number of monsters.");
+            }
+            for (int i=0; i<n; i++){
+                Monster monsterToAdd = new Monster(monsterFile);
+                this.creatures.put(monsterToAdd.getName(), monsterToAdd);
+                this.encounter.addCreature(monsterToAdd);
+            }
+            System.out.println(n+" copies of the specified monster have been added to your encounter.");
         } catch (RuntimeException e){
             System.out.println(e.getMessage());
         }
