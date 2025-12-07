@@ -38,6 +38,9 @@ public class Monster extends Creature{
                     this.initiativeBonus = Integer.parseInt(ParsingTools.nextWord(line, line.indexOf("Initiative")+11));
                 }
             }
+            if (this.statBlock.toLowerCase().contains("lair action")){
+                this.hasLair = true;
+            }
         }catch(FileNotFoundException e){
             throw new RuntimeException(statBlockFile.getName()+" is not a valid file name in MonsterFiles.");
         }
