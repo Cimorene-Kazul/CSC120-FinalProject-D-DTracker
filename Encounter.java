@@ -74,11 +74,15 @@ public class Encounter implements Serializable {
         }
     }
 
+    public boolean inProgress(){
+        return this.inCombat;
+    }
+
     /** 
      * Method to parse and execute a command input by the user
      * @param input the command input by the user
      */
-    public void doAction(String input, Scanner inputScanner){
+    public void doAction(String input){
         try{
             if (input.startsWith("heal")){
                 String[] commandPieces = input.trim().split(" ");
@@ -96,7 +100,7 @@ public class Encounter implements Serializable {
                 if (input.substring(9).trim() != ""){
                     index = Integer.parseInt(input.substring(10).trim());
                 }
-                String note = inputScanner.nextLine();
+                String note = this.encounterScanner.nextLine();
                 initiativeOrder.get(index).takeNote(note);
             } else if (input.startsWith("roll")){
                 String die = input.substring(5);
@@ -118,7 +122,7 @@ public class Encounter implements Serializable {
                 this.inCombat = false;
             } else if (input.startsWith("save")){
                 System.out.println("What is the name of the file you want to save this file in?");
-                String fileName = inputScanner.nextLine().trim();
+                String fileName = this.encounterScanner.nextLine().trim();
                 this.saveEncounter(fileName);
             }
         } catch (RuntimeException e){
@@ -187,14 +191,14 @@ public class Encounter implements Serializable {
      * Rolls initiatives for all creatures in the InitiativeTracker
      * @param initiativeScanner a Scanner to read user input for initiatives
      */
-    private void rollInitiatives(Scanner initiativeScanner){
+    private void rollInitiatives(){
         if (!this.inCombat){
             Hashtable<Integer, ArrayList<Creature>> initiativeTable = new Hashtable<>();
             this.addLairs();
             Integer top = 20; // the 'top of the initiative order'
             Integer bottom = 0; // the 'bottom of the initiative order'
             for (Creature creature: this.creatures){
-                Integer initiative = (int) creature.rollInitiative(initiativeScanner);
+                Integer initiative = (int) creature.rollInitiative(this.encounterScanner);
                 if (initiative > top){
                     top = initiative;
                 } else if (initiative < bottom){
@@ -225,9 +229,9 @@ public class Encounter implements Serializable {
      * Takes a turn for the current creature in the initiative order
      * @param turnScanner a Scanner to read user input during the turn
      */
-    private void takeTurn(Scanner turnScanner){
-        String command = turnScanner.nextLine();
-        this.doAction(command, turnScanner);
+    private void takeTurn(){
+        String command = this.encounterScanner.nextLine();
+        this.doAction(command);
     }
 
     /**
@@ -237,12 +241,12 @@ public class Encounter implements Serializable {
         if (this.encounterScanner == null){
             this.encounterScanner = new Scanner(System.in);
         }
-        this.rollInitiatives(this.encounterScanner);
+        this.rollInitiatives();
         this.inCombat = true;
         this.currentInitiative = 0;
         System.out.println(this.initiativeOrder.get(this.currentInitiative).turnPrompt());
         while (inCombat) {
-            this.takeTurn(this.encounterScanner);
+            this.takeTurn();
         }
         this.encounterScanner.close();
     }

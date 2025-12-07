@@ -20,7 +20,13 @@ public class MonsterGroup extends Monster{
         this.name = number + " " + this.baseName;
     }
 
-     public String damage(int amt){
+
+    public MonsterGroup(String fileName, int number, String originNotes){
+        this(fileName, number);
+        this.originNotes = originNotes; 
+    }
+
+    public String damage(int amt){
         this.HP = Math.max(this.HP-amt, 0);
 
         if (this.HP == this.individualHP*(this.HP/this.individualHP)){
@@ -41,12 +47,16 @@ public class MonsterGroup extends Monster{
         return this.baseName;
     }
 
-    public String toString(){
-        return super.toString() + " size "+this.size;
-    }
-
     public String turnPrompt(){
-        return "It is "+this.name+"'s turn. \n Here is a stat block for one of the creatures composing "+this.name+".\n" + this.statBlock+"\n"+this.name+" is at "+this.HP+" out of "+this.HPmax+" health.";
+        String result = "It is "+this.name+"'s turn.";
+        if (this.originNotes != null && this.originNotes.trim()!= ""){
+            result += "\n "+this.name+" is distinguished by "+this.originNotes;
+        }
+        result += "\n Here is a stat block for one of the creatures composing "+this.name+".\n" + this.statBlock+"\n"+this.name+" is at "+this.HP+" out of "+this.HPmax+" health.";
+        if (this.notes != null){
+            result += " \n Additional notes for "+this.name+": \n "+this.notes;
+        }
+        return result;
     }
 
     public int getSize(){
@@ -61,7 +71,7 @@ public class MonsterGroup extends Monster{
         if (this.notes == null){
             this.notes = "";
         }
-        return "UNIT <<<SPACING MARKER>>>"+this.fileName+"<<<SPACING MARKER>>>"+this.HP+"<<<SPACING MARKER>>>"+this.size+"<<<SPACING MARKER>>>  "+this.notes.replaceAll("\n", " ");
+        return "UNIT <<<SPACING MARKER>>>"+this.fileName+"<<<SPACING MARKER>>>"+this.HP+"<<<SPACING MARKER>>>"+this.size+"<<<SPACING MARKER>>>  "+this.originNotes.replaceAll("\n", " ")+"<<<SPACING MARKER>>>"+this.notes.replaceAll("\n", " ");
     }
 
     public static void saveMonster(MonsterGroup m){
@@ -92,7 +102,8 @@ public class MonsterGroup extends Monster{
         String[] pieces = saveInfo.split("<<<SPACING MARKER>>>");
         MonsterGroup m = new MonsterGroup(pieces[1].trim(), Integer.parseInt(pieces[3].trim()));
         m.damage(m.getHPmax()-Integer.parseInt(pieces[2].trim()));
-        m.takeNote(pieces[4].trim());
+        m.originNotes = pieces[4].trim();
+        m.takeNote(pieces[5].trim());
         return m;
     }
 

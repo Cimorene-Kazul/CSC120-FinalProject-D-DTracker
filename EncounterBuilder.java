@@ -13,19 +13,21 @@ public class EncounterBuilder {
     boolean saved = true;
     String commands = """
             ENCOUNTER BUILDER COMMANDS
-            add monster
-            remove monster
-            add player
-            remove player
-            add unit
-            print encounter
-            list avaliable monsters
-            save encounter
-            list saved encounters
-            load encounter
-            clear encounter
-            help
-            close
+            add monster - adds a single entity defined by a stat block to the encounter.
+            add monster with note - does the same thing as add monster but gives the option to add a note to make it easier to keep track of things in large encounters.
+            remove monster - removes a monster or unit from the encounter
+            add player - adds a player-controled character to the encounter
+            remove player - removes a player-controled character from the encounter
+            add unit - adds an entity composed of some number of entites defined by a stat block to the encounter. These entities might have something special added because of their nature as a composite or might just take damage together to ease running large encounters.
+            add unit with note - does the same thing as add unit but gives the option to add a note to make it easier to keep track of things in large encounters.
+            print encounter - prints a list of creatures in the encounter, with basic information.
+            list avaliable monsters - lists the monsters by name with stat blocks avaliable to use.
+            save encounter - saves the encounter as an encounter file.
+            list saved encounters - lists encounter file names that are saved.
+            load encounter - loads an encounter from a saved file.
+            clear encounter - removes all entities from the current encounter.
+            help - prints this list of commands.
+            close - quits this builder.
             """;
 
     public void buildEncounter(){
@@ -33,9 +35,14 @@ public class EncounterBuilder {
         Scanner encounterScanner = new Scanner(System.in);
         this.encounter = new Encounter(encounterScanner);
         while (inProgress) {
+            while (encounterScanner.hasNextLine()){
+                encounterScanner.nextLine();
+            }
             System.out.println("What do you want to do?");
             String command = (encounterScanner.nextLine().trim()).toLowerCase();
-            if (command.startsWith("add monster")){
+            if (command.startsWith("add monster with note")) {
+                this.addMonsterWithNotes(encounterScanner);
+            } else if (command.startsWith("add monster")){
                 this.addMonster(encounterScanner);
             } else if (command.startsWith("remove monster")){
                 this.removeMonster(encounterScanner);
@@ -43,6 +50,8 @@ public class EncounterBuilder {
                 this.addPlayer(encounterScanner);
             } else if (command.startsWith("remove player")) {
                 this.removePlayer(encounterScanner);
+            } else if (command.startsWith("add unit with note")) {
+                this.addUnitWithNotes(encounterScanner);
             } else if (command.startsWith("add unit")) {
                 this.addUnit(encounterScanner);
             } else if (command.startsWith("print encounter")) {
@@ -121,6 +130,9 @@ public class EncounterBuilder {
             String encounterName = input.nextLine().trim();
             try {
                 this.encounter = Encounter.loadEncounter(encounterName);
+                if (this.encounter.inProgress()){
+                    System.out.println("This encounter is active and cannot be modified. It is recommended that this encounter not be modified.");
+                }
             } catch (RuntimeException e) {
                 System.out.println("The file in question has problems and may not exist.");
             }
@@ -141,10 +153,43 @@ public class EncounterBuilder {
         }
     }
 
-    private void addUnit(Scanner input){
+    private void addMonsterWithNotes(Scanner input){
         this.saved = false;
         try{
             System.out.println("What monster do you want to add?");
+            String monsterFile = toFileName(input.nextLine().trim());
+            System.out.println("What note do you want to add to this monster?");
+            String monsterNote = input.nextLine().trim();
+            Monster monsterToAdd = new Monster(monsterFile, monsterNote);
+            this.creatures.put(monsterToAdd.getName(), monsterToAdd);
+            this.encounter.addCreature(monsterToAdd);
+            System.out.println(monsterToAdd.getName() + " has been added to your encounter.");
+        } catch (RuntimeException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    private void addUnitWithNotes(Scanner input){
+        this.saved = false;
+        try{
+            System.out.println("What monster makes up the unit you want to add?");
+            String monsterFile = toFileName(input.nextLine().trim());
+            System.out.println("How many monsters are in the unit?");
+            int size = input.nextInt();
+            System.out.println("What note do you want to add to this unit?");
+            String monsterNote = input.nextLine().trim();
+            Monster monsterToAdd =  new MonsterGroup(monsterFile, size, monsterNote);
+            this.creatures.put(monsterToAdd.getName(), monsterToAdd);
+            this.encounter.addCreature(monsterToAdd);
+            System.out.println(monsterToAdd.getName() + " has been added to your encounter.");
+        } catch (RuntimeException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void addUnit(Scanner input){
+        this.saved = false;
+        try{
+            System.out.println("What monster makes up the unit you want to add?");
             String monsterFile = toFileName(input.nextLine().trim());
             System.out.println("How many monsters are in the unit?");
             int size = input.nextInt();

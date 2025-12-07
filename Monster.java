@@ -11,7 +11,13 @@ public class Monster extends Creature{
     private Integer initiativeBonus;
     protected String statBlock;
     protected String notes = null;
+    protected String originNotes = null;
     protected String fileOrigin = null;
+
+    public Monster(String fileName, String originNotes){
+        this(fileName);
+        this.originNotes = originNotes; 
+    }
 
     public Monster(String fileName){
         this.subclass = CreatureType.MONSTER;
@@ -92,14 +98,20 @@ public class Monster extends Creature{
     }
     public String toString(){
         String result = name+" at "+HP+"/"+HPmax+" HP, AC "+AC;
+        if (this.originNotes != null && this.originNotes.trim() != ""){
+            result += " ("+this.originNotes.replaceAll("\n", "\t")+") ";
+        }
         if (this.notes != null && this.notes.trim() != ""){
-            result += " ("+this.notes.replaceAll("\n", "\t")+")";
+            result += " - "+this.notes.replaceAll("\n", "\t");
         }
         return result;
     }
 
     public String turnPrompt(){
         String result = "It is "+this.name+"'s turn.";
+        if (this.originNotes != null && this.originNotes.trim()!= ""){
+            result += "\n "+this.name+" is distinguished by "+this.originNotes;
+        }
         result += "\n Here is a stat block for "+this.name+".\n" + this.statBlock+"\n"+this.name+" is at "+this.HP+" out of "+this.HPmax+" health.";
         if (this.notes != null){
             result += " \n Additional notes for "+this.name+": \n "+this.notes;
@@ -140,7 +152,8 @@ public class Monster extends Creature{
         String[] pieces = saveInfo.split("<<<SPACING MARKER>>>");
         Monster m = new Monster(pieces[1].trim());
         m.damage(m.getHPmax()-Integer.parseInt(pieces[2].trim()));
-        m.takeNote(pieces[3].trim());
+        m.originNotes = pieces[3].trim();
+        m.takeNote(pieces[4].trim());
         return m;
     }
 
@@ -152,7 +165,7 @@ public class Monster extends Creature{
         if (this.notes == null){
             this.notes = "";
         }
-        return "MONSTER <<<SPACING MARKER>>>"+this.fileOrigin+"<<<SPACING MARKER>>>"+this.HP+"<<<SPACING MARKER>>>  "+this.notes.replaceAll("\n", " ");
+        return "MONSTER <<<SPACING MARKER>>>"+this.fileOrigin+"<<<SPACING MARKER>>>"+this.HP+"<<<SPACING MARKER>>>"+this.originNotes.replaceAll("\n", " ")+"<<<SPACING MARKER>>>"+this.notes.replaceAll("\n", " ");
     }
 
     public static void main(String[] args) {
