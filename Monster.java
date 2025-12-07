@@ -10,8 +10,8 @@ public class Monster extends Creature{
     protected Integer HP;
     private Integer initiativeBonus;
     protected String statBlock;
-    protected String notes = null;
-    protected String originNotes = null;
+    protected String notes = "";
+    protected String originNotes = "";
     protected String fileOrigin = null;
 
     public Monster(String fileName, String originNotes){
@@ -92,7 +92,7 @@ public class Monster extends Creature{
     }
 
     public String takeNote(String note){
-        if (this.notes == null){
+        if (this.notes.trim() == ""){
             this.notes = note;
         } else {
             this.notes += " \n "+ note;
@@ -101,10 +101,10 @@ public class Monster extends Creature{
     }
     public String toString(){
         String result = name+" at "+HP+"/"+HPmax+" HP, AC "+AC;
-        if (this.originNotes != null && this.originNotes.trim() != ""){
+        if (this.originNotes.trim() != ""){
             result += " ("+this.originNotes.replaceAll("\n", "\t")+") ";
         }
-        if (this.notes != null && this.notes.trim() != ""){
+        if (this.notes.trim() != ""){
             result += " - "+this.notes.replaceAll("\n", "\t");
         }
         return result;
@@ -112,11 +112,11 @@ public class Monster extends Creature{
 
     public String turnPrompt(){
         String result = "It is "+this.name+"'s turn.";
-        if (this.originNotes != null && this.originNotes.trim()!= ""){
+        if (this.originNotes.trim()!= ""){
             result += "\n "+this.name+" is distinguished by "+this.originNotes;
         }
         result += "\n Here is a stat block for "+this.name+".\n" + this.statBlock+"\n"+this.name+" is at "+this.HP+" out of "+this.HPmax+" health.";
-        if (this.notes != null){
+        if (this.notes.trim() != ""){
             result += " \n Additional notes for "+this.name+": \n "+this.notes;
         }
         return result;
@@ -164,9 +164,6 @@ public class Monster extends Creature{
         if (this.fileOrigin == null){
             Monster.saveMonster(this);
             this.fileOrigin = (this.name.trim().replaceAll(" ", "_")).toLowerCase();
-        }
-        if (this.notes == null){
-            this.notes = "";
         }
         return "MONSTER <<<SPACING MARKER>>>"+this.fileOrigin+"<<<SPACING MARKER>>>"+this.HP+"<<<SPACING MARKER>>>"+this.originNotes.replaceAll("\n", " ")+"<<<SPACING MARKER>>>"+this.notes.replaceAll("\n", " ");
     }

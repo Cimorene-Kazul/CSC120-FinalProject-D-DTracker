@@ -6,7 +6,6 @@ public class MonsterGroup extends Monster{
     int size;
     Integer individualHP;
     String baseName;
-    String fileName;
     
 
     public MonsterGroup(String fileName, int number){
@@ -49,11 +48,11 @@ public class MonsterGroup extends Monster{
 
     public String turnPrompt(){
         String result = "It is "+this.name+"'s turn.";
-        if (this.originNotes != null && this.originNotes.trim()!= ""){
+        if (this.originNotes.trim()!= ""){
             result += "\n "+this.name+" is distinguished by "+this.originNotes;
         }
         result += "\n Here is a stat block for one of the creatures composing "+this.name+".\n" + this.statBlock+"\n"+this.name+" is at "+this.HP+" out of "+this.HPmax+" health.";
-        if (this.notes != null){
+        if (this.notes.trim() != ""){
             result += " \n Additional notes for "+this.name+": \n "+this.notes;
         }
         return result;
@@ -68,10 +67,7 @@ public class MonsterGroup extends Monster{
             MonsterGroup.saveMonster(this);
             this.fileOrigin = (this.name.trim().replaceAll(" ", "_")).toLowerCase();
         }
-        if (this.notes == null){
-            this.notes = "";
-        }
-        return "UNIT <<<SPACING MARKER>>>"+this.fileName+"<<<SPACING MARKER>>>"+this.HP+"<<<SPACING MARKER>>>"+this.size+"<<<SPACING MARKER>>>  "+this.originNotes.replaceAll("\n", " ")+"<<<SPACING MARKER>>>"+this.notes.replaceAll("\n", " ");
+        return "UNIT <<<SPACING MARKER>>>"+this.fileOrigin+"<<<SPACING MARKER>>>"+this.HP+"<<<SPACING MARKER>>>"+this.size+"<<<SPACING MARKER>>>  "+this.originNotes.replaceAll("\n", " ")+"<<<SPACING MARKER>>>"+this.notes.replaceAll("\n", " ");
     }
 
     public static void saveMonster(MonsterGroup m){

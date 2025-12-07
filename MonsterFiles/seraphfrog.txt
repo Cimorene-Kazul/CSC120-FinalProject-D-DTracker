@@ -1,5 +1,5 @@
 Seraphfrog		
-AC 20        HP 555	        Initiative +0
+AC 20        HP 555         Initiative +0
 STR	DEX	CON	INT	WIS	CHA		Prof.
  +9	 +0	 +8	+6	 +5	 +5		 +8
 Saves: STR +17, CON +16, INT +14, WIS +13

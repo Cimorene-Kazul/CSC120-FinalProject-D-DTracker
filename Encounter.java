@@ -286,7 +286,7 @@ public class Encounter implements Serializable {
                 encounter.inCombat = true;
             } 
             while (encounterScanner.hasNextLine()) {
-                String creatureLine = encounterScanner.nextLine();
+                String creatureLine = encounterScanner.nextLine()+" ";
                 if (creatureLine.startsWith("MONSTER")){
                     storageLoc.add(Monster.parseMonster(creatureLine));
                 } else if (creatureLine.startsWith("UNIT")){
@@ -297,19 +297,13 @@ public class Encounter implements Serializable {
                     storageLoc.add(Player.parsePlayer(creatureLine));
                 }
             }
-            encounter.creatures = encounter.initiativeOrder;
+            if (!encounter.initiativeOrder.isEmpty()){
+                encounter.creatures = encounter.initiativeOrder;
+            }
             encounterScanner.close();
             return encounter;
         } catch (IOException e) {
             throw new RuntimeException("Something went wrong and the encounter could not be loaded");
         }
-    }
-
-    public static void main(String[] args) {
-        Encounter e = new Encounter();
-        e.addCreature(new Player("Emia", "Celina"));
-        e.addCreature(new Monster("luna"));
-        e.addCreature(new MonsterGroup("veteran_bonded", 3));
-        e.saveEncounter("test_encounter");
     }
 }
