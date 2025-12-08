@@ -9,7 +9,7 @@ public class EncounterBuilder {
     Encounter encounter;
     boolean inProgress = true;
     ArrayList<String> creatureFiles = new ArrayList<>();
-    Hashtable<String, Creature> creatures = new Hashtable<>();
+    Hashtable<String, ArrayList<Creature>> creatures = new Hashtable<>();
     boolean saved = true;
     String commands = """
             ENCOUNTER BUILDER COMMANDS
@@ -145,7 +145,7 @@ public class EncounterBuilder {
             System.out.println("What monster do you want to add?");
             String monsterFile = toFileName(input.nextLine().trim());
             Monster monsterToAdd = new Monster(monsterFile);
-            this.creatures.put(monsterToAdd.getName(), monsterToAdd);
+            this.addToList(monsterToAdd);
             this.encounter.addCreature(monsterToAdd);
             System.out.println(monsterToAdd.getName() + " has been added to your encounter.");
         } catch (RuntimeException e){
@@ -167,7 +167,7 @@ public class EncounterBuilder {
             }
             for (int i=0; i<n; i++){
                 Monster monsterToAdd = new Monster(monsterFile);
-                this.creatures.put(monsterToAdd.getName(), monsterToAdd);
+                this.addToList(monsterToAdd);
                 this.encounter.addCreature(monsterToAdd);
             }
             System.out.println(n+" copies of the specified monster have been added to your encounter.");
@@ -184,7 +184,7 @@ public class EncounterBuilder {
             System.out.println("What note do you want to add to this monster?");
             String monsterNote = input.nextLine().trim();
             Monster monsterToAdd = new Monster(monsterFile, monsterNote);
-            this.creatures.put(monsterToAdd.getName(), monsterToAdd);
+            this.addToList(monsterToAdd);
             this.encounter.addCreature(monsterToAdd);
             System.out.println(monsterToAdd.getName() + " has been added to your encounter.");
         } catch (RuntimeException e){
@@ -202,7 +202,7 @@ public class EncounterBuilder {
             System.out.println("What note do you want to add to this unit?");
             String monsterNote = input.nextLine().trim();
             Monster monsterToAdd =  new MonsterGroup(monsterFile, size, monsterNote);
-            this.creatures.put(monsterToAdd.getName(), monsterToAdd);
+            this.addToList(monsterToAdd);
             this.encounter.addCreature(monsterToAdd);
             System.out.println(monsterToAdd.getName() + " has been added to your encounter.");
         } catch (RuntimeException e){
@@ -219,7 +219,7 @@ public class EncounterBuilder {
             int size = input.nextInt();
             input.nextLine();
             Monster monsterToAdd = new MonsterGroup(monsterFile, size);
-            this.creatures.put(monsterToAdd.getName(), monsterToAdd);
+            this.addToList(monsterToAdd);
             this.encounter.addCreature(monsterToAdd);
             System.out.println("The unit "+monsterToAdd.getName() + " has been added to your encounter.");
         } catch (RuntimeException e){
@@ -233,7 +233,7 @@ public class EncounterBuilder {
         String monsterName = input.nextLine().trim();
         if (this.creatures.containsKey(monsterName)){
             try {
-                this.encounter.removeCreature(this.creatures.get(monsterName));
+                this.removeCreature(monsterName);
                 System.out.println(monsterName+" has been removed from your encounter.");
             } catch (RuntimeException e){
                 System.out.println(e.getMessage());
@@ -241,6 +241,33 @@ public class EncounterBuilder {
         } else {
             System.out.println(monsterName + " is not in this encounter and thus could not be removed.");
         }
+    }
+
+    private void addToList(Creature c){
+        if (!this.creatures.containsKey(c.getName())){
+            this.creatures.put(c.getName(), new ArrayList<Creature>());
+        } 
+        this.creatures.get(c.getName()).add(c);
+    }
+
+    private void addToList(Creature c, String name){
+        if (!this.creatures.containsKey(name)){
+            this.creatures.put(name, new ArrayList<Creature>());
+        } 
+        this.creatures.get(name).add(c);
+    }
+
+    private void removeCreature(String name){
+        String failureMessage = "";
+        for (Creature c: this.creatures.get(name)){
+            try {
+                this.encounter.removeCreature(c);
+                return;  
+            } catch (RuntimeException e) {
+                failureMessage = e.getMessage();
+            }
+        }
+        throw new RuntimeException(failureMessage);
     }
 
     private void addPlayer(Scanner input){
@@ -251,8 +278,8 @@ public class EncounterBuilder {
         String PCName = input.nextLine().trim();
         Player PC = new Player(PCName, playerName);
         this.encounter.addCreature(PC);
-        this.creatures.put(PCName, PC);
-        this.creatures.put(playerName, PC);
+        this.addToList(PC, playerName);
+        this.addToList(PC, playerName);
         System.out.println(PCName+" has been added to your encounter.");
     }
 
@@ -262,7 +289,7 @@ public class EncounterBuilder {
         String playerName = input.nextLine().trim();
         if (this.creatures.containsKey(playerName)){
             try {
-                this.encounter.removeCreature(this.creatures.get(playerName));
+                this.removeCreature(playerName);
                 System.out.println(playerName+" has been removed from your encounter.");
             } catch (RuntimeException e){
                 System.out.println(e.getMessage());
