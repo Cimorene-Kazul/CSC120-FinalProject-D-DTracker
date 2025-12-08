@@ -17,6 +17,7 @@ public class EncounterBuilder {
             add multiple monsters - adds a given number of monsters to the encounter. Good for a fight with 5 goblins or 10 guards, to avoid repeats.
             add monster with note - does the same thing as add monster but gives the option to add a note to make it easier to keep track of things in large encounters.
             remove monster - removes a monster or unit from the encounter
+            remove monsters - removes all monsters or units with the same name from the encounter.
             add player - adds a player-controled character to the encounter
             remove player - removes a player-controled character from the encounter
             add unit - adds an entity composed of some number of entites defined by a stat block to the encounter. These entities might have something special added because of their nature as a composite or might just take damage together to ease running large encounters.
@@ -44,6 +45,8 @@ public class EncounterBuilder {
                 this.addNMonsters(encounterScanner);
             } else if (command.startsWith("add monster")){
                 this.addMonster(encounterScanner);
+            } else if (command.startsWith("remove monsters")){
+                this.removeMonsters(encounterScanner);
             } else if (command.startsWith("remove monster")){
                 this.removeMonster(encounterScanner);
             } else if (command.startsWith("add player")) {
@@ -237,6 +240,23 @@ public class EncounterBuilder {
                 System.out.println(monsterName+" has been removed from your encounter.");
             } catch (RuntimeException e){
                 System.out.println(e.getMessage());
+            }
+        } else {
+            System.out.println(monsterName + " is not in this encounter and thus could not be removed.");
+        }
+    }
+
+    private void removeMonsters(Scanner input){
+        this.saved = false;
+        System.out.println("What monster do you want to remove all copies of?");
+        String monsterName = input.nextLine().trim();
+        if (this.creatures.containsKey(monsterName)){
+            try {
+                for (int i=0; i<this.creatures.get(monsterName).size(); i++){
+                    this.removeCreature(monsterName);
+                }
+            } catch (RuntimeException e){
+                System.out.println("All copies of this monster have been removed from your encounter.");
             }
         } else {
             System.out.println(monsterName + " is not in this encounter and thus could not be removed.");
