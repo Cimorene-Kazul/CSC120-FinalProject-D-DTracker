@@ -255,7 +255,7 @@ public class EncounterBuilder {
                 for (int i=0; i<this.creatures.get(monsterName).size(); i++){
                     this.removeCreature(monsterName);
                 }
-            } catch (RuntimeException e){
+            } finally {
                 System.out.println("All copies of this monster have been removed from your encounter.");
             }
         } else {
