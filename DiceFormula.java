@@ -40,8 +40,8 @@ public class DiceFormula {
         int result = 0;
         formula = formula.trim();
         try {
-            for (String plusChunk: formula.split("\\+")){
-                for (String minusChunk: plusChunk.split("\\-")){
+            for (String plusChunk: formula.split("+")){
+                for (String minusChunk: plusChunk.split("-")){
                     int value = Integer.parseInt(minusChunk);
                     if (plusChunk.startsWith(minusChunk)){
                         result += value;
