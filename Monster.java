@@ -81,26 +81,6 @@ public class Monster extends Creature{
         return this.initiativeBonus;
     }
 
-    public Hashtable<String, Interaction> getTraits(){
-        return this.traits;
-    }
-
-    public Hashtable<String, Interaction> getActions(){
-        return this.actions;
-    }
-
-    public Hashtable<String, Interaction> getBonusActions(){
-        return this.bonusActions;
-    }
-
-    public Hashtable<String, Interaction> getLegendaryActions(){
-        return this.legendaryActions;
-    }
-
-    public Hashtable<String, Interaction> getReactions(){
-        return this.reactions;
-    }
-
     public String damage(int amt){
         this.HP = Math.max(this.HP-amt, 0);
         return this.name+" has been hit for "+amt+" reducing it to "+this.HP+" hit points.";
