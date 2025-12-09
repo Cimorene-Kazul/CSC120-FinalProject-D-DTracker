@@ -90,10 +90,191 @@ Running the .buildEncounter() method starts up JEB - the Java Encounter Builder.
 
 **close** - This command quits this builder. 
 
-## Writing Monster Files
-Hopefully, if this whole thing gets done, our code should also have the ability to read text or csv files containing a single stat block and convert them into a Monster object. The code should be able to pull from the stat block all the information it needs, with the stat block having a specific formatting that has not been decided yet. 
+### Running Encounters with this Tool
+When the encounter builder is told to *run encounter*, it will stop modifying the encounter and instead run it. It will roll initiative for all the creatures, add lair action placeholders if lair actions are present, and prompt the players for the initiatives they have rolled.
 
-In addition to this, we can try and learn to scrap webpages in java to create such files out of a large, known, database of D&D monsters.
+Once initiative is rolled, the tool will go through the initiative order over and over. If the current initiative is that of a unit or monster, it prints a turn prompt for the creature including the stat block, health, and any notes it has. The health indicated on the stat block is the HP maximum, not the current health. If the creature is a unit, that health is the individual HP of the individuals composing it. If the current initiative is a placeholder, like for lair actions, it will print a short statement about what the placeholder is for. And if the current initiative is that of a player, it will prompt the player to take their turn. Regardless of turn prompt, it will then accept a variety of possible commands to help the dungeon master run the encounter and track things, detailed below.
+
+**summary** - This command prints a concise summary of characters in combat, with their indicies, in initiative order. The index of a character is used in many commands to indicate what creature a command affects, so it is useful to keep track of. If you forgot to number the monsters and are running an encounter with a map, they also make good labels in a pinch.
+
+**end turn** - This command makes the encounter go on to the next turn. It will print the turn prompt for the next monster, as well as change the index that is the current initiative, which might matter for some commands.
+
+**close** - This command quits out of the whole program. Once an encounter is closed, the code must be re-run to use it again. You cannot run multiple encounters the same time you run the program. *It might be a good plan to change this in the future, though.*
+
+**roll** <*dice formula*> - This command rolls and prints the result of <*dice formula*>, which is frmatted in the standard format for writing dice rolls. This format is composed of the sum and difference of formulas written like *n*d*m* as well as normal integers. The *n* indicates a number of dice to roll and add, while the *m* indicates the size of the dice. As an example, 'roll 3d6+5' rolls 3 6-sided dice, adds the results, and then adds 5, while 'roll 1d20-2' rolls a 20-sided die and subtracts 2 from the result.
+
+**damage** <*index*> <*amt*> - This command makes the creature at index <*index*> take <*amount*> damage. It will then print a quick summary of what happened. Players and placeholders cannot be damaged in this way. For instance, 'damage 0 14' will have the creature at index 0 take 14 damage. If this creature started at 20/31 health, they would now be at 6/31 health and a message stating this would be printed. If this creature was at 2/31 health, they would drop to 0/31. Creatures cannot have health lower than 0.
+
+**heal** <*index*> <*amt*> - This command heals the creature at index <*index*> by <*amount*>. It will then print a quick summary of what happened. Players and placeholders cannot be healed in this way. For instance, 'heal 0 14' will heal index 0 by 14. If this creature started at 20/31 health, they would now be at 31/31 health and a message stating this would be printed. If this creature was at 2/31 health, they would now have 16/31 health.  Creatures cannot have health greater than their 'HP max' built into their stat block.
+
+**take note** <*index*> - This command prompts the user for a note and then adds that note to the notes for the creature at index <*index*>. This creature must be a monster or a unit, placeholders and players do not have note taking capacity. If there is no index specified, the creature that gains the note is the creature whose turn it currently is.
+
+**stats** <*index*> - This command prints the stat block of the creature <*index*>. This creature must be a monster or a unit, placeholders and players do not have stat blocks. *In the future, it might be worthwhile to make this command print the stat block of the creature with the current initiative if no index is specified.*
+
+**save** - This command saves the encounter to a file, after prompting for a name for that file.
+
+## Writing Monster Files
+A .txt file of a particular format can be used to store monster information. When you download this program, there will be a folder called *MonsterFlies*. Whatever you do ***do not change the name of this folder.*** This is where the ,txt files for monsters live. 
+
+The name of a monster file must be all in lowercase and contain no spaces. Use underscores to replace spaces. I highly recommend chosing a name similar to that of the monster or unit whose stat block the file contains.
+
+The first line of the monster file must be the monster name, while the second must contain the armor class, health, and initiative bonus of the monster, preferably in that order. All three values must be integers that are proceeded by a label then whitespace, and must have at least a single space (not a tab) after them, before the next word (if they are at the end of the line, this can be skipped). The armor class is labeled with 'AC', hit point maximum by 'HP', and initiative bonus by 'Initiative'. This is case sensitive. For an example with placeholders for values, see below.
+
+```
+<Name>
+AC <AC>         HP <Max HP>     Initiative <Initiative Bonus>
+...
+```
+The stat block then just needs to be human-readable after these two lines. However, formatting the whole thing as follows might make life easier for future programmers who want to automate more elements of combat, such as saving throws, reactions, and lair actions. I recommend using tab for multiline traits and abilities, such as spellcasting.
+```
+<Name>
+AC <AC>     HP <Max HP>   Initiative <Initiative Bonus>
+<Type>
+STR             DEX             CON             INT             WIS             CHA	        	Prof.
+<STR bonus>     <DEX bonus>     <CON bonus>     <INT bonus>     <WIS bonus>     <CHA bonus>     <Proficiency bonus>
+Saves: <list of saves in the format TYPE bonus, all other saves are just +normal bonus>
+Skills: <List of skills with additional bonus in the form <bonus SKILL>>
+<Speeds in the format n ft TYPE>
+Languages: <list of known languages>
+Senses: <list of unusual senses>           Passive Perception <Passive Perception>
+
+Traits
+<Trait Name> (N/day) - <Trait Text>
+<Trait Name> - <Trait Text>
+
+Actions
+<Action Name> (N/day) - <Action Text>
+<Action Name> (Recharge <recharge range>) - <Action Text>
+<Action Name> - <Action Text>
+
+Bonus Actions
+<Bonus Action Name> (N/day) - <Bonus Action Text>
+<Bonus Action Name> - <Bonus Action Text>
+
+
+Reactions (N/round)          < Note that (N/round) is only needed if there are more than 1
+<Descriptor text>
+<Reaction Name> (N/day) - <Reaction Text>
+<Reaction Name> - <Reaction Text>
+
+Legendary Actions (N/round)
+<Descriptor text>
+<Action Name> - <Action text>
+<Action Name> (Costs N) - <Action text>
+
+
+Lair Actions
+<Descriptor Text>
+<Lair Action Name> - <Lair Action Text>
+```
+### Examples
+Here are a few example stat blocks.
+```
+Ancient Green Dragon
+AC 21       HP 402 (23d20 + 161)     Initiative +15 (25)
+Gargantuan Dragon (Chromatic), Lawful Evil
+STR  DEX  CON  INT  WIS  CHA  Prof.
++8   +1   +7   +5   +3   +6   +7
+Saves:  DEX +8, WIS +10
+Speed 40 ft., Fly 80 ft., Swim 40 ft.
+
+Skills Deception +13, Perception +17, Persuasion +13, Stealth +8
+Immunities Poison; Poisoned
+Senses Blindsight 60 ft., Darkvision 120 ft., Passive Perception 27
+Languages Common, Draconic
+Traits
+
+Amphibious. The dragon can breathe air and water.
+Legendary Resistance (4/Day). If the dragon fails a saving throw, it can choose to succeed instead.
+
+Actions
+Multiattack - The dragon makes three Rend attacks. It can replace one attack with a use of Spellcasting to cast Mind Spike (level 5 version).
+Rend - Melee Attack Roll: +15, reach 15 ft. Hit: 17 (2d8 + 8) Slashing damage plus 10 (3d6) Poison damage
+Poison Breath (Recharge 5–6) - Constitution Saving Throw: DC 22, each creature in a 90-foot Cone. Failure: 77 (22d6) Poison damage. Success: Half damage.
+
+Spellcasting. The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 21):
+    At will: Detect Magic, Mind Spike (level 5 version)
+    1/day each: Geas, Modify Memory
+
+Legendary Actions (3/round)
+Immediately after another creature's turn, The dragon can expend a use to take one of the following actions. The dragon regains all expended uses at the start of each of its turns.
+Mind Invasion - The dragon uses Spellcasting to cast Mind Spike (level 5 version).
+Noxious Miasma - Constitution Saving Throw: DC 21, each creature in a 30-foot-radius Sphere centered on a point the dragon can see within 90 feet. Failure: 17 (5d6) Poison damage, and the target takes a -2 penalty to AC until the end of its next turn. Failure or Success: The dragon can't take this action again until the start of its next turn.
+Pounce - The dragon moves up to half its Speed, and it makes one Rend attack.
+```
+I fetched the stat block for the ancient green dragon off the web and then modified the formatting to accept the structure that I described earlier.
+```
+Commander Darkstar
+AC 18        HP  68        Initiative +3
+STR	DEX	CON	INT	WIS	CHA		Prof.
+-3	 +3	+0	+5	 +2	 +5		 +5
+Saves: STR -1, DEX +5, CON +2, INT +7, WIS +9, CHA +12
+Speed 30ft.
+Proficiencies: Arcana +10, Deception +10, Insight +7, Perception +7, Religion +10					
+120 ft Darkvision (magical darkness too)        Passive Perception 17, Passive Investigation 15, Passive Insight 17
+Resistances: Psychic damage		
+Immunities: Magical Sleep
+
+Traits
+Charm Resistance - Darkstar has advantage on saves against being charmed.
+Staff of Power - Darkstar wields a Staff of Power. This item has 20 charges and regains 2d8+4 daily at dawn. He can expend charges to cast spells. (He leaves his Staff of Charming at home).
+Dark One’s Own Luck (5/day) - Five times per long rest, after seeing a save or ability check, but before seeing the outcome, add 1d10 to the result.
+Hurl through Hell (1/day) - Once per long rest, when you hit on an attack roll, the target must make a DC 18 WIS save or be transported off the battlefield until the end of your next turn. A transported target takes 8d10 Psychic damage if it is not a Fiend.
+Eldritch Strike - Darkstar can expend a spell slot to deal 6d8 extra force damage when he hits a creature with his pact weapon and knock it prone if it is Huge or smaller.
+Spellcasting - Darkstar is a level 13 warlock, has spell save DC 18 and spell attack +12. Darkstar regains used spell slots on a short rest.
+    At Will: eldritch blast, chill touch, mage hand, minor illusion, invisibility(self only, in shadow), levitate(self only), arcane eye
+    5th level (3 slots): Banishment, Burning Hands, Command, Comprehend Languages, Contact Other Plane, Counterspell, Dimension Door, Dispel Magic, Dream, Fire Shield, Fireball, Fly, Geas, Hold Monster, Insect Plague, Mirror Image, Misty Step, Scorching Ray, Scrying, Stinking Cloud, Suggestion, Wall of Fire
+    1/day each: Misty Step, Sending, Eyebite, Forcecage
+    1 Charge: Magic Missile, Ray of Enfeeblement
+    2 Charges: Flaming Sphere, Knock, Invisibility, Web
+    3 Charges: Dispel Magic
+    4 Charges: Ice Storm, Wall of Fire
+    5 Charges: Wall of Force, Cone of Cold, Fireball (5th level), Lightning Bolt (5th level)
+    6 Charges: Globe of Invulnerability
+
+Actions
+Multiattack - Darkstar may make 3 attacks or cast a spell.
+Pact Blade - +10 to hit, 1d8+5 radiant (+10 dmg and +10 hp on a crit)
+```
+I invented the stat block for commander Darkstar and then wrote it in a format that is like the one I described earlier.
+```
+Greater Brightblade
+AC 16 		HP 95           Initiative +3
+Individual Humanoid (human wizard)	 		Speed 35ft
+STR	DEX	CON	INT	WIS	CHA		Prof.
+-1	 +3	+0	+5	 +1	 +0		 +5
+
+Spellcasting - The Brightblade may cast the following wizard spells with spell attack modifier +10 and spell save DC 18.
+At will: Detect Magic, Light, Mage Armor (included in AC), Mage Hand, Prestidigitation
+4/day each: Shield
+2/day each: Fireball, Ice Storm, Fog Cloud, Rime’s Binding Ice, Hunger of Hadar
+1/day each: Cone of Cold, Move Earth, Arcane Eye
+
+
+The Brightblade may make up to 3 attacks or use Spellcasting.
+Mage Bolt - +10 to hit, Ranged Spell Attack range 90ft, 3d8+5 force damage
+
+Counterspell (4/day) - the Brightblade casts counterspell in response to that spell’s trigger.
+```
+I invented the stat block for the greater brightblade and tweaked it minimally from what I have in my notes to work with the code.
+```
+Bandit
+AC 12           HP 11 (2d8 + 2)          Initiative +1 (11)
+Speed 30 ft.
+        Str     Dex     Con     Int     Wis     Cha
+SCORE   11      12      12      10      10      10
+MOD     +0      +1      +1      +0      +0      +0
+SAVE    +0      +1      +1      +0      +0      +0
+Gear Leather Armor, Light Crossbow, Scimitar
+Senses Passive Perception 10
+Languages Common, Thieves' cant
+CR 1/8 (XP 25; PB +2)
+
+Actions
+Scimitar. Melee Attack Roll: +3, reach 5 ft. Hit: 4 (1d6 + 1) Slashing damage.
+Light Crossbow. Ranged Attack Roll: +3, range 80/320 ft. Hit: 5 (1d8 + 1) Piercing damage.
+```
+I copied the stat block for the bandit off the web, and then did a touch of formatting to make it possible for a human to understand, before I tweaked it minimally from what I have in my notes to work with the code.
 
 ## Appendix: Unit Rules
 The 'unit' entities that can be added through certain commands are specific to my campaign. In my own campaign notes, here are the rules I wrote for them:
