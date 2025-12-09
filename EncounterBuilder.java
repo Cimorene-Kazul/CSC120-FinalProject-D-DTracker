@@ -134,7 +134,7 @@ public class EncounterBuilder {
             try {
                 this.encounter = Encounter.loadEncounter(encounterName);
                 if (this.encounter.inProgress()){
-                    System.out.println("This encounter is active and cannot be modified. It is recommended that this encounter not be modified.");
+                    System.out.println("This encounter is active. All attempts to modify this encounter will not successfully change it.");
                 }
             } catch (RuntimeException e) {
                 System.out.println("The file in question has problems and may not exist.");
