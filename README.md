@@ -1,7 +1,8 @@
 # CSC 120 Final Project: D&D Combat Tracker (Primarily for DMs)
 ## D&D Combat - The System
+Dungeons and Dragons (abbreviated D&D) is an extremely popular roleplaying game. The person who represents the fantasy world and makes rulings, keeping everything running, is called the Dungeon Master, or DM for short. Being a DM, or DMing, is a lot of fun, but can be difficult, particularly when it comes to running combat. D&D combat is a lot to keep track of. DMing a large encounter can be a major challenge. This project creates a tracker to help. 
 
-D&D combat is a lot to keep track of. DMing a large encounter can be a major challenge. This project intends to make a tracker to help. D&D is based around making rolls and checking against difficulties. Tests are made by rolling 20-sided dice (d20s for short) and adding modifiers. The difficulties in question are called DCs. Tests succeed if they equal or exceed the given DC.
+D&D is based around making rolls and comparing the roll to a number indicating the difficults. Most tests are made by rolling 20-sided dice (d20s for short) and adding modifiers. The difficulties in question are called DCs. Tests succeed if they equal or exceed the given DC.
 
 Here is a simple stat block, holding the information needed to run combat against a basic enemy, a bandit. Each line is labeled with what it means.
 
@@ -26,25 +27,134 @@ Scimitar. Melee Attack Roll: +3, reach 5 ft. Hit: 4 (1d6 + 1) Slashing damage.  
 Light Crossbow. Ranged Attack Roll: +3, range 80/320 ft. Hit: 5 (1d8 + 1) Piercing damage.      > ranged attack with +3 bonus, dealing 1d8+5 damage on a hit
 ```
 
-The way combat works is all entities (players and monsters) roll initiatve by rolling 1d20 and adding their initiative modifer. They then take turns doing things, in decreasing order of initiative (higher initiative goes earlier). For this reason, the term 'roll initiative' has the special meaning of begin combat.
+The way combat begins with all entities (players and monsters) 'rolling initiatve'. To roll initiative, roll 1d20 and add your initiative modifier. By default, the initiative modifier is the same as the dexterity (dex) modifier, but it does not have to be. For the sake of understanding combat, treat the initiative modifier as something explicitly stated by the stat sheet. The bandit in this example has +1 to initiative. Combat then goes in turns, in decreasing order of initiative (higher initiative goes earlier). For this reason, the term 'roll initiative' has the special meaning of begin combat in D&D circles.
 
-On an entity's turn, they can move their speed in feet (which is most interesting on a grid map), and take 1 action and 1 bonus action. They can also take 1 reaction between (including current turn) each of their turns, which have specific triggers.
+On an entity's turn, they can move up to their speed in feet (which is most interesting on a grid map, and otherwise is mostly handwaved), and take 1 *action* and 1 *bonus action*. They can also take 1 *reaction* between (including current turn) each of their turns, which have specific triggers.
 
-The most common actions are attacks. To make an attack, an entity chooses a creature within range (ranged attacks) or reach (melee attacks) and rolls 1d20 and adds their attack modifier. Certain conditions can impose advantage or disadvantage, which forces them to roll twice and take the highest (advantage) or lowest (disadvantage). They then compare the result to the AC of their target. If the attack roll equals or exceeds the target's AC, it hits and deals the given amount of damage. If the roll of the d20 is 1, the attack automatically misses. This is known as a critical miss. If the roll is a 20, this is a critical hit and deals double dice in damage.
+*Actions* are long tasks. The most common actions are *attacks*. To make an attack, an entity chooses a creature within range (ranged attacks) or reach (melee attacks) and rolls 1d20 and adds their attack modifier. Certain conditions can impose advantage or disadvantage, which forces them to roll twice and take the highest (advantage) or lowest (disadvantage). They then compare the result to the AC of their target. If the attack roll equals or exceeds the target's AC, it hits and deals the given amount of damage. If the roll of the d20 is 1, the attack automatically misses. This is known as a critical miss. If the roll is a 20, the attack is a critical hit and deals double dice in damage.
 
-Some entities can cast spells or do other abilities with their actions. Much of the time, these abilities will either create attacks or force a saving throw. They will have an associated Difficulty Class (DC) for short and ability. For instance, a fireball requires a Dexterity Saving Throw, or Dex Save for short. The target or targets must then make the given save, by rolling 1d20 and adding their saving throw modifier for the given save. If the save equals or exceeds the DC, it is a success. Otherwise, it fails. Unlike attacks, saves often have effects on a success.
+Some entities can cast spells or do other abilities with their actions. Much of the time, these abilities will either make attacks or force what is called a *saving throw*. Saving throws or saves for short have an associated Difficulty Class (DC) and ability. For instance, a fireball requires a Dexterity Saving Throw, or Dex Save for short. The target or targets must then make the given save, by rolling 1d20 and adding their saving throw modifier for that particular save. If the save equals or exceeds the DC, it is a success. Otherwise, it fails. Unlike attacks, saves often have effects on a success, typically dealing half damage.
 
-Very powerful entities can also have Lair Actions and Legendary Actions. Lair actions always take place at initiative 20 and only in certain places. Legendary Actions take place at the end of any other creature's turn. They are a good way for powerful entities to overpower multiple foes. In a number of modern stat blocks, Legendary Actions are replaced by having more reactions.
+*Bonus actions* are, in some sense, faster than actions, and rarer. Not every creature has bonus actions. Some of the more common ones are the teleportation spell *misty step,* the effects of most spells that allow you to do something for every turn after they take effect (like *spiritual weapon*), and the healing ability *second wind*, possessed by fighter characters. Most bonus actions are spells or other effects, but sometimes they are attacks.
 
-In addition to their actions, bonus actions, reactions, and legendary actions, entities also can have traits. These can include abilities to absorb certain types of damage, penalties causing weaknesses, or even immunity to low-level magic. The most common trait however, is legendary resistance. This ability has a number of uses per day and can be used to turn a failed saving throw into a success.
+*Reactions* are just what they sound like: responses to particular events. Some reactions any creature can take. In response to a creature leaving reach, you can take a reaction to make a melee attack to try and hit them. This is called an opportunity attack. Other reactions are creature-specific. In response to being about to get hit by a particular attack, the *shield* spell can be cast to increase armor class by 5 for the rest of the round and perhaps make the attack miss instead. In response to a spell being cast, you can cast *counterspell* to try to prevent it from taking effect. Not every creature has reactions either. Reaction effects can vary. Most prevenatives are reactions. Some creatures can have more than one reaction, mostly replacing legendary actions.
+
+Very powerful entities can also have *Lair Actions* and *Legendary Actions*. 
+
+*Lair actions* always take place at initiative 20 and only in certain places. Creatures usually cannot take the same lair action twice in a row. Lair actions can do have attacks, force saving throws against damage or impediment, have crowd control effects in a large space, or provide their owner movement ability.
+
+*Legendary Actions* take place at the end of any other creature's turn. They are a good way for powerful entities to overpower multiple foes. Many creatures have legendary actions that are similar to their actions, being able to make attacks, cast spells, or move. As previously stated, some newer creatures have more than one reaction, replacing legendary actions. Sometimes I like to call these 'legendary reactions'.
+
+In addition to their actions, bonus actions, reactions, and legendary actions, creatures also have traits. These can include abilities to absorb certain types of damage, penalties causing weaknesses, or even immunity to low-level magic. The most common trait however, is legendary resistance. Most powerful creatures, usually those with legendary actions, have this trait. This ability has a number of uses per day and is used to turn a failed saving throw into a success.
+
+All of this complicated information is stored in monster stat blocks. 
 
 Most monsters die when reduced to 0 HP, although some have a more complex dying process that is the same used by player characters.
 
 ### Sample Encounter
-Here is a very simple fight. Two of the bandit creatures described above are fighting a wizard. The first bandit rolls a natural 20, for an initiative of 21, while the second bandit rolls a 15. The wizard rolls a 10. The first bandit then attacks with their crossbow, rolling a natural 1 and missing. The second rolls a 10+3 = 13, which is the AC of the wizard. The wizard is hit for 1d8+1 damage, which turns out to be 2. They remove those 2 damage from their 20 HP. Then, they throw a fireball at the bandits. The bandits each need to roll a dex save against their DC of 13. The first rolls 14+1 = 15 for a success, while the second rolls 10+1 = 11 for a failure. The spell deals 8d6 fire damage on a success and half that on a failure, which turns out to be 28 total, which kills both bandits by reducing their HP to 0.
+Here is a very simple fight. Even this three player fight against bandits is pretty long.
+
+**Players:** Tim (Fighter), Sal (Wizard), Ela (Rogue)
+
+**Monsters:** 3 bandits
+```
+Bandit                                                                                          
+Small or Medium Humanoid, Neutral                                                              
+AC 12                                                                                 
+Initiative +1 (11)                                                                     
+HP 11 (2d8 + 2)                                                                
+Speed 30 ft.                                                                             
+        Str     Dex     Con     Int     Wis     Cha                                             
+        11       12      12      10      10      10                                   
+Bonus:  +0       +1      +1      +0      +0      +0                                   
+Save:   +0       +1      +1      +0      +0      +0                                       
+Gear: Leather Armor, Light Crossbow, Scimitar                                                
+Senses: Passive Perception 10                                                                 
+Languages: Common, Thieves' cant                                                       
+CR 1/8 (XP 25; PB +2)                                                                     
+
+Actions 
+Scimitar. Melee Attack Roll: +3, reach 5 ft. Hit: 4 (1d6 + 1) Slashing damage.             
+Light Crossbow. Ranged Attack Roll: +3, range 80/320 ft. Hit: 5 (1d8 + 1) Piercing damage.    
+```
+DM: As you walk down the road, three figures jump out of the bushes. "Yer money or yer life!" shouts the tallest at the front, as all three clash their weapons together.
+
+Tim: I say no way, run forwards and hit him with my sword.
+
+DM: Ok, everybody roll initiative. * DM rolls 3+1 = 4, 10+1=11, and 19+1 = 20 for the three bandits. *
+
+Tim: I got a 11.
+
+Ela: 13.
+
+Sal: Nat 20, baby! That's a 22 for me.
+
+DM: OK, so Sal goes first.
+
+Sal: I cast magic missile. That's 3 darts that automatically hit, each for 1d4+1 force damage on a hit.
+
+DM: Targets?
+
+Sal: All 3 go for the bandit that shouted. First bolt deals 4, second 2, and third 5, for a total of 11.
+
+DM: That's the bandit down (HP = 11-11 = 0). Its now the bandit on the right's turn. They are going to run up and hit Sal with their sword. That's a 15+3=18 to hit.
+
+Sal: I have AC's 13. I can't even use my reaction to shield.
+
+DM: Ouch... Take 1d8+1 = 7 damage.
+
+Sal: I'm almost down. I have 1 HP left.
+
+Ela: Let me get that bandit off of you. I'll throw a dagger at it.
+
+DM: Ok. Roll to hit.
+
+Ela: That's a 16.
+
+DM: That hits (AC = 12 <= 16).
+
+Ela: Because of my sneak attack, that's 1d6+1d4+3 = 9 damage.
+
+DM: The bandit's still alive, but looking pretty hurt (HP = 11-9 = 2). Tim, your turn.
+
+Tim: I move between the hurt bandit and Sal. Then I hit it with my sword. I rolled a 12.
+
+DM: That just barely hits. Damage?
+
+Tim: 4.
+
+DM: The bandit's down (HP=2-4=-2<=0). It is the last bandit's turn. They are going to move and then try to shoot Sal. They rolled 2+3 = 5 to hit.
+
+Sal: That misses.
+
+DM: OK, back to you Sal.
+
+Sal: I cast fire bolt. Oh. I rolled a 1.
+
+DM: That misses. Ela?
+
+Ela: I'll throw another dagger. Yes!!!! I rolled a natural 20!
+
+DM: Damage?
+
+Ela: No sneak attack, but I do deal double dice. That's 2d4+3 = 9 damage.
+
+DM: The bandit's still up (HP=11-9=2). Tim?
+
+Tim: I can't reach it with movement, so0 I'll run and then throw a javelin at it. Does a 14 hit?
+
+DM: It does indeed. Damage?
+
+Tim: 5.
+
+DM: That's the last bandit down. (HP=2-5=-3<=0)
+
+All three players: Yay! Looting time!
+
+Even an encounter this simple involved tracking a substantial initiative order, HP, AC, and stats during turns. There are plenty of fights that are way, way more complicated. There can easily be multiple types of enemies, more enemies, and longer fights with reactions. Sometimes spell slots need to be tracked. It's just a lot. So our code will help make running combat easier.
 
 ## Using Our Code
-Our code will be based around an object called an EncounterBuilder. While 'builder' is often a word indicating a specific task in CS, in the D&D world, a tool designed to help a dungeon master create an encounter is almost always called an encounter builder, hence the use of the term here. This object will manipulate Encounter objects, which actually hold the information required to run encounters. To set up an encounter builder, the following code is all that is needed.
+Our code keeps track of initiative, have an easy way to check AC and pull up stats, print stat blocks on the appropriate turns, track damage, and have a dice roller. This will prevent DMs from needing to switch between windows constantly, easing the running of encounters. Our code is based around an object called an EncounterBuilder. While 'builder' is often a word indicating a specific task in CS, in the D&D world, a tool designed to help a dungeon master create an encounter is almost always called an encounter builder, hence the use of the term here. This object will manipulate Encounter objects, which actually hold the information required to run encounters. To set up an encounter builder, the following code is all that is needed.
 ```
 EncounterBuilder myEncounterBuilder = new EncounterBuilder();
 myEncounterBuilder.buildEncounter();
@@ -365,6 +475,22 @@ This is a large encounter my players are currently in (all names redacted for pr
 22. A unit of 6 senior students at 309 HP (total) without notes.
 23. The NPC Milnor at 124 HP, without notes.
 24. A high magedeath at 203 HP with the active note that it has used the spell antimagic field and has marker 0.
+
+## Additional Reflection Questions
+### What was your overall approach to tackling this project?
+We had a sense of what the code should do, and what should have what information, and then we just wrote code. It was modeled to look and behave like the objects would in real life. This was badly structured, and honestly I think could cause problems for larger projects. It worked, but that's probably more luck than anything. - Eliana
+### What new thing(s) did you learn / figure out in completing this project?
+I figured out how to work with files and more about the command line for this project. I learned a lot more about files than I actually wound up needing to use. I found out that maven is nessesary if you want to do much with packages in java. I learned how to make a good gameloop. And, while I was unable to impliment it, I learned some stuff about how not to structure code. - Eliana
+### Is there anything that you wish you had implemented differently?
+I would have been much, much better at planning and naming. I kept changing the names of things and adding and removing things. Better planning was sorely needed. Encounters would only track info, and the only thing with scanners would be the EncounterBuilder. I also would have been better at working with groupmates. I would communicate about what D&D combat is more clearly. - Eliana
+### If you had unlimited time, what additional features would you implement?
+I would add a tracker for location, make inputing names easier, make it easier to modify notes, make creature names contain if they have notes, add tracking and auto-rolling to reactions, actions, etc, make a list for legendary actions, reactions, etc that prints every turn so I know what entities can do what. I would find out how to scrape the web to get more options for monsters. I would automate saving throws and set up a tool to bring up spell descriptions and track spell uses. I would let you run multiple encounters without needing to run the code multiple times - Eliana
+### What was the most helpful piece of feedback you received while working on your project? Who gave it to you?
+My parents told me that since I took on too much, I should decrease the breadth. That was a *good* idea. - Eliana
+### If you could go back in time and give your past self some advice about this project, what hints would you give?
+Be clearer at explaining D&D combat! Text files *can* save encounters. Trying to explore .json and .xml just takes time. Also, get better at spliting work. - Eliana
+### If you worked with a team: please comment on how your team dynamics influenced your experience working on this project.
+I honestly have to say I am a bad teammate. I tend to do too much myself, and communicate and share work badly. I did not find problems emerging from these bad team dynamics, but Rachel might have noticed some things. I feel bad about it. - Eliana
 
 ## Appendix: Unit Rules
 The 'unit' entities that can be added through certain commands are specific to my campaign. I created their rules myself (this is called homebrewing). In my own campaign notes, here are the rules I wrote for them:
