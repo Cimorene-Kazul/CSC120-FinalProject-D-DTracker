@@ -4,6 +4,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Monster class represents a monster creature with stats loaded from a file.
+ */
 public class Monster extends Creature{
     private Integer AC;
     protected Integer HPmax;
@@ -14,11 +17,20 @@ public class Monster extends Creature{
     protected String originNotes = "";
     protected String fileOrigin = null;
 
+    /**
+     * Constructor to create a Monster with specified file name and origin notes.
+     * @param fileName The name of the file containing the monster's stats.
+     * @param originNotes Notes about the monster's origin.
+     */
     public Monster(String fileName, String originNotes){
         this(fileName);
         this.originNotes = originNotes; 
     }
 
+    /**
+     * Constructor to create a Monster with specified file name
+     * @param fileName The name of the file containing the monster's stats.
+     */
     public Monster(String fileName){
         this.subclass = CreatureType.MONSTER;
         this.fileOrigin = fileName.trim();
@@ -46,6 +58,14 @@ public class Monster extends Creature{
         }
     }
 
+    /**
+     * Constructor to create a Monster with specified attributes.
+     * @param name
+     * @param health
+     * @param AC
+     * @param initiativeBonus
+     * @param statBlock
+     */
     public Monster(String name, int health, int AC, int initiativeBonus, String statBlock){
         this.subclass = CreatureType.MONSTER;
         this.name = name;
@@ -56,41 +76,79 @@ public class Monster extends Creature{
         this.statBlock = statBlock;
     }
 
-    // gettors
+    /**
+     * Get the name of the monster.
+     * @return The name of the monster.
+     */
     public String getName(){
         return this.name;
     }
 
+    /**
+     * Get the stats of the monster.
+     * @return statBlock, the string representation of the monster's stats
+     */
     public String getStats(){
         return this.statBlock;
     }
 
+    /**
+     * Get the current HP of the monster
+     * @return HP
+     */
     public int getHP(){
         return this.HP;
     }
 
+    /**
+     * Get the maximum HP of the monster
+     * @return HPmax
+     */
     public int getHPmax(){
         return this.HPmax;
     }
 
+    /**
+     * Get the AC of the monster
+     * @return AC
+     */
     public int getAC(){
         return this.AC;
     }
 
+    /**
+     * Get the initiative bonus of the monster
+     * @return initiativeBonus
+     */
     public int getInitiative(){
         return this.initiativeBonus;
     }
 
+    /**
+     * Apply damage to the monster
+     * @param amt of damage
+     * @return message about the damage taken and remaining HP
+     */
     public String damage(int amt){
         this.HP = Math.max(this.HP-amt, 0);
         return this.name+" has been hit for "+amt+" reducing it to "+this.HP+" hit points.";
     }
 
+    /**
+     * Heal the monster
+     * @param amt of health
+     * @return message about the healing and new HP
+     */
     public String heal(int amt){
         this.HP = Math.min(this.HP+amt, this.HPmax);
         return this.name+" has been healed for "+amt+" increasing it to "+this.HP+" hit points.";
     }
 
+    /**
+     * Add a note to the monster
+     * @param note
+     * @return message signifiying the note has been saved
+     */
     public String takeNote(String note){
         if (this.notes.trim() == ""){
             this.notes = note;
@@ -99,6 +157,9 @@ public class Monster extends Creature{
         }
         return "Notes have been saved.";
     }
+
+    /**
+    */
     public String toString(){
         String result = name+" at "+HP+"/"+HPmax+" HP, AC "+AC;
         if (this.originNotes.trim() != ""){
