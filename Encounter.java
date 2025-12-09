@@ -15,16 +15,15 @@ public class Encounter implements Serializable {
     private Integer currentInitiative = 0;
     private Scanner encounterScanner = null;
     private String commandOptions = """
-        summary - prints a concise summary of characters in combat, with their indicies, in initiative order
-        end turn - goes on to the next turn
-        close - closes the whole program
-        roll <dice formula> - rolls and prints the result of <dice formula> (ie, 3d6 rolls 3 6-sided dice and adds the results)
-        damage <index> <amt> - damages the creature at index <index> for amount <amount>
-        heal <index> <amt> - heals the creature at index <index> for amount <amount>
-        take note <index> - adds a note to the creature at index <index> (no index means the creature at the current initative)
-        stats <index> - prints stat block of creature <index>
-        save - saves the encounter as a file
-        """;
+summary - This command prints a concise summary of characters in combat, with their indicies, in initiative order. 
+end turn - This command makes the encounter go on to the next turn.
+close - This command quits out of the whole program. 
+roll <dice formula> - This command rolls and prints the result of <dice formula>, which is formatted in the standard format for writing dice rolls.
+damage <index> <amt> - This command makes the creature at index <index> take <amount> damage. 
+heal <index> <amt> - This command heals the creature at index <index> by <amount>. 
+take note <index> - This command prompts the user for a note and then adds that note to the notes for the creature at index <index>.  If there is no index specified, the creature that gains the note is the creature whose turn it currently is.
+stats <index> - This command prints the stat block of the creature <index>. 
+save - This command saves the encounter to a file, after prompting for a name for that file. """;
 
     /** 
      * Constructor for InitiativeTracker given an array of Creatures
