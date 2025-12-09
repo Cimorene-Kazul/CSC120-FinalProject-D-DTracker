@@ -12,7 +12,7 @@ public class Monster extends Creature{
     protected Integer HPmax;
     protected Integer HP;
     private Integer initiativeBonus;
-    protected String statBlock;
+    protected String statBlock = "";
     protected String notes = "";
     protected String originNotes = "";
     protected String fileOrigin = null;
@@ -227,8 +227,5 @@ public class Monster extends Creature{
             this.fileOrigin = (this.name.trim().replaceAll(" ", "_")).toLowerCase();
         }
         return "MONSTER <<<SPACING MARKER>>>"+this.fileOrigin+"<<<SPACING MARKER>>>"+this.HP+"<<<SPACING MARKER>>>"+this.originNotes.replaceAll("\n", " ")+"<<<SPACING MARKER>>>"+this.notes.replaceAll("\n", " ");
-    }
-
-    public static void main(String[] args) {
     }
 }

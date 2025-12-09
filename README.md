@@ -43,58 +43,37 @@ Most monsters die when reduced to 0 HP, although some have a more complex dying 
 ### Sample Encounter
 Here is a very simple fight. Two of the bandit creatures described above are fighting a wizard. The first bandit rolls a natural 20, for an initiative of 21, while the second bandit rolls a 15. The wizard rolls a 10. The first bandit then attacks with their crossbow, rolling a natural 1 and missing. The second rolls a 10+3 = 13, which is the AC of the wizard. The wizard is hit for 1d8+1 damage, which turns out to be 2. They remove those 2 damage from their 20 HP. Then, they throw a fireball at the bandits. The bandits each need to roll a dex save against their DC of 13. The first rolls 14+1 = 15 for a success, while the second rolls 10+1 = 11 for a failure. The spell deals 8d6 fire damage on a success and half that on a failure, which turns out to be 28 total, which kills both bandits by reducing their HP to 0.
 
-## Part 0: Using Our Code
-Our code will be based around an object called an InitiativeTracker. Our code will be set up so that running
+## Using Our Code
+Our code will be based around an object called an EncounterBuilder. While 'builder' is often a word indicating a specific task in CS, in the D&D world, a tool designed to help a dungeon master create an encounter is almost always called an encounter builder, hence the use of the term here. This object will manipulate Encounter objects, which actually hold the information required to run encounters. To set up an encounter builder, run
 ```
-InitiativeTracker myEncounter = new InitiativeTracker(<ArrayList of Monsters and Players>);
-myEncounter.rollInitiative();
+EncounterBuilder myEncounterBuilder = new EncounterBuilder();
+myEncounterBuilder.buildEncounter();
 ```
-will create an encounter with a list of Monsters and Players, then run combat. Another option will be
-```
-InitiativeTracker myEncounter = new InitiativeTracker();
-myEncounter.add(Player myPlayer1);
-myEncounter.add(Player myPlayer2);
-myEncounter.add(Player myPlayer3);
-...
-myEncounter.add(Player myMonstern);
-myEncounter.rollInitiative();
-```
-to do the same thing.
+This is exactly what happens in our Main.java file, so you could also just run that.
 
-## Part 1: The Basics
-The most fundamental thing our code will do when run is roll initiative for all the monsters. It will then prompt each player for their rolled initiative value. After this, it will go through the iniative count until it is told to stop. On each initiative, if it is someone's turn, it will either prompt the player to take their turn or print the monster's stat block depending on the situation.
+### Encounter Builder Commands
+Running the .buildEncounter() method starts up JEB - the Java Encounter Builder. JEB has a bunch of commands, which allow you to build an encounter object. When run, it will prompt you to ask for a command. The 'help' command will bring up the list.
 
-During a turn, our code will wait for the following commands 'end', 'next', 'damage', and 'summary'. 'next' moves to the next creature's turn. 'damage' prompts for a creature, which will take the index of the creature to damage. It should possibly also print the summary. 'summary' will print all the creatures, with their index, then name, and if they are a monster, AC and current HP. 'end' will quit out of the loop, which is going to need to be a while loop.
+**add monster** - This command adds a single entity defined by a stat block to the encounter. The stat block will be in the MonsterFiles folder, and must have a particular format. 
 
-In addition, it might also be useful for monsters to have a 'lair' boolean, and if there is a 'lair' monster, print a message to do all the lair actions on initiative 20. Similarly, adding a 'heal' command that functions like 'damage' but does the opposite could come in handy.
+**add multiple monsters** - adds a given number of monsters to the encounter. Good for a fight with 5 goblins or 10 guards, to avoid repeats.
+            add monster with note - does the same thing as add monster but gives the option to add a note to make it easier to keep track of things in large encounters.
+            remove monster - removes a monster or unit from the encounter
+            remove monsters - removes all monsters or units with the same name from the encounter.
+            add player - adds a player-controled character to the encounter
+            remove player - removes a player-controled character from the encounter
+            add unit - adds an entity composed of some number of entites defined by a stat block to the encounter. These entities might have something special added because of their nature as a composite or might just take damage together to ease running large encounters.
+            add unit with note - does the same thing as add unit but gives the option to add a note to make it easier to keep track of things in large encounters.
+            print encounter - prints a list of creatures in the encounter, with basic information.
+            list avaliable monsters - lists the monsters by name with stat blocks avaliable to use.
+            save encounter - saves the encounter as an encounter file.
+            list saved encounters - lists encounter file names that are saved.
+            load encounter - loads an encounter from a saved file.
+            clear encounter - removes all entities from the current encounter.
+            help - prints this list of commands.
+            close - quits this builder.
 
-In addition to however we track the initiative count a player has, player entities should store their names. Similarly, monsters should store, along with their names, a long string containing their stat block, plus their initiative modifier, AC, current HP, and maximum HP. Both should have a boolean indicating if they are player-controlled.
-
-If a command composed of a sum of values that look like ndm and integers is input, it will roll and add the values. mdn means roll m n-sided dice.
-We might also want to add the ability to give monsters set initiative, instead of rolling. This will help for certain major encounters.
-
-The intended classes here are: InitiativeTracker, Player, Monster, Entity. Both Player and Monster are subclasses of Entity.
-
-## Part 2: Saves + Interactions
-This portion will add the ability for some monsters to have saves and various types of interactions. 
-
-They will be able to roll to save on command, by saying 'save' followed by the type of save and then a list of monster numbers. It will then print the save values, in increasing order of the monsters given.
-
-In addition, Actions and Bonus actions will be formalized. They will be able to take a text value for the text, and some will also have an AttackRoll associated with it that it can roll. On a monster's turn, the command 'action' will print a list of actions and then take the index of the chosen action. It will print the action text, and any associated attack rolls. It will then mark them as having taken their action, which will be reset at the end of their turn. The same thing will happen for bonus actions.
-
-The intended classes here are: d20Test, Interaction, the subclasses of Interaction, Action and BonusAction, and the subclasses of d20Test Save, AttackRoll.
-
-## Part 3: Off-turn Interactions
-This portion will impliment reactions and legendary actions, as well as more detail on lair actions.
-
-The intended classes here are: the subclasses of Interaction, LairAction, Reaction and LegendaryAction
-
-## Part 4: Consumables
-Many monster stat blocks have n/day or spell slot avaliability. While n/day is obvious and means that there are n of these availiable per encounter (usually), I will explain spell slots here. Each spell of a particular level can be cast by using a slot at or above that level. The slot is then expended.
-
-This portion will add to all the Interaction classes the ability to add limited uses.
-
-## Kudos: Reading Files + Scraping
+## Writing Monster Files
 Hopefully, if this whole thing gets done, our code should also have the ability to read text or csv files containing a single stat block and convert them into a Monster object. The code should be able to pull from the stat block all the information it needs, with the stat block having a specific formatting that has not been decided yet. 
 
 In addition to this, we can try and learn to scrap webpages in java to create such files out of a large, known, database of D&D monsters.
