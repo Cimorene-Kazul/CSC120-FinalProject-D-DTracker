@@ -44,7 +44,7 @@ Most monsters die when reduced to 0 HP, although some have a more complex dying 
 Here is a very simple fight. Two of the bandit creatures described above are fighting a wizard. The first bandit rolls a natural 20, for an initiative of 21, while the second bandit rolls a 15. The wizard rolls a 10. The first bandit then attacks with their crossbow, rolling a natural 1 and missing. The second rolls a 10+3 = 13, which is the AC of the wizard. The wizard is hit for 1d8+1 damage, which turns out to be 2. They remove those 2 damage from their 20 HP. Then, they throw a fireball at the bandits. The bandits each need to roll a dex save against their DC of 13. The first rolls 14+1 = 15 for a success, while the second rolls 10+1 = 11 for a failure. The spell deals 8d6 fire damage on a success and half that on a failure, which turns out to be 28 total, which kills both bandits by reducing their HP to 0.
 
 ## Using Our Code
-Our code will be based around an object called an EncounterBuilder. While 'builder' is often a word indicating a specific task in CS, in the D&D world, a tool designed to help a dungeon master create an encounter is almost always called an encounter builder, hence the use of the term here. This object will manipulate Encounter objects, which actually hold the information required to run encounters. To set up an encounter builder, run
+Our code will be based around an object called an EncounterBuilder. While 'builder' is often a word indicating a specific task in CS, in the D&D world, a tool designed to help a dungeon master create an encounter is almost always called an encounter builder, hence the use of the term here. This object will manipulate Encounter objects, which actually hold the information required to run encounters. To set up an encounter builder, the following code is all that is needed.
 ```
 EncounterBuilder myEncounterBuilder = new EncounterBuilder();
 myEncounterBuilder.buildEncounter();
@@ -52,28 +52,55 @@ myEncounterBuilder.buildEncounter();
 This is exactly what happens in our Main.java file, so you could also just run that.
 
 ### Encounter Builder Commands
-Running the .buildEncounter() method starts up JEB - the Java Encounter Builder. JEB has a bunch of commands, which allow you to build an encounter object. When run, it will prompt you to ask for a command. The 'help' command will bring up the list.
+Running the .buildEncounter() method starts up JEB - the Java Encounter Builder. JEB has a bunch of commands, which allow you to build an encounter object. When run, it will prompt you to ask for a command. The 'help' command will bring up the list. To run a command, enter it in the command line. It will then prompt for the information needed.
 
-**add monster** - This command adds a single entity defined by a stat block to the encounter. The stat block will be in the MonsterFiles folder, and must have a particular format. 
+**add player** - This command adds a player-controled character to the encounter. The player character is indicated by character name and player name, and during combat will prompt for the player-rolled initiative rather than rolling automatically.
 
-**add multiple monsters** - adds a given number of monsters to the encounter. Good for a fight with 5 goblins or 10 guards, to avoid repeats.
-            add monster with note - does the same thing as add monster but gives the option to add a note to make it easier to keep track of things in large encounters.
-            remove monster - removes a monster or unit from the encounter
-            remove monsters - removes all monsters or units with the same name from the encounter.
-            add player - adds a player-controled character to the encounter
-            remove player - removes a player-controled character from the encounter
-            add unit - adds an entity composed of some number of entites defined by a stat block to the encounter. These entities might have something special added because of their nature as a composite or might just take damage together to ease running large encounters.
-            add unit with note - does the same thing as add unit but gives the option to add a note to make it easier to keep track of things in large encounters.
-            print encounter - prints a list of creatures in the encounter, with basic information.
-            list avaliable monsters - lists the monsters by name with stat blocks avaliable to use.
-            save encounter - saves the encounter as an encounter file.
-            list saved encounters - lists encounter file names that are saved.
-            load encounter - loads an encounter from a saved file.
-            clear encounter - removes all entities from the current encounter.
-            help - prints this list of commands.
-            close - quits this builder.
+**add monster** - This command adds a single entity defined by a stat block to the encounter. The stat block will be in the MonsterFiles folder, and must have a particular format, which will be described later. This is not a default format typically fetched off the web, but is easiest to code and reasonably easy to turn a standard off-the-web stat block into.
+
+**add multiple monsters** - This command adds a given number of monsters to the encounter, which is like repeating the *add monster* command a certain number of times. This is good for a fight with 5 goblins or 10 guards, to avoid excessibve typing, and keeps the monsters seperate.
+
+**add monster with note** - This command does the same thing as *add monster* but also allows the user to add a note to make it easier to keep track of things in large encounters. This is great for when there are multiple factions that the DM needs to track, or for keeping track of monster location or number. A note could be *1* to indicate goblin 1, *ugly* if your labels are more discriptive, *left* if the entities start in a row, or *Kevin's faction* if the entity is associated with a particular faction (this example being one run by the noble Kevin).
+
+**add unit** - This command adds an entity composed of some number of entites defined by a stat block to the encounter. Units of this sort follow rules I created for my personal campaign, and are nonstandard. These entities might have something special added because of their nature as a composite or might just take damage together to ease running large encounters. They have a size, indicating the number of entities composing the unit, and have HP equal to the base HP for the composing monster multiplied by the size. As they take damage, the size decreases. Unit size must be a positive integer.
+
+**add unit with note** - This command does the same thing as *add unit* but also allows the user to add a note to make it easier to keep track of things in large encounters, the same way *add monster with note* does.
+
+**remove player** - This command removes a player-controled character from the encounter, and can take as the name either the player name or the character name.
+
+**remove monster** - This command removes a monster or unit from the encounter, since units function exactly like monsters, only with some modified rules. The name must be the proper name, printed when the monster is added, not the file name used to fetch the monster. *If someone in the future wants to improve this code, allowing more flexible inputs to this command might be a good idea.*
+
+**remove monsters** - This command removes all monsters or units with the same name from the encounter. This is especially useful when you have added multiple monsters and want to remove them all or when you have some monsters of a type with and some without a note, and you have to change something, since you can't tell by monster name which one has the note. *If someone in the future wants to improve this code, allowing notes to be identified when removing monsters might be a good place to start!*
+
+**run encounter** - This command runs the encounter that the encounter builder is currently working on.
+
+**print encounter** - This command prints a list of creatures in the encounter. This will include notes.
+
+**list avaliable monsters** - This command lists the monster names for monsters with stat blocks avaliable to use. These are the names that you need to give when *add monster* or *add unit* asks you to specify the monster you want to add.
+
+**save encounter** - This commander saves the encounter as an encounter file. Such files can be loaded later.
+
+**list saved encounters** - This command lists the file names of encounters that are saved and thus can be loaded. The commande *load encounter* requires that the encounter it prompts for get one of these as the user input.
+
+**load encounter** - This command loads an encounter from a saved file. It will ask which encounter to load, the resulting input must be a file name that *list saved encounters* would print.
+
+**clear encounter** - This command removes all entities from the current encounter, reseting it to a new encounter.
+
+**help** - This command prints the list of commands that the encounter builder will accept.
+
+**close** - This command quits this builder. 
 
 ## Writing Monster Files
 Hopefully, if this whole thing gets done, our code should also have the ability to read text or csv files containing a single stat block and convert them into a Monster object. The code should be able to pull from the stat block all the information it needs, with the stat block having a specific formatting that has not been decided yet. 
 
 In addition to this, we can try and learn to scrap webpages in java to create such files out of a large, known, database of D&D monsters.
+
+## Appendix: Unit Rules
+The 'unit' entities that can be added through certain commands are specific to my campaign. In my own campaign notes, here are the rules I wrote for them:
+
+ Units use standard stat blocks, however they take damage differently from others. Units behave like individuals on a turn basis, aside from how they interact with AOE spells, other individuals, and the presence of an additional element to track their size. Units take damage from AOE spells equal to up to their individual HP per square meter/yard of intersection. Individuals can enter the space of units. Units are based around size. This is a trait that changes as HP does, with max HP being (individual HP)*size and size being HP/(individual HP) rounding up. Unit attacks require targets to make a strange roll to take half damage. Rolls 5 or more greater than the DC result in taking no damage, even if the attack says it can be halved. This roll has a bonus equal to (AC of target)-10, incorporating all means of defense but allowing use of AOE save mechanics. Advantage on the attack is disadvantage on the save and visa versa. Damage is based around the amount of border the attacker and defender share.
+
+All (or almost) of my unit stat blocks have the following trait as well:
+```
+Unit - Most values are given in terms of unit Size, which for the <name of unit> is <size range>. As HP decreases, Size decreases to HP/<individual HP>, rounded up. The unit occupies an area equal to Size square meters. It can cast and concentrate on Size spells at once and has Size reactions.
+```
