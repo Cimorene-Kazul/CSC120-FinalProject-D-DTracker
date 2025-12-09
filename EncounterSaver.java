@@ -1,8 +1,10 @@
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.util.Hashtable;
+import java.io.File;  // Import the File class
+import java.io.FileNotFoundException;  // Import this class to handle errors
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner; // Import the Scanner class to read text files
+import java.io.BufferedWriter; // Import this class to write to a file
+import java.util.Hashtable;
 
 public class EncounterSaver {
 
@@ -25,7 +27,7 @@ public class EncounterSaver {
         encounter += "\nINITIATIVE ORDER: \n";
         encounter += tracker.getSummary();
         encounter += "\nCURRENT INITIATIVE: " + tracker.currentInitiative + "\n";
-        Files.write(Paths.get(fileName+".txt"), encounter.getBytes(), StandardOpenOption.CREATE);
+        
     }
     
     public static void saveMonster(Monster monster, String fileName) throws IOException {
@@ -52,7 +54,6 @@ public class EncounterSaver {
                     monsterInfo += "(" + actions.get(key).getUses() + "/day) ";
                 }
                 monsterInfo += "- " + actions.get(key).getDescription();
-                // not sure if dice rolls are part of the description or not? If not, dice rolls added here
             }
         }
         if (!monster.getBonusActions().isEmpty()){
@@ -64,7 +65,6 @@ public class EncounterSaver {
                     monsterInfo += "(" + bonusActions.get(key).getUses() + "/day) ";
                 }
                 monsterInfo += "- " + bonusActions.get(key).getDescription();
-                // not sure if dice rolls are part of the description or not? If not, dice rolls added here
             }
         }
         if (!monster.getLegendaryActions().isEmpty()){
@@ -76,7 +76,6 @@ public class EncounterSaver {
                     monsterInfo += "(" + legendaryActions.get(key).getUses() + "/day) ";
                 }
                 monsterInfo += "- " + legendaryActions.get(key).getDescription();
-                // not sure if dice rolls are part of the description or not? If not, dice rolls added here
             }
         }
         if (!monster.getReactions().isEmpty()){
@@ -88,7 +87,6 @@ public class EncounterSaver {
                     monsterInfo += "(" + reactions.get(key).getUses() + "/day) ";
                 }
                 monsterInfo += "- " + reactions.get(key).getDescription();
-                // not sure if dice rolls are part of the description or not? If not, dice rolls added here
             }
         }
         Files.write(Paths.get("Monsters/"+fileName+".txt"), monsterInfo.getBytes(), StandardOpenOption.CREATE);

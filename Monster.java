@@ -77,8 +77,28 @@ public class Monster extends Creature{
         return this.AC;
     }
 
-    protected int getInitiative(){
+    public int getInitiative(){
         return this.initiativeBonus;
+    }
+
+    public Hashtable<String, Interaction> getTraits(){
+        return this.traits;
+    }
+
+    public Hashtable<String, Interaction> getActions(){
+        return this.actions;
+    }
+
+    public Hashtable<String, Interaction> getBonusActions(){
+        return this.bonusActions;
+    }
+
+    public Hashtable<String, Interaction> getLegendaryActions(){
+        return this.legendaryActions;
+    }
+
+    public Hashtable<String, Interaction> getReactions(){
+        return this.reactions;
     }
 
     public String damage(int amt){
