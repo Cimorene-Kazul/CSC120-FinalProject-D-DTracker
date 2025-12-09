@@ -10,14 +10,14 @@ public class MonsterGroup extends Monster{
 
     public MonsterGroup(String fileName, int number){
         super(fileName);
-        if (this.size<=0){
+        if (this.size<0){
             throw new RuntimeException("Units must have positive integer size");
         }
         this.subclass = CreatureType.UNIT;
         this.size = number;
+        this.individualHP = this.HPmax;
         this.HPmax *= number;
         this.HP = this.HPmax;
-        this.individualHP = this.HP/number;
         this.baseName = this.name;
         this.name = number + " " + this.baseName;
     }
@@ -104,8 +104,5 @@ public class MonsterGroup extends Monster{
         m.originNotes = pieces[4].trim();
         m.takeNote(pieces[5].trim());
         return m;
-    }
-
-    public static void main(String[] args) {
     }
 }
