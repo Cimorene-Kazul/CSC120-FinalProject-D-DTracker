@@ -10,6 +10,9 @@ public class MonsterGroup extends Monster{
 
     public MonsterGroup(String fileName, int number){
         super(fileName);
+        if (this.size<=0){
+            throw new RuntimeException("Units must have positive integer size");
+        }
         this.subclass = CreatureType.UNIT;
         this.size = number;
         this.HPmax *= number;
