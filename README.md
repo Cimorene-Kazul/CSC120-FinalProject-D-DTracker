@@ -114,7 +114,7 @@ Once initiative is rolled, the tool will go through the initiative order over an
 **save** - This command saves the encounter to a file, after prompting for a name for that file.
 
 ## Writing Monster Files
-A .txt file of a particular format can be used to store monster information. When you download this program, there will be a folder called *MonsterFlies*. Whatever you do ***do not change the name of this folder.*** This is where the ,txt files for monsters live. 
+A .txt file of a particular format can be used to store monster information. When you download this program, there will be a folder called *MonsterFlies*. Whatever you do ***do not change the name of this folder.*** This is where the .txt files for monsters live. 
 
 The name of a monster file must be all in lowercase and contain no spaces. Use underscores to replace spaces. I highly recommend chosing a name similar to that of the monster or unit whose stat block the file contains.
 
@@ -276,10 +276,19 @@ Light Crossbow. Ranged Attack Roll: +3, range 80/320 ft. Hit: 5 (1d8 + 1) Pierci
 ```
 I copied the stat block for the bandit off the web, and then did a touch of formatting to make it possible for a human to understand, before I tweaked it minimally from what I have in my notes to work with the code.
 
-## Appendix: Unit Rules
-The 'unit' entities that can be added through certain commands are specific to my campaign. In my own campaign notes, here are the rules I wrote for them:
+## Writing Encounter Files
+A .txt file of a particular format is used to store encounter information. When you download this program, there will be a folder called *Encounters*. Whatever you do ***do not change the name of this folder.*** This is where the .txt files for saved encounters live.  The files that encounters are saved in are possible to write by hand, but I highly discourage you from writing them. They are not prettily formatted. But if you really want to turn your encounter into a file by hand, I won't stop you. Here I'll describe what you need to do if you do need to write such a file.
 
- Units use standard stat blocks, however they take damage differently from others. Units behave like individuals on a turn basis, aside from how they interact with AOE spells, other individuals, and the presence of an additional element to track their size. Units take damage from AOE spells equal to up to their individual HP per square meter/yard of intersection. Individuals can enter the space of units. Units are based around size. This is a trait that changes as HP does, with max HP being (individual HP)*size and size being HP/(individual HP) rounding up. Unit attacks require targets to make a strange roll to take half damage. Rolls 5 or more greater than the DC result in taking no damage, even if the attack says it can be halved. This roll has a bonus equal to (AC of target)-10, incorporating all means of defense but allowing use of AOE save mechanics. Advantage on the attack is disadvantage on the save and visa versa. Damage is based around the amount of border the attacker and defender share.
+Encounter file names are not restricted like monster file names, but I highly recommend using lowercase with underscores instead of spaces.
+
+The first line of an encounter that has not been run is *"INACTIVE".* Encounters that are in progress list entities in the order of initiative *from the initiative that is the first that will happen when the encounter starts again* and just list the entities composing them.
+
+Each entity in the encounter has a single line in the encounter file.
+
+## Appendix: Unit Rules
+The 'unit' entities that can be added through certain commands are specific to my campaign. I created their rules myself (this is called homebrewing). In my own campaign notes, here are the rules I wrote for them:
+
+Units use standard stat blocks, however they take damage differently from others. Units behave like individuals on a turn basis, aside from how they interact with AOE spells, other individuals, and the presence of an additional element to track their size. Units take damage from AOE spells equal to up to their individual HP per square meter/yard of intersection. Individuals can enter the space of units. Units are based around size. This is a trait that changes as HP does, with max HP being (individual HP)*size and size being HP/(individual HP) rounding up. Unit attacks require targets to make a strange roll to take half damage. Rolls 5 or more greater than the DC result in taking no damage, even if the attack says it can be halved. This roll has a bonus equal to (AC of target)-10, incorporating all means of defense but allowing use of AOE save mechanics. Advantage on the attack is disadvantage on the save and visa versa. Damage is based around the amount of border the attacker and defender share.
 
 All (or almost) of my unit stat blocks have the following trait as well:
 ```
