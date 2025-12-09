@@ -62,6 +62,8 @@ Running the .buildEncounter() method starts up JEB - the Java Encounter Builder.
 
 **add monster with note** - This command does the same thing as *add monster* but also allows the user to add a note to make it easier to keep track of things in large encounters. This is great for when there are multiple factions that the DM needs to track, or for keeping track of monster location or number. A note could be *1* to indicate goblin 1, *ugly* if your labels are more discriptive, *left* if the entities start in a row, or *Kevin's faction* if the entity is associated with a particular faction (this example being one run by the noble Kevin).
 
+**add placeholder** - This command adds a placeholder at a particular initiative, for a particular event.
+
 **add unit** - This command adds an entity composed of some number of entites defined by a stat block to the encounter. Units of this sort follow rules I created for my personal campaign, and are nonstandard. These entities might have something special added because of their nature as a composite or might just take damage together to ease running large encounters. They have a size, indicating the number of entities composing the unit, and have HP equal to the base HP for the composing monster multiplied by the size. As they take damage, the size decreases. Unit size must be a positive integer.
 
 **add unit with note** - This command does the same thing as *add unit* but also allows the user to add a note to make it easier to keep track of things in large encounters, the same way *add monster with note* does.

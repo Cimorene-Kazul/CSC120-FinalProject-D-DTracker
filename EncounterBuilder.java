@@ -45,6 +45,8 @@ public class EncounterBuilder {
                 this.addNMonsters(encounterScanner);
             } else if (command.startsWith("add monster")){
                 this.addMonster(encounterScanner);
+            } else if (command.startsWith("add placeholder")){
+                this.addPlaceholder(encounterScanner);
             } else if (command.startsWith("remove monsters")){
                 this.removeMonsters(encounterScanner);
             } else if (command.startsWith("remove monster")){
@@ -153,6 +155,22 @@ public class EncounterBuilder {
             System.out.println(monsterToAdd.getName() + " has been added to your encounter.");
         } catch (RuntimeException e){
             System.out.println(e.getMessage());
+        }
+    }
+
+    private void addPlaceholder(Scanner input){
+        this.saved = false;
+        try {
+            System.out.println("What initiative do you want the placeholder for?");
+            int initiative = input.nextInt();
+            input.nextLine();
+            System.out.println("What event happens at initiative count "+initiative+"?");
+            String event = input.nextLine();
+            encounter.addCreature(new Placeholder(initiative, event));
+            System.out.println("A placeholder at "+initiative+" for "+event+" has been added to your encounter.");
+        } catch (RuntimeException e) {
+            System.out.println("Initiatives must be integers.");
+            input.nextLine();
         }
     }
 

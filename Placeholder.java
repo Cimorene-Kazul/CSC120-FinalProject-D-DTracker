@@ -2,17 +2,11 @@ import java.util.Scanner;
 
 public class Placeholder extends Creature {
     private int initiative;
-    private String text;
-    
-    public Placeholder(int initiative, String name, String text){
-        this.initiative=initiative;
-        this.name=name;
-        this.text=text;
-        this.subclass = CreatureType.PLACEHOLDER;
-    }
 
     public Placeholder(int initiative, String name){
-        this(initiative, name, "");
+        this.initiative=initiative;
+        this.name=name;
+        this.subclass = CreatureType.PLACEHOLDER;
     }
 
     public String getName(){
@@ -24,7 +18,7 @@ public class Placeholder extends Creature {
     }
 
     public String turnPrompt(){
-        return "Since it is initiative count "+this.initiative+" it is time to do "+this.name +"\n"+this.text;
+        return "Since it is initiative count "+this.initiative+" it is time to do "+this.name;
     }
 
     public String toString(){
