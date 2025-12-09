@@ -68,11 +68,9 @@ Running the .buildEncounter() method starts up JEB - the Java Encounter Builder.
 
 **add unit with note** - This command does the same thing as *add unit* but also allows the user to add a note to make it easier to keep track of things in large encounters, the same way *add monster with note* does.
 
-**remove player** - This command removes a player-controled character from the encounter, and can take as the name either the player name or the character name.
+**remove creature** - This command removes an entity from the encounter. The name must be the proper name, printed when the monster is added, not the file name used to fetch the monster. *If someone in the future wants to improve this code, allowing more flexible inputs to this command might be a good idea.*
 
-**remove monster** - This command removes a monster or unit from the encounter, since units function exactly like monsters, only with some modified rules. The name must be the proper name, printed when the monster is added, not the file name used to fetch the monster. *If someone in the future wants to improve this code, allowing more flexible inputs to this command might be a good idea.*
-
-**remove monsters** - This command removes all monsters or units with the same name from the encounter. This is especially useful when you have added multiple monsters and want to remove them all or when you have some monsters of a type with and some without a note, and you have to change something, since you can't tell by monster name which one has the note. *If someone in the future wants to improve this code, allowing notes to be identified when removing monsters might be a good place to start!*
+**remove creatures** - This command removes all entities with the same name from the encounter. This is especially useful when you have added multiple monsters and want to remove them all or when you have some monsters of a type with and some without a note, and you have to change something, since you can't tell by monster name which one has the note. *If someone in the future wants to improve this code, allowing notes to be identified when removing monsters might be a good place to start!*
 
 **run encounter** - This command runs the encounter that the encounter builder is currently working on.
 
@@ -90,7 +88,7 @@ Running the .buildEncounter() method starts up JEB - the Java Encounter Builder.
 
 **help** - This command prints the list of commands that the encounter builder will accept.
 
-**close** - This command quits this builder. 
+**close** - This command closes the program.
 
 ### Running Encounters with this Tool
 When the encounter builder is told to *run encounter*, it will stop modifying the encounter and instead run it. It will roll initiative for all the creatures, add lair action placeholders if lair actions are present, and prompt the players for the initiatives they have rolled.

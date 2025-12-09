@@ -12,25 +12,25 @@ public class EncounterBuilder {
     Hashtable<String, ArrayList<Creature>> creatures = new Hashtable<>();
     boolean saved = true;
     String commands = """
-            ENCOUNTER BUILDER COMMANDS
-            add monster - adds a single entity defined by a stat block to the encounter.
-            add multiple monsters - adds a given number of monsters to the encounter. Good for a fight with 5 goblins or 10 guards, to avoid repeats.
-            add monster with note - does the same thing as add monster but gives the option to add a note to make it easier to keep track of things in large encounters.
-            remove monster - removes a monster or unit from the encounter
-            remove monsters - removes all monsters or units with the same name from the encounter.
-            add player - adds a player-controled character to the encounter
-            remove player - removes a player-controled character from the encounter
-            add unit - adds an entity composed of some number of entites defined by a stat block to the encounter. These entities might have something special added because of their nature as a composite or might just take damage together to ease running large encounters.
-            add unit with note - does the same thing as add unit but gives the option to add a note to make it easier to keep track of things in large encounters.
-            print encounter - prints a list of creatures in the encounter, with basic information.
-            list avaliable monsters - lists the monsters by name with stat blocks avaliable to use.
-            save encounter - saves the encounter as an encounter file.
-            list saved encounters - lists encounter file names that are saved.
-            load encounter - loads an encounter from a saved file.
-            clear encounter - removes all entities from the current encounter.
-            help - prints this list of commands.
-            close - quits this builder.
-            """;
+ENCOUNTER BUILDER COMMANDS
+add player - This command adds a player-controled character to the encounter. The player character is indicated by character name and player name, and during combat will prompt for the player-rolled initiative rather than rolling automatically.
+add monster - This command adds a single entity defined by a stat block to the encounter. The stat block will be in the MonsterFiles folder, and must have a particular format, which will be described later. This is not a default format typically fetched off the web, but is easiest to code and reasonably easy to turn a standard off-the-web stat block into.
+add multiple monsters - This command adds a given number of monsters to the encounter, which is like repeating the add monster command a certain number of times.
+add monster with note - This command does the same thing as add monster but also allows the user to add a note to make it easier to keep track of things in large encounters.
+add placeholder - This command adds a placeholder at a particular initiative, for a particular event.
+add unit - This command adds an entity composed of some number of entites defined by a stat block to the encounter. Units of this sort follow rules I created for my personal campaign, and are nonstandard.They have a size, indicating the number of entities composing the unit, and have HP equal to the base HP for the composing monster multiplied by the size. As they take damage, the size decreases. Unit size must be a positive integer.
+add unit with note - This command does the same thing as add unit but also allows the user to add a note to make it easier to keep track of things in large encounters, the same way add monster with note does.
+remove creature - This command removes an entity from the encounter. 
+remove creatures - This command removes all entities with the same name from the encounter. 
+run encounter - This command runs the encounter that the encounter builder is currently working on.
+print encounter - This command prints a list of creatures in the encounter. This will include notes.
+list avaliable monsters - This command lists the monster names for monsters with stat blocks avaliable to use. 
+save encounter - This commander saves the encounter as an encounter file. Such files can be loaded later.
+list saved encounters - This command lists the file names of encounters that are saved and thus can be loaded. 
+load encounter - This command loads an encounter from a saved file. It will ask which encounter to load, the resulting input must be a file name that list saved encounters would print.
+clear encounter - This command removes all entities from the current encounter, reseting it.
+help - This command prints the list of commands that the encounter builder will accept.
+close - This command closes the program """;
 
     public void buildEncounter(){
         System.out.println("Welcome to JEB - the Java Encounter Builder! \n If you don't know what to do, the command 'help' will bring up a list of options.");
@@ -47,14 +47,12 @@ public class EncounterBuilder {
                 this.addMonster(encounterScanner);
             } else if (command.startsWith("add placeholder")){
                 this.addPlaceholder(encounterScanner);
-            } else if (command.startsWith("remove monsters")){
+            } else if (command.startsWith("remove creatures")){
                 this.removeMonsters(encounterScanner);
-            } else if (command.startsWith("remove monster")){
+            } else if (command.startsWith("remove creature")){
                 this.removeMonster(encounterScanner);
             } else if (command.startsWith("add player")) {
                 this.addPlayer(encounterScanner);
-            } else if (command.startsWith("remove player")) {
-                this.removePlayer(encounterScanner);
             } else if (command.startsWith("add unit with note")) {
                 this.addUnitWithNotes(encounterScanner);
             } else if (command.startsWith("add unit")) {
@@ -250,7 +248,7 @@ public class EncounterBuilder {
 
     private void removeMonster(Scanner input){
         this.saved = false;
-        System.out.println("What monster do you want to remove?");
+        System.out.println("What creature do you want to remove?");
         String monsterName = input.nextLine().trim();
         if (this.creatures.containsKey(monsterName)){
             try {
@@ -266,7 +264,7 @@ public class EncounterBuilder {
 
     private void removeMonsters(Scanner input){
         this.saved = false;
-        System.out.println("What monster do you want to remove all copies of?");
+        System.out.println("What entity do you want to remove all copies of?");
         String monsterName = input.nextLine().trim();
         if (this.creatures.containsKey(monsterName)){
             try {
@@ -274,7 +272,7 @@ public class EncounterBuilder {
                     this.removeCreature(monsterName);
                 }
             } finally {
-                System.out.println("All copies of this monster have been removed from your encounter.");
+                System.out.println("All copies of the entity"+monsterName+"have been removed from your encounter.");
             }
         } else {
             System.out.println(monsterName + " is not in this encounter and thus could not be removed.");
@@ -317,24 +315,8 @@ public class EncounterBuilder {
         Player PC = new Player(PCName, playerName);
         this.encounter.addCreature(PC);
         this.addToList(PC, playerName);
-        this.addToList(PC, playerName);
+        this.addToList(PC, PCName);
         System.out.println(PCName+" has been added to your encounter.");
-    }
-
-    private void removePlayer(Scanner input){
-        this.saved = false;
-        System.out.println("Which player do you want to remove?");
-        String playerName = input.nextLine().trim();
-        if (this.creatures.containsKey(playerName)){
-            try {
-                this.removeCreature(playerName);
-                System.out.println(playerName+" has been removed from your encounter.");
-            } catch (RuntimeException e){
-                System.out.println(e.getMessage());
-            }
-        } else {
-            System.out.println(playerName + " is not in this encounter and thus could not be removed.");
-        }
     }
 
     private void listMonsters(){
