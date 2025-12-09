@@ -285,6 +285,87 @@ The first line of an encounter that has not been run is *"INACTIVE".* Encounters
 
 Each entity in the encounter has a single line in the encounter file.
 
+Monsters are represented by
+```
+MONSTER <<<SPACING MARKER>>> <file of origin> <<<SPACING MARKER>>> <current HP> <<<SPACING MARKER>>> <origin notes> <<<SPACING MARKER>>> <primary notes>
+```
+The line starts with 'MONSTER', then contains (in the given order), the name of the file the monster comes from (but not the rest of the path or the ending), the current health of the monster (a positive integer), any notes that would be associated with the monster at creation, and then all the notes that would have been added during the fight. Place <<<*SPACING MARKER*>>> between these elements (ignore the italics; they are here to make the angle brackets render properly). Similarly, units are represented by
+```
+UNIT <<<SPACING MARKER>>> <file of origin> <<<SPACING MARKER>>> <current HP> <<<SPACING MARKER>>> <size> <<<SPACING MARKER>>> <origin notes> <<<SPACING MARKER>>> <primary notes>
+```
+Similarly, the line starts with 'UNIT', then contains (in the given order), the name of the file the monsters composing the unit come from (but not the rest of the path or the ending), the current health of the unit (a positive integer), the current size of the unit (also a positive integer), any notes that would be associated with the unit at creation, and then all the notes that would have been added during the fight. Again, place <<<*SPACING MARKER*>>> between these elements. Placeholders and players are simpler. For a placeholder (add lair actions only if combat has started), write
+```
+PLACEHOLDER <<<SPACING MARKER>>> <initiative> <<<SPACING MARKER>>> <name>
+```
+The line starts with 'PLACEHOLDER', then has the initiative the placeholder appears at (an integer), and the name of the event which has the placeholder. Between these elements, write '<<<*SPACING MARKER*>>>'. For a player, write
+```
+PLAYER <<<SPACING MARKER>>> <name of character> <<<SPACING MARKER>>> <name of player>
+```
+The line starts with 'PLAYER', then has the name of the player character, followed by the name of the player themself. Between these elements, write '<<<*SPACING MARKER*>>>'.
+
+For all four types of entities, if any of the elements of the line are not present, just leave nothing between the spacers. **Do not remove some of the placeholders just because there is nothing that is supposed to be between them.** All portions cannot contain tab, the new line character, or '<<<*SPACING MARKER*>>>'.
+
+### Examples
+```
+INACTIVE
+PLAYER <<<SPACING MARKER>>>Psyin<<<SPACING MARKER>>> Redacted
+MONSTER <<<SPACING MARKER>>>en'ke'sheti<<<SPACING MARKER>>>122<<<SPACING MARKER>>><<<SPACING MARKER>>>
+MONSTER <<<SPACING MARKER>>>high_magedeath<<<SPACING MARKER>>>210<<<SPACING MARKER>>><<<SPACING MARKER>>>
+UNIT <<<SPACING MARKER>>>senior_magedeath<<<SPACING MARKER>>>372<<<SPACING MARKER>>>3<<<SPACING MARKER>>>  <<<SPACING MARKER>>>
+```
+This is a test encounter with one of my players (name redacted for privacy), an NPC (nonplayer character/character run by the dungeon master) called En'ke'sheti, a single high magedeath monster, and a unit composed of 3 senior magedeath monsters. This encounter has yet to be run.
+```
+MONSTER <<<SPACING MARKER>>> hesher <<<SPACING MARKER>>> 114 <<<SPACING MARKER>>><<<SPACING MARKER>>>     
+MONSTER <<<SPACING MARKER>>> high_magedeath <<<SPACING MARKER>>> 210  <<<SPACING MARKER>>><<<SPACING MARKER>>>   is marker 2
+MONSTER <<<SPACING MARKER>>> verisheet <<<SPACING MARKER>>>  74    <<<SPACING MARKER>>><<<SPACING MARKER>>>  
+MONSTER <<<SPACING MARKER>>> commander_poltolsk <<<SPACING MARKER>>> 64    <<<SPACING MARKER>>><<<SPACING MARKER>>>  
+PLAYER <<<SPACING MARKER>>> Moth  <<<SPACING MARKER>>>  Redacted 
+MONSTER <<<SPACING MARKER>>> kilask <<<SPACING MARKER>>> 84  <<<SPACING MARKER>>><<<SPACING MARKER>>>      
+MONSTER <<<SPACING MARKER>>> high_magedeath <<<SPACING MARKER>>> 144 <<<SPACING MARKER>>><<<SPACING MARKER>>>  has used antimagic field; is marker 7
+MONSTER <<<SPACING MARKER>>> utala <<<SPACING MARKER>>>  83     <<<SPACING MARKER>>><<<SPACING MARKER>>>  
+MONSTER <<<SPACING MARKER>>> subcommander_res'seth <<<SPACING MARKER>>>  78    <<<SPACING MARKER>>><<<SPACING MARKER>>>
+PLAYER <<<SPACING MARKER>>> Psyin <<<SPACING MARKER>>>  Redacted 
+MONSTER <<<SPACING MARKER>>> high_magedeath <<<SPACING MARKER>>> 163 <<<SPACING MARKER>>><<<SPACING MARKER>>>  is marker 11
+MONSTER <<<SPACING MARKER>>> high_magedeath <<<SPACING MARKER>>> 210  <<<SPACING MARKER>>><<<SPACING MARKER>>>  under suggestion, is marker 12
+MONSTER <<<SPACING MARKER>>> high_magedeath <<<SPACING MARKER>>> 196  <<<SPACING MARKER>>><<<SPACING MARKER>>> is marker 13
+MONSTER <<<SPACING MARKER>>> high_magedeath <<<SPACING MARKER>>> 210 <<<SPACING MARKER>>><<<SPACING MARKER>>>  is marker 14
+MONSTER <<<SPACING MARKER>>> high_magedeath <<<SPACING MARKER>>> 210 <<<SPACING MARKER>>><<<SPACING MARKER>>>  has used antimagic field, is marker 15
+MONSTER <<<SPACING MARKER>>> jasilisk  <<<SPACING MARKER>>>  64 <<<SPACING MARKER>>><<<SPACING MARKER>>>      
+UNIT <<<SPACING MARKER>>> senior_magedeath  <<<SPACING MARKER>>>  317 <<<SPACING MARKER>>>  3 <<<SPACING MARKER>>><<<SPACING MARKER>>>    
+PLAYER <<<SPACING MARKER>>> Emia  <<<SPACING MARKER>>>  Redacted 
+MONSTER <<<SPACING MARKER>>> levadra <<<SPACING MARKER>>> 68 <<<SPACING MARKER>>><<<SPACING MARKER>>>    
+UNIT <<<SPACING MARKER>>> magedeath_fanatic  <<<SPACING MARKER>>> 4400  <<<SPACING MARKER>>>  100     <<<SPACING MARKER>>><<<SPACING MARKER>>>    
+MONSTER <<<SPACING MARKER>>> high_magedeath <<<SPACING MARKER>>> 210 <<<SPACING MARKER>>><<<SPACING MARKER>>>  is marker 21
+UNIT <<<SPACING MARKER>>> senior_student <<<SPACING MARKER>>> 309 <<<SPACING MARKER>>> 6  <<<SPACING MARKER>>><<<SPACING MARKER>>>    
+MONSTER <<<SPACING MARKER>>> milnor <<<SPACING MARKER>>> 124  <<<SPACING MARKER>>><<<SPACING MARKER>>>    
+MONSTER <<<SPACING MARKER>>> high_magedeath <<<SPACING MARKER>>> 203 <<<SPACING MARKER>>><<<SPACING MARKER>>>  has used antimagic, has marker 0
+```
+This is a large encounter my players are currently in (all names redacted for privacy). It is in progress, and in initiative order contains:
+1. The NPC Hesher at 114 HP without notes.
+2. A high magedeath at 210 HP with the active note that it has marker 2.
+3. The NPC Verisheet at 74 HP without notes.
+4. The NPC Commander Poltolsk at 64 HP without notes.
+5. The player character Moth.
+6. The NPC Kilask at 84 HP without notes.
+7. A high magedeath at 144 HP with the active note that it has used the spell antimagic field and has marker 7.
+8. The NPC Utala at 83 HP with no notes.
+9. The NPC Subcommmander Res'seth at 78 HP with no notes.
+10. The player character Psyin.
+11. A high magedeath at 163 HP with the active note that it has marker 11.
+12. A high magedeath at 210 HP with the active note that it is under the effect of a suggestion spell and has marker 12.
+13. A high magedeath at 196 HP with the active note that it has marker 13.
+14. A high magedeath at 210 HP with the active note that it has marker 14.
+15. A high magedeath at 210 HP with the active note that it has used the spell antimagic field and has marker 15.
+16. The NPC Jasilisk at 64 HP with no notes.
+17. A unit of 3 senior magedeaths at 317 HP (total) without notes.
+18. The player character Emia.
+19. The NPC Levadra at 68 HP without notes.
+20. A unit of 100 magedeath fanatics at 4400 HP (total) without notes.
+21. A high magedeath at 210 HP with the active note that it has marker 21.
+22. A unit of 6 senior students at 309 HP (total) without notes.
+23. The NPC Milnor at 124 HP, without notes.
+24. A high magedeath at 203 HP with the active note that it has used the spell antimagic field and has marker 0.
+
 ## Appendix: Unit Rules
 The 'unit' entities that can be added through certain commands are specific to my campaign. I created their rules myself (this is called homebrewing). In my own campaign notes, here are the rules I wrote for them:
 
