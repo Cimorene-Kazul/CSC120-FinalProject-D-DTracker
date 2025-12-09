@@ -40,9 +40,9 @@ public class DiceFormula {
         int result = 0;
         formula = formula.trim();
         try {
-            for (String plusChunk: formula.split("+")){
-                for (String minusChunk: plusChunk.split("-")){
-                    int value = Integer.parseInt(minusChunk);
+            for (String plusChunk: formula.split("\\+")){
+                for (String minusChunk: plusChunk.split("\\-")){
+                    int value = DiceFormula.parseDie(minusChunk);
                     if (plusChunk.startsWith(minusChunk)){
                         result += value;
                     } else {
@@ -51,7 +51,8 @@ public class DiceFormula {
                 }
             }
         } catch (RuntimeException e) {
-            throw new RuntimeException(formula+" is not an appropriatly formmated dice formula.");
+            System.out.println(e.getMessage());
+            throw new RuntimeException(formula+" is not an appropriatly formated dice formula.");
         }
         
         return result;
