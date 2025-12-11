@@ -290,8 +290,8 @@ save - This command saves the encounter to a file, after prompting for a name fo
                 creatureSource = this.initiativeOrder;
             } else {
                 encounterWriter.write("INACTIVE");
-                encounterWriter.newLine();
             }
+            encounterWriter.newLine();
             for (int i = 0; i<creatureSource.size(); i++){
                 encounterWriter.write((creatureSource.get(this.currentInitiative+i % creatureSource.size()).saveInfo()));
                 if (i!= creatureSource.size()-1){
