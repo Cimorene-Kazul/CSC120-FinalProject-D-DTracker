@@ -52,11 +52,19 @@ save - This command saves the encounter to a file, after prompting for a name fo
         this.creatures = creatures;
     }
 
+    /** 
+     * Constructor for InitiativeTracker given a Scanner
+     * @param encounterScanner a Scanner to read user input during the encounter
+     */
     public Encounter(Scanner encounterScanner){
         this.encounterScanner = encounterScanner;
         this.creatures=new ArrayList<Creature>();
     }
 
+    /** 
+     * toString method for InitiativeTracker
+     * @return A string representation of the InitiativeTracker
+     */
     public String toString(){
         if (this.inCombat){
             String creatures = "";
@@ -73,6 +81,10 @@ save - This command saves the encounter to a file, after prompting for a name fo
         }
     }
 
+    /** 
+     * Method to check if the encounter is in progress
+     * @return true if the encounter is in progress, false otherwise
+     */
     public boolean inProgress(){
         return this.inCombat;
     }
@@ -142,6 +154,10 @@ save - This command saves the encounter to a file, after prompting for a name fo
         }
     }
 
+    /**
+     * Gets a summary of the current initiative order with indices
+     * @return A string summary of the initiative order
+     */
     public String getSummary(){
         String summary = "";
         for (int i=0; i<this.initiativeOrder.size(); i++){
@@ -161,10 +177,18 @@ save - This command saves the encounter to a file, after prompting for a name fo
         }
     }
 
+    /**
+     * Gets the list of creatures in the encounter
+     * @return An ArrayList of Creatures in the encounter
+     */
     public ArrayList<Creature> getCreatures(){
         return this.creatures;
     }
     
+    /**
+     * Removes a Creature from the InitiativeTracker 
+     * @param c the Creature to be removed
+     */
     public void removeCreature(Creature c){
         if (this.inCombat){
             throw new RuntimeException("Creatures cannot be removed from an encounter in progress.");
@@ -177,6 +201,9 @@ save - This command saves the encounter to a file, after prompting for a name fo
         }
     }
 
+    /** 
+     * Adds lair actions for creatures that have them
+     */
     public void addLairs(){
         for (Creature c: this.creatures){
             if (c.getLair()){
@@ -250,6 +277,10 @@ save - This command saves the encounter to a file, after prompting for a name fo
         this.encounterScanner.close();
     }
 
+    /**
+     * Saves the current encounter to a file
+     * @param fileName the name of the file to save the encounter in
+     */
     public void saveEncounter(String fileName){
         try {
             File encounterFile = new File("Encounters/"+fileName+".txt");
@@ -273,6 +304,11 @@ save - This command saves the encounter to a file, after prompting for a name fo
         }
     }
 
+    /**
+     * Loads an encounter from a file
+     * @param fileName the name of the file to load the encounter from
+     * @return The loaded Encounter
+     */
     public static Encounter loadEncounter(String fileName){
         try {
             File encounterFile = new File("Encounters/"+fileName+".txt");

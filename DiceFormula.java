@@ -1,22 +1,43 @@
 public class DiceFormula {
     String value;
 
+    /**
+     * Blank constructor for DiceFormula
+     */
     public DiceFormula(){
         this("0");
     }
 
+    /**
+     * Constructor with String parameter
+     * @param formula The dice formula as a string
+     */
     public DiceFormula(String formula){
         this.value = formula;
     }
 
+    /**
+     * Rolls the dice according to the formula
+     * @return The result of the dice roll
+     */
     public int roll(){
         return parseFormula(this.value);
     }
 
+    /**
+     * Rolls a single die of given size
+     * @param size The size of the die
+     * @return The result of the die roll
+     */
     public static int rollDie(int size){
         return (int)(Math.random()*size + 1);
     }
 
+    /**
+     * Parses a die string and rolls it
+     * @param value The die string (e.g., "2d6" or "5")
+     * @return The result of the die roll
+     */
     public static int parseDie(String value){
          value = (value.trim().split(" ")[0]).toLowerCase();
          try {
@@ -36,6 +57,11 @@ public class DiceFormula {
          }
      }
 
+     /**
+      * Parses a full dice formula and rolls it
+      * @param formula The full dice formula (e.g., "2d6+3-1d4")
+      * @return The result of the dice roll
+      */
     public static int parseFormula (String formula){
         int result = 0;
         formula = formula.trim();
