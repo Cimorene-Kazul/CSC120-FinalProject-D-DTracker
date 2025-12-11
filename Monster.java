@@ -159,7 +159,9 @@ public class Monster extends Creature{
     }
 
     /**
-    */
+     * Turns the monster into a String
+     * @return The monster's name, current HP out of max HP, AC, and any notes
+     */
     public String toString(){
         String result = name+" at "+HP+"/"+HPmax+" HP, AC "+AC;
         if (this.originNotes.trim() != ""){
@@ -171,6 +173,10 @@ public class Monster extends Creature{
         return result;
     }
 
+    /**
+     * Prompts for the monster's turn
+     * @return Prompt for the monster's turn and provides stat block and notes
+     */
     public String turnPrompt(){
         String result = "It is "+this.name+"'s turn.";
         if (this.originNotes.trim()!= ""){
@@ -183,11 +189,20 @@ public class Monster extends Creature{
         return result;
     }
 
+    /**
+     * Creates D20Test object to roll dice
+     * @param initScanner The Scanner to get user input from
+     * @return the result of the dice roll
+     */
     public int rollInitiative(Scanner initScanner){
         D20Test initiativeRoll = new D20Test(this.initiativeBonus);
         return initiativeRoll.roll();
     }
 
+    /**
+     * Saves a monster to a file
+     * @param m The Monster to be saved
+     */
     public static void saveMonster(Monster m){
         String fileName = (m.getName().trim().replaceAll(" ", "_")).toLowerCase();
         File monsterFile = new File("MonsterFiles/"+fileName+".txt");
@@ -212,6 +227,11 @@ public class Monster extends Creature{
         }
     }
 
+    /**
+     * Takes a String of Monster info and turns it into a Monster
+     * @param saveInfo
+     * @return the Monster
+     */
     public static Monster parseMonster(String saveInfo){
         String[] pieces = saveInfo.split("<<<SPACING MARKER>>>");
         Monster m = new Monster(pieces[1].trim());
@@ -221,6 +241,10 @@ public class Monster extends Creature{
         return m;
     }
 
+    /**
+     * Turns the info of the current Monster into a String
+     * @return properly formatted String of Monster info
+     */
     public String saveInfo(){
         if (this.fileOrigin == null){
             Monster.saveMonster(this);

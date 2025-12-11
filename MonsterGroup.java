@@ -7,7 +7,11 @@ public class MonsterGroup extends Monster{
     Integer individualHP;
     String baseName;
     
-
+    /**
+     * Constructor for MonsterGroup with name and number
+     * @param fileName
+     * @param number
+     */
     public MonsterGroup(String fileName, int number){
         super(fileName);
         if (this.size<0){
@@ -22,15 +26,22 @@ public class MonsterGroup extends Monster{
         this.name = number + " " + this.baseName;
     }
 
-
+    /**
+     * Constructor for MonsterGroup with name, number, and notes
+     * @param fileName
+     * @param number
+     * @param originNotes
+     */
     public MonsterGroup(String fileName, int number, String originNotes){
         this(fileName, number);
         this.originNotes = originNotes; 
     }
 
+    /**
+     * 
+     */
     public String damage(int amt){
         this.HP = Math.max(this.HP-amt, 0);
-
         if (this.HP == this.individualHP*(this.HP/this.individualHP)){
             this.size = this.HP/this.individualHP;
         } else {
@@ -41,14 +52,26 @@ public class MonsterGroup extends Monster{
         return this.name+" has been hit for "+amt+" reducing it to "+this.HP+" hit points and size "+this.size+".";
     }
 
+    /**
+     * Gets individual HP
+     * @return individualHP
+     */
     private int getIndividualHP(){
         return this.individualHP;
     }
 
+    /**
+     * Gets the names the monsters share
+     * @return baseName
+     */
     private String getOriginalName(){
         return this.baseName;
     }
 
+    /**
+     * Prompts for the group's turn
+     * @return prompt
+     */
     public String turnPrompt(){
         String result = "It is "+this.name+"'s turn.";
         if (this.originNotes.trim()!= ""){
@@ -61,10 +84,18 @@ public class MonsterGroup extends Monster{
         return result;
     }
 
+    /**
+     * Gets the size of the group
+     * @return size
+     */
     public int getSize(){
         return this.size;
     }
 
+    /**
+     * Turns the information of the group into a String with spacing markers
+     * @return group String info
+     */
     public String saveInfo(){
         if (this.fileOrigin == null){
             MonsterGroup.saveMonster(this);
@@ -73,6 +104,10 @@ public class MonsterGroup extends Monster{
         return "UNIT <<<SPACING MARKER>>>"+this.fileOrigin+"<<<SPACING MARKER>>>"+this.HP+"<<<SPACING MARKER>>>"+this.size+"<<<SPACING MARKER>>>  "+this.originNotes.replaceAll("\n", " ")+"<<<SPACING MARKER>>>"+this.notes.replaceAll("\n", " ");
     }
 
+    /**
+     * Saves the monster group to a file
+     * @param m The MonsterGroup to be saved
+     */
     public static void saveMonster(MonsterGroup m){
         String fileName = (m.getName().trim().replaceAll(" ", "_")).toLowerCase();
         File monsterFile = new File("MonsterFiles/"+fileName+".txt");
@@ -97,6 +132,11 @@ public class MonsterGroup extends Monster{
         }
     }
 
+    /**
+     * Turns a String into a MonsterGroup
+     * @param saveInfo
+     * @return monsterGroup
+     */
     public static MonsterGroup parseMonster(String saveInfo){
         String[] pieces = saveInfo.split("<<<SPACING MARKER>>>");
         MonsterGroup m = new MonsterGroup(pieces[1].trim(), Integer.parseInt(pieces[3].trim()));
