@@ -32,6 +32,9 @@ clear encounter - This command removes all entities from the current encounter, 
 help - This command prints the list of commands that the encounter builder will accept.
 close - This command closes the program """;
 
+    /**
+     * Constructor for an encounter, step by step without an existing file using user input
+     */
     public void buildEncounter(){
         System.out.println("Welcome to JEB - the Java Encounter Builder! \n If you don't know what to do, the command 'help' will bring up a list of options.");
         Scanner encounterScanner = new Scanner(System.in);
@@ -82,6 +85,10 @@ close - This command closes the program """;
         encounterScanner.close();
     }
 
+    /**
+     * Clears the current encounter
+     * @param input The Scanner to get user input from
+     */
     private void clearEncounter(Scanner input){
         if (!this.saved){
             System.out.println("Are you sure? The current encounter is unsaved.");
@@ -94,6 +101,10 @@ close - This command closes the program """;
         }
     }
 
+    /**
+     * Closes the encounter builder
+     * @param input
+     */
     private void closeBuilder(Scanner input){
         if (!this.saved){
             System.out.println("Are you sure? The current encounter is unsaved.");
@@ -106,6 +117,10 @@ close - This command closes the program """;
         }
     }
 
+    /**
+     * Saves the current encounter
+     * @param input The Scanner to get user input from
+     */
     private void saveEncounter(Scanner input){
         this.saved = true;
         System.out.println("What file should this encounter be saved in?");
@@ -117,6 +132,10 @@ close - This command closes the program """;
         }
     }
 
+    /**
+     * Loads an encounter from a file
+     * @param input The Scanner to get user input from
+     */
     private void loadEncounter(Scanner input){
         boolean loading = false;
         if (!this.saved){
@@ -142,6 +161,10 @@ close - This command closes the program """;
         }
     }
 
+    /**
+     * Adds a monster to the encounter
+     * @param input The Scanner to get user input from
+     */
     private void addMonster(Scanner input){
         this.saved = false;
         try{
@@ -156,6 +179,10 @@ close - This command closes the program """;
         }
     }
 
+    /**
+     * Adds a placeholder to the encounter
+     * @param input The Scanner to get user input from
+     */
     private void addPlaceholder(Scanner input){
         this.saved = false;
         try {
@@ -172,6 +199,10 @@ close - This command closes the program """;
         }
     }
 
+    /**
+     * Adds multiple monsters to the encounter
+     * @param input The Scanner to get user input from
+     */
     private void addNMonsters(Scanner input){
         this.saved = false;
         try{
@@ -195,6 +226,10 @@ close - This command closes the program """;
         }
     }
 
+    /**
+     * Adds a monster with notes to the encounter
+     * @param input The Scanner to get user input from
+     */
     private void addMonsterWithNotes(Scanner input){
         this.saved = false;
         try{
@@ -210,6 +245,11 @@ close - This command closes the program """;
             System.out.println(e.getMessage());
         }
     }
+
+    /**
+     * Adds a unit (group of monsters of the same type) with notes to the encounter
+     * @param input The Scanner to get user input from
+     */
     private void addUnitWithNotes(Scanner input){
         this.saved = false;
         try{
@@ -229,6 +269,10 @@ close - This command closes the program """;
         }
     }
 
+    /**
+     * Adds a unit (group of monsters of the same type) to the encounter
+     * @param input The Scanner to get user input from
+     */
     private void addUnit(Scanner input){
         this.saved = false;
         try{
@@ -246,6 +290,10 @@ close - This command closes the program """;
         }
     }
 
+    /**
+     * Removes the first instance of a monster from the encounter list of monsters
+     * @param input The Scanner to get user input from
+     */
     private void removeMonster(Scanner input){
         this.saved = false;
         System.out.println("What creature do you want to remove?");
@@ -262,6 +310,10 @@ close - This command closes the program """;
         }
     }
 
+    /**
+     * Removes all monsters of the same name in the encounter <== NOT SURE WHAT THE DIFFERENCE IS BETWEEN THIS AND PREVIOUS
+     * @param input
+     */
     private void removeMonsters(Scanner input){
         this.saved = false;
         System.out.println("What entity do you want to remove all copies of?");
@@ -279,6 +331,10 @@ close - This command closes the program """;
         }
     }
 
+    /**
+     * Adds a new creature to the encounter
+     * @param c The creature
+     */
     private void addToList(Creature c){
         if (!this.creatures.containsKey(c.getName())){
             this.creatures.put(c.getName(), new ArrayList<Creature>());
@@ -286,6 +342,11 @@ close - This command closes the program """;
         this.creatures.get(c.getName()).add(c);
     }
 
+    /**
+     * Adds a new creature to the encounter
+     * @param c The creature
+     * @param name
+     */
     private void addToList(Creature c, String name){
         if (!this.creatures.containsKey(name)){
             this.creatures.put(name, new ArrayList<Creature>());
@@ -293,6 +354,10 @@ close - This command closes the program """;
         this.creatures.get(name).add(c);
     }
 
+    /**
+     * Removes a creature from the encounter
+     * @param name
+     */
     private void removeCreature(String name){
         String failureMessage = "";
         for (Creature c: this.creatures.get(name)){
@@ -306,6 +371,10 @@ close - This command closes the program """;
         throw new RuntimeException(failureMessage);
     }
 
+    /** 
+     * Adds a player to the encounter
+     * @input Scanner to get user input from
+     */
     private void addPlayer(Scanner input){
         this.saved = false;
         System.out.println("What is the player's name?");
@@ -319,6 +388,9 @@ close - This command closes the program """;
         System.out.println(PCName+" has been added to your encounter.");
     }
 
+    /**
+     * Prints a list of monsters in the encounter
+     */
     private void listMonsters(){
         System.out.println("AVAILIABLE MONSTERS TO USE IN THIS ENCOUNTER");
         File[] listOfMonsterFiles = new File("MonsterFiles").listFiles();
@@ -327,11 +399,17 @@ close - This command closes the program """;
         }
     }
 
+    /**
+     * Begins an encounter by rolling initiative
+     */
     private void runEncounter(){
         inProgress = false;
         this.encounter.rollInitiative();
     }
 
+    /**
+     * Prints available encounter files
+     */
     private void listEncounters(){
         System.out.println("AVAILIABLE ENCOUNTERS TO LOAD");
         File[] listOfEncounterFiles = new File("Encounters").listFiles();
@@ -340,14 +418,27 @@ close - This command closes the program """;
         }
     }
 
+    /**
+     * Prints the current encounter
+     */
     private void printEncounter(){
         System.out.println(this.encounter);
     }
 
+    /**
+     * Replaces a String's spaces with underscores
+     * @param monsterName
+     * @return monsterName with underscores instead of spaces
+     */
     private static String toFileName(String monsterName){
         return (monsterName.replaceAll(" ", "_")).toLowerCase();
     }
 
+    /**
+     * Replaces a String's underscores with spaces
+     * @param fileName
+     * @return fileName with spaces instead of underscores
+     */
     private static String toMonsterName(String fileName){
         return (fileName.replaceAll("_", " ").substring(0, fileName.length()-4));
     }
