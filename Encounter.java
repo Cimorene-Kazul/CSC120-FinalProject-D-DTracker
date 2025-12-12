@@ -21,9 +21,10 @@ close - This command quits out of the whole program.
 roll <dice formula> - This command rolls and prints the result of <dice formula>, which is formatted in the standard format for writing dice rolls.
 damage <index> <amt> - This command makes the creature at index <index> take <amount> damage. 
 heal <index> <amt> - This command heals the creature at index <index> by <amount>. 
-take note <index> - This command prompts the user for a note and then adds that note to the notes for the creature at index <index>.  If there is no index specified, the creature that gains the note is the creature whose turn it currently is.
+take note <index> OR make note <index> - This command prompts the user for a note and then adds that note to the notes for the creature at index <index>.  If there is no index specified, the creature that gains the note is the creature whose turn it currently is.
 stats <index> - This command prints the stat block of the creature <index>. 
-save - This command saves the encounter to a file, after prompting for a name for that file. """;
+save - This command saves the encounter to a file, after prompting for a name for that file.
+options OR help - This command prints this list of commands. """;
 
     /** 
      * Constructor for InitiativeTracker given an array of Creatures
@@ -105,7 +106,7 @@ save - This command saves the encounter to a file, after prompting for a name fo
                 Integer index = Integer.parseInt(commandPieces[1]);
                 Integer amt = Integer.parseInt(commandPieces[2]);
                 System.out.println(this.initiativeOrder.get(index).damage(amt));
-            } else if (input.startsWith("take note")) {
+            } else if (input.startsWith("take note") && input.startsWith("make note")) {
                 System.out.println("What do you want to note?");
                 Integer index = this.currentInitiative;
                 if (input.substring(9).trim() != ""){
@@ -116,7 +117,7 @@ save - This command saves the encounter to a file, after prompting for a name fo
             } else if (input.startsWith("roll")){
                 String die = input.substring(5);
                 System.out.println(DiceFormula.parseFormula(die.trim()));
-            } else if (input.startsWith("options")){
+            } else if (input.startsWith("options") && input.startsWith("help")){
                 System.out.println(commandOptions);
             } else if (input.startsWith("end turn")){
                 this.currentInitiative += 1;
@@ -135,6 +136,8 @@ save - This command saves the encounter to a file, after prompting for a name fo
                 System.out.println("What is the name of the file you want to save this file in?");
                 String fileName = this.encounterScanner.nextLine().trim();
                 this.saveEncounter(fileName);
+            } else {
+                System.out.println(input.trim() + " is not a valid command. If you are confused, try 'help' or 'options'.");
             }
         } catch (RuntimeException e){
             System.out.println("Something went wrong. Perhaps you formatted your command incorrectly or tried damage a creature that is not in the encounter. Please try again.");
@@ -205,11 +208,15 @@ save - This command saves the encounter to a file, after prompting for a name fo
      * Adds lair actions for creatures that have them
      */
     public void addLairs(){
+        ArrayList<Placeholder> creatureLairs = new ArrayList<>();
         for (Creature c: this.creatures){
             if (c.getLair()){
                 Placeholder lair = new Placeholder(20, c.getName()+"'s lair actions"); 
-                creatures.add(lair);
+                creatureLairs.add(lair);
             }
+        }
+        for (Placeholder lair:creatureLairs){
+            this.addCreature(lair);
         }   
     }
 
@@ -256,6 +263,7 @@ save - This command saves the encounter to a file, after prompting for a name fo
      * @param turnScanner a Scanner to read user input during the turn
      */
     private void takeTurn(){
+        System.out.print("Type command here: ");
         String command = this.encounterScanner.nextLine();
         this.doAction(command);
     }
@@ -267,7 +275,10 @@ save - This command saves the encounter to a file, after prompting for a name fo
         if (this.encounterScanner == null){
             this.encounterScanner = new Scanner(System.in);
         }
+        System.out.println("Combat is about to begin! Everybody, roll initiative!");
         this.rollInitiatives();
+        System.out.println("Here is the initiative order:");
+        this.printSummary();
         this.inCombat = true;
         this.currentInitiative = 0;
         System.out.println(this.initiativeOrder.get(this.currentInitiative).turnPrompt());

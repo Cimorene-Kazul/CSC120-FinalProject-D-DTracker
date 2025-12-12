@@ -60,11 +60,13 @@ close - This command closes the program """;
                 this.addUnitWithNotes(encounterScanner);
             } else if (command.startsWith("add unit")) {
                 this.addUnit(encounterScanner);
+            } else if (command.startsWith("list saved encounters") && command.startsWith("list encounters")){
+                this.listEncounters();
             } else if (command.startsWith("print encounter")) {
                 this.printEncounter();
-            } else if (command.startsWith("list avaliable monsters")) {
+            } else if (command.startsWith("list avaliable monsters") && command.startsWith("list monsters")) {
                 this.listMonsters();
-            } else if (command.startsWith("run encounter")) {
+            } else if (command.startsWith("run encounter") && command.startsWith("start encounter") && command.startsWith("roll initiative")) {
                  this.runEncounter();
             } else if (command.startsWith("help")) {
                 System.out.println(this.commands);
@@ -72,9 +74,7 @@ close - This command closes the program """;
                 this.closeBuilder(encounterScanner);
             } else if (command.startsWith("save encounter")){
                 this.saveEncounter(encounterScanner);
-            } else if (command.startsWith("list saved encounters")){
-                this.listEncounters();
-            } else if (command.startsWith("clear encounter")){
+            } else if (command.startsWith("clear")){
                 this.clearEncounter(encounterScanner);
             } else if (command.startsWith("load encounter")) {
                 this.loadEncounter(encounterScanner);
