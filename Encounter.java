@@ -141,7 +141,7 @@ options OR help - This command prints this list of commands. """;
                 if (input.substring(5).trim() != ""){
                     index = Integer.parseInt(input.substring(6).trim());
                 }
-                System.out.println(((Monster) this.creatures.get(index)).getNotes());
+                System.out.println(((Monster) this.initiativeOrder.get(index)).getNotes());
             }else {
                 System.out.println(input.trim() + " is not a valid command. If you are confused, try 'help' or 'options'.");
             }
