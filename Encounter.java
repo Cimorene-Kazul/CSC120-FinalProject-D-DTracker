@@ -106,7 +106,7 @@ options OR help - This command prints this list of commands. """;
                 Integer index = Integer.parseInt(commandPieces[1]);
                 Integer amt = Integer.parseInt(commandPieces[2]);
                 System.out.println(this.initiativeOrder.get(index).damage(amt));
-            } else if (input.startsWith("take note") && input.startsWith("make note")) {
+            } else if (input.startsWith("take note") || input.startsWith("make note")) {
                 System.out.println("What do you want to note?");
                 Integer index = this.currentInitiative;
                 if (input.substring(9).trim() != ""){
@@ -117,7 +117,7 @@ options OR help - This command prints this list of commands. """;
             } else if (input.startsWith("roll")){
                 String die = input.substring(5);
                 System.out.println(DiceFormula.parseFormula(die.trim()));
-            } else if (input.startsWith("options") && input.startsWith("help")){
+            } else if (input.startsWith("options") || input.startsWith("help")){
                 System.out.println(commandOptions);
             } else if (input.startsWith("end turn")){
                 this.currentInitiative += 1;

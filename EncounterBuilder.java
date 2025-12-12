@@ -60,13 +60,13 @@ close - This command closes the program """;
                 this.addUnitWithNotes(encounterScanner);
             } else if (command.startsWith("add unit")) {
                 this.addUnit(encounterScanner);
-            } else if (command.startsWith("list saved encounters") && command.startsWith("list encounters")){
+            } else if (command.startsWith("list saved encounters") || command.startsWith("list encounters")){
                 this.listEncounters();
             } else if (command.startsWith("print encounter")) {
                 this.printEncounter();
-            } else if (command.startsWith("list avaliable monsters") && command.startsWith("list monsters")) {
+            } else if (command.startsWith("list avaliable monsters") || command.startsWith("list monsters")) {
                 this.listMonsters();
-            } else if (command.startsWith("run encounter") && command.startsWith("start encounter") && command.startsWith("roll initiative")) {
+            } else if (command.startsWith("run encounter") || command.startsWith("start encounter") || command.startsWith("roll initiative")) {
                  this.runEncounter();
             } else if (command.startsWith("help")) {
                 System.out.println(this.commands);
