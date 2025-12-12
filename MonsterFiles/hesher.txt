@@ -16,7 +16,7 @@ Spellcasting - Hesher is a level 13 cleric, has spell save DC 18 and spell attac
     Cantrips: Sacred Flame, Spare the Dying, Light, Word of Radiance, Toll the Dead
     Level 1 (4 slots) - Guiding Bolt, Shield of Faith, Bless, Healing Word
     Level 2 (3 slots) - Magic Weapon, Spiritual Weapon, Silence, Zone of Truth, Shared Vision, Hold Person
-    Level 3 (3 slots) - Crusader’s Mantel, Spirit Guardians, Aura of Vitality, Create Food and Water, Sending, Light Snare 
+    Level 3 (3 slots) - Crusader’s Mantle, Spirit Guardians, Aura of Vitality, Create Food and Water, Sending, Light Snare 
     Level 4 (3 slots) - Fire Shield, Freedom of Movement, Storm Door, Pacify Monster
     Level 5 (2 slots) - Hold Monster, Steel Wind Strike, Raise Dead
     Level 6 (1 slot) - Heal, Harm, Heroes’ Feast

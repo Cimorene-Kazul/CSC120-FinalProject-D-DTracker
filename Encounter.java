@@ -125,7 +125,7 @@ save - This command saves the encounter to a file, after prompting for a name fo
                 }
                 System.out.println(this.initiativeOrder.get(this.currentInitiative).turnPrompt());
             } else if (input.startsWith("stats")) {
-                Integer index = Integer.parseInt(input.substring(5));
+                Integer index = Integer.parseInt(input.substring(5).trim());
                 System.out.println(((Monster) this.initiativeOrder.get(index)).getStats());
             }else if (input.startsWith("summary")){
                 this.printSummary();
