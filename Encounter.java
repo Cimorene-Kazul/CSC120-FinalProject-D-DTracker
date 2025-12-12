@@ -136,7 +136,13 @@ options OR help - This command prints this list of commands. """;
                 System.out.println("What is the name of the file you want to save this file in?");
                 String fileName = this.encounterScanner.nextLine().trim();
                 this.saveEncounter(fileName);
-            } else {
+            } else if (input.startsWith("notes")){
+                Integer index = this.currentInitiative;
+                if (input.substring(5).trim() != ""){
+                    index = Integer.parseInt(input.substring(6).trim());
+                }
+                System.out.println(((Monster) this.creatures.get(index)).getNotes());
+            }else {
                 System.out.println(input.trim() + " is not a valid command. If you are confused, try 'help' or 'options'.");
             }
         } catch (RuntimeException e){

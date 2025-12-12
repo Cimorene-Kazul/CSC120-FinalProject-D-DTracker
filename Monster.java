@@ -158,6 +158,20 @@ public class Monster extends Creature{
         return "Notes have been saved.";
     }
 
+    public String getNotes(){
+        String notes = "";
+        if (this.originNotes.trim() != ""){
+            notes += "On creation, the following was noted about "+this.name+": "+this.originNotes + ".\n";
+        }
+        if (this.notes.trim() != ""){
+            notes += "During the course of combat, the following was noted about "+this.name+":\n"+this.notes;
+        }
+        if (this.notes.trim() == "" && this.originNotes.trim() == ""){
+            notes = this.name + " has no notes.";
+        }
+        return notes;
+    }
+
     /**
      * Turns the monster into a String
      * @return The monster's name, current HP out of max HP, AC, and any notes
