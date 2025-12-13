@@ -391,7 +391,7 @@ A .txt file of a particular format is used to store encounter information. When 
 
 Encounter file names are not restricted like monster file names, but I highly recommend using lowercase with underscores instead of spaces.
 
-The first line of an encounter that has not been run is *"INACTIVE".* Encounters that are in progress list entities in the order of initiative *from the initiative that is the first that will happen when the encounter starts again* and just list the entities composing them.
+The first line of an encounter that has not been run is *"INACTIVE".* Encounters that are in progress list entities in the order of initiative *from the initiative that is the first that will happen when the encounter starts again* and list the entities composing them after a *blank line.*
 
 Each entity in the encounter has a single line in the encounter file.
 
@@ -425,6 +425,7 @@ UNIT <<<SPACING MARKER>>>senior_magedeath<<<SPACING MARKER>>>372<<<SPACING MARKE
 ```
 This is a test encounter with one of my players (name redacted for privacy), an NPC (nonplayer character/character run by the dungeon master) called En'ke'sheti, a single high magedeath monster, and a unit composed of 3 senior magedeath monsters. This encounter has yet to be run.
 ```
+
 MONSTER <<<SPACING MARKER>>> hesher <<<SPACING MARKER>>> 114 <<<SPACING MARKER>>><<<SPACING MARKER>>>     
 MONSTER <<<SPACING MARKER>>> high_magedeath <<<SPACING MARKER>>> 210  <<<SPACING MARKER>>><<<SPACING MARKER>>>   is marker 2
 MONSTER <<<SPACING MARKER>>> verisheet <<<SPACING MARKER>>>  74    <<<SPACING MARKER>>><<<SPACING MARKER>>>  
