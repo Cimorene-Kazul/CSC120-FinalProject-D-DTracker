@@ -480,18 +480,25 @@ This is a large encounter my players are currently in (all names redacted for pr
 ## Additional Reflection Questions
 ### What was your overall approach to tackling this project?
 We had a sense of what the code should do, and what should have what information, and then we just wrote code. It was modeled to look and behave like the objects would in real life. This was badly structured, and honestly I think could cause problems for larger projects. It worked, but that's probably more luck than anything. - Eliana
+We started with planning out how to take the user's input, then moved on to the methods that would be triggered by that input. There was a lot of moving methods around between classes, because we didn't spend enough time planning out how things should interact beforehand. - Rachel
 ### What new thing(s) did you learn / figure out in completing this project?
-I figured out how to work with files and more about the command line for this project. I learned a lot more about files than I actually wound up needing to use. I found out that maven is nessesary if you want to do much with packages in java. I learned how to make a good gameloop. And, while I was unable to impliment it, I learned some stuff about how not to structure code. - Eliana
+I figured out how to work with files and more about the command line for this project. I learned a lot more about files than I actually wound up needing to use. I found out that maven is nessesary if you want to do much with packages in java. I learned how to make a good gameloop. And, while I was unable to implement it, I learned some stuff about how not to structure code. - Eliana
+I learned a lot about files, and about DnD. I also learned how to work on the same project in Github as another person without accidentally overwriting their changes when I committed. - Rachel
 ### Is there anything that you wish you had implemented differently?
 I would have been much, much better at planning and naming. I kept changing the names of things and adding and removing things. Better planning was sorely needed. Encounters would only track info, and the only thing with scanners would be the EncounterBuilder. I also would have been better at working with groupmates. I would communicate about what D&D combat is more clearly. - Eliana
+I would have planned everything out ahead of time before starting to code, because by the end of the project it was difficult to make an accurate architecture diagram due to things interacting in ways that we didn't originally plan but ended up happening because that's how it worked. Also, the way we had certain classes inherit was a bit inefficient - Rachel
 ### If you had unlimited time, what additional features would you implement?
 I would add a tracker for location, make inputing names easier, make it easier to modify notes, make creature names contain if they have notes, add tracking and auto-rolling to reactions, actions, etc, make a list for legendary actions, reactions, etc that prints every turn so I know what entities can do what. I would find out how to scrape the web to get more options for monsters. I would automate saving throws and set up a tool to bring up spell descriptions and track spell uses. I would let you run multiple encounters without needing to run the code multiple times - Eliana
+I would learn how to scrape the web and so automate the creation of monsters rather than having to start step-by-step. - Rachel
 ### What was the most helpful piece of feedback you received while working on your project? Who gave it to you?
 My parents told me that since I took on too much, I should decrease the breadth. That was a *good* idea. - Eliana
+"Why is this in a seperate class rather than part of __________?" from Eliana (about multiple different methods). - Rachel
 ### If you could go back in time and give your past self some advice about this project, what hints would you give?
-Be clearer at explaining D&D combat! Text files *can* save encounters. Trying to explore .json and .xml just takes time. Also, get better at spliting work. - Eliana
+Be clearer at explaining D&D combat! Text files *can* save encounters. Trying to explore .json and .xml just takes time. Also, get better at splitting work. - Eliana
+Don't just jump into coding, even if you think you know how it will work in your head. Write things down! Communicate! Just because you think you understand what you and your partner have agreed to do does not mean you've actually understood. - Rachel
 ### If you worked with a team: please comment on how your team dynamics influenced your experience working on this project.
 I honestly have to say I am a bad teammate. I tend to do too much myself, and communicate and share work badly. I did not find problems emerging from these bad team dynamics, but Rachel might have noticed some things. I feel bad about it. - Eliana
+I feel like I did less than my share of the work, partially because I didn't quite get all of Eliana's plans for our project and partially because we didn't communicate well about who was going to do what and how our work would interact, which sometimes meant code I'd written had to be redone because it didn't mesh with the overall goal of the project. - Rachel
 
 ## Appendix: Unit Rules
 The 'unit' entities that can be added through certain commands are specific to my campaign. I created their rules myself (this is called homebrewing). In my own campaign notes, here are the rules I wrote for them:
